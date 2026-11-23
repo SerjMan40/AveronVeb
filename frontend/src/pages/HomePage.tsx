@@ -169,36 +169,19 @@ export function HomePage() {
         <section className="hero section-wrap" id="home">
           <div className="hero__copy">
             <p className="eyebrow"><span className="eyebrow__dot" />{t.hero.eyebrow}</p>
-            <h1>{t.hero.title}</h1>
+            <h1>{t.hero.title} <span>{t.hero.titleAccent}</span></h1>
             <p className="hero__description">{t.hero.description}</p>
-            <p className="hero__tagline">{t.hero.tagline}</p>
             <div className="hero__actions">
-              <a className="button button--primary" href="#contact">{t.hero.primary}<span aria-hidden="true">↗</span></a>
-              <a className="button button--quiet" href="#work">{t.hero.secondary}<span aria-hidden="true">↓</span></a>
+              <a className="button button--primary" href="#contact">{t.hero.primary}</a>
             </div>
-            <p className="hero__note">{t.hero.note}</p>
           </div>
           <div className="hero-visual" role="img" aria-label={t.hero.visualLabel}>
-            <div className="hero-visual__glow" />
-            <div className="hero-visual__frame">
-              <div className="hero-visual__bar"><span /><span /><span /><i>AVERON / DIGITAL STUDIO</i></div>
-              <div className="hero-visual__content">
-                <div className="hero-visual__nav"><b>AV.</b><span>STUDIO&nbsp;&nbsp; SERVICES&nbsp;&nbsp; CONTACT</span><i>↗</i></div>
-                <div className="hero-visual__body"><p>DESIGN FOR WHAT’S NEXT</p><strong>Make room<br />for <em>growth.</em></strong><span>Strategy, design and development for people building what’s next.</span><b>EXPLORE THE STUDIO&nbsp; ↗</b></div>
-                <div className="hero-visual__orb"><span>AW</span></div>
-                <div className="hero-visual__footer"><span>01 / DIGITAL PRESENCE</span><span>SCROLL TO DISCOVER&nbsp; ↓</span></div>
-              </div>
-            </div>
-            <div className="hero-visual__caption"><span className="hero-visual__caption-icon">✳</span><span><b>{t.hero.visualStatus}</b><small>{t.hero.visualCaption}</small></span><span className="hero-visual__caption-arrow">↗</span></div>
-            <span className="hero-visual__index">AW&nbsp; / &nbsp;01—05</span>
+            <img className="hero-scene" src="/brand/hero-background.jpg" alt="" fetchPriority="high" />
           </div>
-          <span className="hero__watermark" aria-hidden="true">A</span>
-          <a className="hero__scroll" href="#services"><span />SCROLL TO EXPLORE</a>
         </section>
 
         <section className="services-section section-wrap" id="services">
-          <div className="section-heading">
-            <p className="eyebrow">{t.services.kicker}</p>
+          <div className="section-heading section-heading--services">
             <div><h2>{t.services.title}</h2><p>{t.services.intro}</p></div>
           </div>
           <div className="service-grid">
@@ -213,7 +196,6 @@ export function HomePage() {
 
         <section className="work-section section-wrap" id="work">
           <div className="section-heading section-heading--work">
-            <p className="eyebrow">{t.work.kicker}</p>
             <div><h2>{t.work.title}</h2><p>{t.work.intro}</p></div>
           </div>
           <div className="project-grid">
@@ -234,7 +216,6 @@ export function HomePage() {
 
         <section className="process-section section-wrap" id="process">
           <div className="section-heading section-heading--process">
-            <p className="eyebrow">{t.process.kicker}</p>
             <div><h2>{t.process.title}</h2><p>{t.process.intro}</p></div>
           </div>
           <div className="process-layout">
@@ -256,7 +237,7 @@ export function HomePage() {
         </section>
 
         <section className="contact-section section-wrap" id="contact">
-          <div className="contact-intro"><p className="eyebrow">{t.contact.kicker}</p><h2>{t.contact.title}</h2><p>{t.contact.intro}</p><div className="contact-intro__signature"><span>AVERON WEB</span><i>Build. Launch. Evolve.</i></div></div>
+          <div className="contact-intro"><h2>{t.contact.title}</h2><p>{t.contact.intro}</p><div className="contact-intro__signature"><span>AVERON WEB</span><i>Build. Launch. Evolve.</i></div></div>
           <form className="contact-form" onSubmit={handleSubmit}>
             <div className="contact-form__row">
               <label>{t.contact.name}<input autoComplete="name" name="name" placeholder={t.contact.namePlaceholder} required maxLength={100} /></label>

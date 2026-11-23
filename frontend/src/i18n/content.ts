@@ -3,15 +3,15 @@ export const siteContent = {
     language: 'Українська',
     nav: { services: 'Послуги', work: 'Роботи', process: 'Як це працює', contact: 'Зв’язатися' },
     hero: {
-      eyebrow: 'Незалежна вебстудія · Україна та світ',
-      title: 'Цифрова присутність, що зростає разом із бізнесом.',
-      description: 'Створюємо, запускаємо й розвиваємо професійні сайти для компаній, підприємців і команд.',
+      eyebrow: 'Веб-дизайн та розробка',
+      title: 'Ваші ідеї — у продуманому', titleAccent: 'цифровому форматі.',
+      description: 'Розробка сучасних вебсайтів із продуманою структурою, виразним дизайном та зручністю для користувачів.',
       tagline: 'Build. Launch. Evolve.',
       primary: 'Обговорити проєкт', secondary: 'Переглянути роботи', note: 'Розробка з щомісячною оплатою · Підтримка · Можливість викупу',
       visualLabel: 'Цифрова присутність вашого бізнесу', visualStatus: 'Готовий до зростання', visualCaption: 'Продуманий дизайн. Надійна розробка.',
     },
     services: {
-      kicker: '02 / Послуги', title: 'Усе необхідне для сильного сайту.', intro: 'Від першої структури до постійного розвитку — послуги, що підтримують ваш бізнес онлайн.',
+      kicker: 'Послуги', title: 'Усе необхідне для сильного сайту.', intro: 'Від першої структури до постійного розвитку — послуги, що підтримують ваш бізнес онлайн.',
       items: [
         ['Розробка сайтів', 'Індивідуальні сайти для бізнесу, компаній і підприємців.'],
         ['Вебдизайн', 'Виразний візуальний стиль, зрозуміла структура й інтерфейс.'],
@@ -21,7 +21,7 @@ export const siteContent = {
       ],
     },
     work: {
-      kicker: '03 / Обрані роботи', title: 'Ідеї, втілені в цифровий досвід.', intro: 'Концептуальні приклади показують підхід до різних бізнес-задач. Це демонстраційні роботи, а не клієнтські проєкти.',
+      kicker: 'Обрані роботи', title: 'Ідеї, втілені в цифровий досвід.', intro: 'Концептуальні приклади показують підхід до різних бізнес-задач. Це демонстраційні роботи, а не клієнтські проєкти.',
       concept: 'Демо · концепт', open: 'Переглянути концепт', close: 'Закрити перегляд', conceptLabel: 'Концептуальна робота — не клієнтський проєкт',
       projects: [
         { name: 'Відпочинок і гостинність', category: 'Готельний бізнес', description: 'Концепт сайту для заміського простору з фокусом на атмосфері й бронюванні.', kind: 'stay' },
@@ -30,7 +30,7 @@ export const siteContent = {
       ],
     },
     process: {
-      kicker: '04 / Як це працює', title: 'Професійний сайт без великої стартової оплати.', intro: 'Починаємо з ваших цілей, узгоджуємо щомісячний формат і розвиваємо сайт у прозорому партнерстві.',
+      kicker: 'Як це працює', title: 'Професійний сайт без великої стартової оплати.', intro: 'Починаємо з ваших цілей, узгоджуємо щомісячний формат і розвиваємо сайт у прозорому партнерстві.',
       modelTitle: 'Партнерство з передбачуваним платежем', modelText: 'Замість великого початкового рахунку — погоджена регулярна оплата за розробку та обсяг супроводу, визначений вашим тарифом і договором.', buyout: 'Хочете повністю володіти сайтом? Викуп і передача прав та матеріалів можливі на умовах, погоджених у договорі.',
       steps: [
         ['Узгоджуємо рішення', 'Визначаємо цілі, структуру, функції та формат співпраці.'],
@@ -42,7 +42,7 @@ export const siteContent = {
       fineprint: 'Склад робіт, терміни й умови викупу визначаються індивідуально до початку робіт.',
     },
     contact: {
-      kicker: '05 / Початок співпраці', title: 'Створімо щось справді важливе.', intro: 'Розкажіть про ваш бізнес і цілі сайту. Допоможемо обрати формат, що підходить саме вам.',
+      kicker: 'Початок співпраці', title: 'Створімо щось справді важливе.', intro: 'Розкажіть про ваш бізнес і цілі сайту. Допоможемо обрати формат, що підходить саме вам.',
       name: 'Ваше ім’я', email: 'Електронна пошта', company: 'Назва компанії', message: 'Коротко про проєкт', service: 'Що вас цікавить?', choose: 'Оберіть послугу',
       options: ['Розробка сайтів', 'Вебдизайн', 'Технічний супровід', 'SEO та оптимізація', 'Розвиток сайту'],
       consent: 'Я погоджуюся з', privacy: 'політикою конфіденційності', submit: 'Надіслати запит', sending: 'Надсилаємо…', success: 'Дякуємо! Ваш запит надіслано.', error: 'Не вдалося надіслати запит. Спробуйте ще раз пізніше.',
@@ -59,15 +59,15 @@ export const siteContent = {
     language: 'English',
     nav: { services: 'Services', work: 'Selected work', process: 'How it works', contact: 'Get in touch' },
     hero: {
-      eyebrow: 'Independent digital studio · Ukraine & worldwide',
-      title: 'A digital presence that grows with your business.',
-      description: 'We build, launch and evolve professional websites for businesses, founders and teams.',
+      eyebrow: 'Web design & development',
+      title: 'Your ideas, thoughtfully built for the', titleAccent: 'digital world.',
+      description: 'Modern websites with clear structure, expressive design and an intuitive experience for your customers.',
       tagline: 'Build. Launch. Evolve.',
       primary: 'Discuss your project', secondary: 'Explore selected work', note: 'Monthly development · Ongoing care · Optional buyout',
       visualLabel: 'Your business, online', visualStatus: 'Ready to grow', visualCaption: 'Thoughtful design. Reliable development.',
     },
     services: {
-      kicker: '02 / Services', title: 'Everything your website needs.', intro: 'From the first structure to continuous improvement, we help your business show up online.',
+      kicker: 'Services', title: 'Everything your website needs.', intro: 'From the first structure to continuous improvement, we help your business show up online.',
       items: [
         ['Website development', 'Custom websites for businesses, companies and founders.'],
         ['Web design', 'A distinctive visual system, clear structure and thoughtful interface.'],
@@ -77,7 +77,7 @@ export const siteContent = {
       ],
     },
     work: {
-      kicker: '03 / Selected work', title: 'Ideas shaped into digital experiences.', intro: 'These conceptual examples show how we approach different business needs. They are demos, not client projects.',
+      kicker: 'Selected work', title: 'Ideas shaped into digital experiences.', intro: 'These conceptual examples show how we approach different business needs. They are demos, not client projects.',
       concept: 'Demo · concept', open: 'Explore concept', close: 'Close preview', conceptLabel: 'Concept work — not a client project',
       projects: [
         { name: 'A slower kind of stay', category: 'Hospitality', description: 'A website concept for a countryside retreat, shaped around atmosphere and booking.', kind: 'stay' },
@@ -86,7 +86,7 @@ export const siteContent = {
       ],
     },
     process: {
-      kicker: '04 / How it works', title: 'A professional website without a large upfront fee.', intro: 'We start with your goals, agree on a monthly plan and evolve your website through a clear partnership.',
+      kicker: 'How it works', title: 'A professional website without a large upfront fee.', intro: 'We start with your goals, agree on a monthly plan and evolve your website through a clear partnership.',
       modelTitle: 'A partnership with predictable payments', modelText: 'Instead of a large initial invoice, pay an agreed recurring amount for development and the support defined by your plan and contract.', buyout: 'Prefer full ownership? A complete website buyout and transfer of agreed rights and materials can be arranged under the contract.',
       steps: [
         ['Choose the right approach', 'Set goals, structure, features and a way of working together.'],
@@ -98,7 +98,7 @@ export const siteContent = {
       fineprint: 'Scope, timing and buyout terms are agreed individually before work begins.',
     },
     contact: {
-      kicker: '05 / Get started', title: 'Let’s build something great together.', intro: 'Tell us about your business and your website goals. We’ll help you find the right solution.',
+      kicker: 'Get started', title: 'Let’s build something great together.', intro: 'Tell us about your business and your website goals. We’ll help you find the right solution.',
       name: 'Your name', email: 'Email address', company: 'Company name', message: 'A little about your project', service: 'What are you interested in?', choose: 'Choose a service',
       options: ['Website development', 'Web design', 'Website maintenance', 'SEO & optimization', 'Website improvement'],
       consent: 'I agree to the', privacy: 'Privacy Policy', submit: 'Start your project', sending: 'Sending…', success: 'Thank you — your message has been sent.', error: 'Your message could not be sent. Please try again later.',
@@ -115,15 +115,15 @@ export const siteContent = {
     language: 'Русский',
     nav: { services: 'Услуги', work: 'Работы', process: 'Как это работает', contact: 'Связаться' },
     hero: {
-      eyebrow: 'Независимая веб-студия · Украина и мир',
-      title: 'Цифровое присутствие, которое растёт вместе с бизнесом.',
-      description: 'Создаём, запускаем и развиваем профессиональные сайты для компаний, предпринимателей и команд.',
+      eyebrow: 'Веб-дизайн и разработка',
+      title: 'Ваши идеи — в продуманном', titleAccent: 'цифровом формате.',
+      description: 'Современные сайты с продуманной структурой, выразительным дизайном и удобством для пользователей.',
       tagline: 'Build. Launch. Evolve.',
       primary: 'Обсудить проект', secondary: 'Посмотреть работы', note: 'Разработка с ежемесячной оплатой · Поддержка · Возможность выкупа',
       visualLabel: 'Ваш бизнес в интернете', visualStatus: 'Готов к развитию', visualCaption: 'Продуманный дизайн. Надёжная разработка.',
     },
     services: {
-      kicker: '02 / Услуги', title: 'Всё необходимое для сильного сайта.', intro: 'От структуры до постоянного развития — помогаем бизнесу уверенно присутствовать в интернете.',
+      kicker: 'Услуги', title: 'Всё необходимое для сильного сайта.', intro: 'От структуры до постоянного развития — помогаем бизнесу уверенно присутствовать в интернете.',
       items: [
         ['Разработка сайтов', 'Индивидуальные сайты для бизнеса, компаний и предпринимателей.'],
         ['Веб-дизайн', 'Выразительный стиль, понятная структура и удобный интерфейс.'],
@@ -133,7 +133,7 @@ export const siteContent = {
       ],
     },
     work: {
-      kicker: '03 / Избранные работы', title: 'Идеи, воплощённые в цифровой опыт.', intro: 'Концептуальные примеры показывают подход к разным бизнес-задачам. Это демо-работы, а не клиентские проекты.',
+      kicker: 'Избранные работы', title: 'Идеи, воплощённые в цифровой опыт.', intro: 'Концептуальные примеры показывают подход к разным бизнес-задачам. Это демо-работы, а не клиентские проекты.',
       concept: 'Демо · концепт', open: 'Посмотреть концепт', close: 'Закрыть просмотр', conceptLabel: 'Концептуальная работа — не клиентский проект',
       projects: [
         { name: 'Отдых и гостеприимство', category: 'Гостиничный бизнес', description: 'Концепт сайта загородного пространства с акцентом на атмосферу и бронирование.', kind: 'stay' },
@@ -142,7 +142,7 @@ export const siteContent = {
       ],
     },
     process: {
-      kicker: '04 / Как это работает', title: 'Профессиональный сайт без крупного стартового платежа.', intro: 'Начинаем с ваших целей, согласуем ежемесячный формат и развиваем сайт в рамках прозрачного сотрудничества.',
+      kicker: 'Как это работает', title: 'Профессиональный сайт без крупного стартового платежа.', intro: 'Начинаем с ваших целей, согласуем ежемесячный формат и развиваем сайт в рамках прозрачного сотрудничества.',
       modelTitle: 'Сотрудничество с предсказуемыми платежами', modelText: 'Вместо крупного счёта на старте — согласованная регулярная оплата разработки и объёма сопровождения по выбранному тарифу и договору.',
       buyout: 'Хотите полностью владеть сайтом? Выкуп и передача согласованных прав и материалов возможны на условиях договора.',
       steps: [
@@ -155,7 +155,7 @@ export const siteContent = {
       fineprint: 'Состав работ, сроки и условия выкупа согласуются индивидуально до начала работы.',
     },
     contact: {
-      kicker: '05 / Начало сотрудничества', title: 'Давайте создадим что-то важное.', intro: 'Расскажите о вашем бизнесе и целях сайта. Поможем подобрать подходящее решение.',
+      kicker: 'Начало сотрудничества', title: 'Давайте создадим что-то важное.', intro: 'Расскажите о вашем бизнесе и целях сайта. Поможем подобрать подходящее решение.',
       name: 'Ваше имя', email: 'Электронная почта', company: 'Название компании', message: 'Кратко о проекте', service: 'Что вас интересует?', choose: 'Выберите услугу',
       options: ['Разработка сайтов', 'Веб-дизайн', 'Техническое сопровождение', 'SEO и оптимизация', 'Развитие сайта'],
       consent: 'Я соглашаюсь с', privacy: 'политикой конфиденциальности', submit: 'Отправить запрос', sending: 'Отправляем…', success: 'Спасибо! Ваш запрос отправлен.', error: 'Не удалось отправить запрос. Попробуйте позже.',
