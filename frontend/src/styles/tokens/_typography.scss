@@ -1,0 +1,34 @@
+:root {
+  /* Font Family */
+  --font-family-ui: 'Manrope', sans-serif;
+  --font-family-brand: 'Manrope', sans-serif;
+  --font-family-display: 'Cormorant Garamond', Georgia, serif;
+
+  /* Font Weight */
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  /* Font Size */
+  --font-size-sm: 0.875rem;
+  --font-size-md: 1rem;
+  --font-size-lg: 1.125rem;
+  --font-size-xl: 1.5rem;
+  --font-size-2xl: 2rem;
+  --font-size-3xl: 2.5rem;
+  --font-size-4xl: 3.5rem;
+  --font-size-5xl: 5rem;
+
+  /* Line Height */
+  --line-height-base: 1.5;
+  --line-height-heading: 1.2;
+
+  /* Letter Spacing */
+  --letter-spacing-tight: -0.02em;
+  --letter-spacing-normal: 0;
+  --letter-spacing-wide: 0.05em;
+  --letter-spacing-wider: 0.1em;
+  --letter-spacing-widest: 0.2em;
+  --letter-spacing-logo: 0.32em;
+}

@@ -1,0 +1,19 @@
+:root {
+  --container-width: 75rem; /* Main content width */
+
+  --container-padding: var(--space-md); /* Default horizontal page padding */
+
+  --header-height: 5rem;
+
+  --content-width-sm: 34rem;
+  --content-width-md: 44rem;
+  --booking-calendar-scroll-height: 20rem;
+  --booking-calendar-compact-scroll-height: 16rem;
+  --booking-schedule-compact-width: 24rem;
+  --booking-confirmation-photo-width: 12rem;
+  --booking-confirmation-photo-height: 15rem;
+  --booking-controls-min-width: 18rem;
+  --booking-sidebar-min-width: 22rem;
+  --booking-column-max-width: 28rem;
+  --profile-sidebar-min-width: 15rem;
+}

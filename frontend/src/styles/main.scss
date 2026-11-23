@@ -1,0 +1,8 @@
+@use './base';
+@use './abstracts';
+@use './themes';
+@use './tokens' as *;
+
+html { background: var(--color-bg-primary); scroll-padding-top: 6rem; }
+body { background: var(--color-bg-primary); color: var(--color-text-primary); }
+a:not([class]) { color: #b9adff; }

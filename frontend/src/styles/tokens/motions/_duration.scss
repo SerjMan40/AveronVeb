@@ -1,0 +1,13 @@
+:root {
+  --duration-fast: 150ms;
+  /* Hover effects, icons, small UI transitions */
+
+  --duration-normal: 250ms;
+  /* Default buttons, inputs, links, cards */
+
+  --duration-slow: 400ms;
+  /* Modals, drawers, accordions, dropdowns */
+
+  --duration-extra-slow: 600ms;
+  /* Hero animations, page transitions, large visual effects */
+}

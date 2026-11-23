@@ -1,0 +1,18 @@
+:root {
+  
+
+  --animation-fade-in: fade-in var(--duration-normal) var(--ease-out);
+  /* Basic fade-in animation */
+
+  --animation-slide-up: slide-up var(--duration-normal) var(--ease-out);
+  /* Element appears from bottom */
+
+  --animation-slide-down: slide-down var(--duration-normal) var(--ease-out);
+  /* Element appears from top */
+
+  --animation-scale-in: scale-in var(--duration-normal) var(--ease-out);
+  /* Modal, popover, tooltip appearance */
+
+  --animation-soft-reveal: soft-reveal var(--duration-slow) var(--ease-in-out) both;
+  /* Smooth transition between booking form steps */
+}

@@ -1,0 +1,98 @@
+/* -----------------------------------------------------------
+   HTML
+   Enables smooth scrolling for anchor links.
+----------------------------------------------------------- */
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 6rem;
+}
+
+/* -----------------------------------------------------------
+   Body
+   Defines global page background and base text color.
+   Typography-related styles are handled in _typography.scss.
+----------------------------------------------------------- */
+
+body {
+  min-width: 320px;
+  min-height: 100vh;
+  overflow-x: hidden;
+
+  background: var(--color-bg-primary);
+  caret-color: transparent;
+  color: var(--color-text-primary);
+}
+
+form,
+input,
+textarea,
+select,
+[contenteditable='true'] {
+  caret-color: auto;
+}
+
+button,
+input,
+select,
+textarea {
+  color: inherit;
+}
+
+button {
+  border: 0;
+}
+
+/* -----------------------------------------------------------
+   Root
+   Ensures the React application can fill the full viewport height.
+----------------------------------------------------------- */
+
+#root {
+  min-height: 100vh;
+}
+
+/* -----------------------------------------------------------
+   Focus
+   Provides a consistent keyboard focus style for accessibility.
+----------------------------------------------------------- */
+
+:focus-visible {
+  outline: 2px solid var(--color-brand-primary);
+  outline-offset: 3px;
+}
+
+/* -----------------------------------------------------------
+   Scrollbar
+   Adds subtle branded styling for WebKit-based browsers.
+----------------------------------------------------------- */
+
+::-webkit-scrollbar {
+  width: 0.75rem;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-bg-primary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: #4e55c7;
+  border: 3px solid var(--color-bg-primary);
+  border-radius: var(--radius-full);
+}
+
+/* -----------------------------------------------------------
+   Reduced Motion
+   Reduces animations and transitions for users who prefer less motion.
+----------------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

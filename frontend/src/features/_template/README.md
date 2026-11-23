@@ -1,0 +1,1 @@
+﻿Copy this directory to add a feature. Keep feature-specific API calls, UI, hooks, validation schemas, state, and types together. Import shared primitives from common folders; avoid reaching into another feature's internals. Export deliberate public interfaces from `index.ts`.

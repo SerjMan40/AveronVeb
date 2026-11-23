@@ -1,0 +1,53 @@
+﻿services:
+  mongo:
+    image: mongo:8
+    restart: unless-stopped
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_ROOT_USERNAME:-starter}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_ROOT_PASSWORD:-starter-local-password}
+    volumes:
+      - mongo_data:/data/db
+    healthcheck:
+      test: ["CMD", "mongosh", "--quiet", "--eval", "db.adminCommand('ping').ok"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+  backend:
+    build:
+      context: ./backend
+      target: production
+    restart: unless-stopped
+    depends_on:
+      mongo:
+        condition: service_healthy
+    environment:
+      NODE_ENV: production
+      PORT: 4000
+      MONGODB_URI: mongodb://${MONGO_ROOT_USERNAME:-starter}:${MONGO_ROOT_PASSWORD:-starter-local-password}@mongo:27017/starter?authSource=admin
+      CLIENT_ORIGIN: ${CLIENT_ORIGIN:-http://localhost:8080}
+      LOG_LEVEL: info
+      SESSION_SECRET: ${SESSION_SECRET:-local-compose-only-secret-change-before-deploy}
+      SESSION_COOKIE_SECURE: "false"
+      CONTACT_WEBHOOK_URL: ${CONTACT_WEBHOOK_URL:-}
+      CONTACT_WEBHOOK_TOKEN: ${CONTACT_WEBHOOK_TOKEN:-}
+    expose: ["4000"]
+    healthcheck:
+      test: ["CMD", "node", "-e", "fetch('http://127.0.0.1:4000/api/health').then(r=>{if(!r.ok)process.exit(1)}).catch(()=>process.exit(1))"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+  frontend:
+    build:
+      context: ./frontend
+      target: production
+    restart: unless-stopped
+    depends_on:
+      backend:
+        condition: service_healthy
+    ports:
+      - "8080:80"
+volumes:
+  mongo_data:
+
+
+
