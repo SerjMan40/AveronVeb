@@ -1,6 +1,9 @@
-.mobile-menu { display: none; }
-@media (max-width: 900px) {
-  .mobile-menu { position: absolute; top: calc(100% + 1px); right: 0; left: 0; display: block; visibility: hidden; padding: .4rem 1rem 1rem; transform: translateY(-.5rem); border: 1px solid var(--color-border-primary); border-top: 0; border-radius: 0 0 1rem 1rem; background: rgba(16, 22, 41, .98); box-shadow: 0 1.4rem 2rem var(--color-shadow-medium); opacity: 0; pointer-events: none; transition: opacity .2s ease, transform .2s ease, visibility .2s ease; }
-  .mobile-menu--open { visibility: visible; transform: translateY(0); opacity: 1; pointer-events: auto; }
-  .mobile-menu__cta { display: flex; justify-content: space-between; margin: .8rem 1.1rem .2rem; }
-}
+.mobile-menu { position: absolute; top: calc(100% + .65rem); right: 0; width: max-content; min-width: 15rem; max-width: calc(100vw - 3rem); max-height: calc(100dvh - 7rem); overflow-y: auto; overscroll-behavior: contain; display: block; visibility: hidden; padding: .4rem 1rem 1rem; clip-path: inset(0 0 100% 0 round .75rem); transform: translateY(-.4rem); border: 1px solid var(--color-border-primary); border-radius: .75rem; background: rgba(10, 15, 30, .98); box-shadow: 0 1.4rem 2rem var(--color-shadow-medium); opacity: 0; pointer-events: none; transition: opacity .22s ease, transform .28s ease, clip-path .28s ease, visibility .28s ease, border-color .2s ease, background .2s ease, box-shadow .2s ease; }
+.mobile-menu--open { visibility: visible; clip-path: inset(0 round .75rem); transform: translateY(0); border-color: rgba(139, 92, 246, .72); background: rgba(12, 18, 37, .72); box-shadow: 0 1.4rem 2rem var(--color-shadow-medium), 0 0 0 3px rgba(139, 92, 246, .12); opacity: 1; pointer-events: auto; }
+.mobile-menu .primary-navigation { align-items: stretch; flex-direction: column; gap: 0; }
+.mobile-menu .primary-navigation__link { display: block; padding: .9rem 1rem; border-bottom: 1px solid var(--color-border-primary); font-size: .88rem; text-align: center; }
+.mobile-menu .primary-navigation__link::after { display: none; }
+.mobile-menu .primary-navigation__link--active { color: var(--color-text-primary); }
+.mobile-menu .primary-navigation__link--active > span { position: relative; display: inline-block; padding-bottom: .3rem; }
+.mobile-menu .primary-navigation__link--active > span::after { position: absolute; right: 0; bottom: 0; left: 0; height: 1px; border-radius: 2px; background: rgba(139, 92, 246, .72); box-shadow: 0 0 0 3px rgba(139, 92, 246, .12); content: ''; }
+.mobile-menu__cta { display: flex; justify-content: space-between; margin: .8rem 1.1rem .2rem; }
