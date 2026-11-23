@@ -1,5 +1,10 @@
 import { useEffect, useRef, useState, type FormEvent } from 'react'
 import { Link, Navigate, useParams } from 'react-router-dom'
+import websiteDevelopmentImage from '../assets/images/services/website-development.png'
+import webDesignImage from '../assets/images/services/web-design.png'
+import websiteMaintenanceImage from '../assets/images/services/website-maintenance.png'
+import seoOptimizationImage from '../assets/images/services/seo-optimization.png'
+import websiteImprovementImage from '../assets/images/services/website-improvement.png'
 import { isLocale, siteContent, type Locale } from '../i18n/content'
 import './HomePage.scss'
 
@@ -187,7 +192,7 @@ export function HomePage() {
           <div className="service-grid">
             {t.services.items.map(([name, description], index) => (
               <article className="service-card" key={name}>
-                <div className="service-card__top"><span>{String(index + 1).padStart(2, '0')}</span><span className="service-card__icon" aria-hidden="true">{['↗', '✳', '◌', '⌕', '＋'][index]}</span></div>
+                {index < 5 && <img className="service-card__background" src={[websiteDevelopmentImage, webDesignImage, seoOptimizationImage, websiteMaintenanceImage, websiteImprovementImage][index]} alt="" loading="lazy" />}
                 <h3>{name}</h3><p>{description}</p>
               </article>
             ))}
