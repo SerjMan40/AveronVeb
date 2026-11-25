@@ -1,89 +1,54 @@
 /* -----------------------------------------------------------
    HTML
-   Enables smooth scrolling for anchor links.
 ----------------------------------------------------------- */
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 6rem;
 }
 
 /* -----------------------------------------------------------
    Body
-   Defines global page background and base text color.
-   Typography-related styles are handled in _typography.scss.
 ----------------------------------------------------------- */
 
 body {
-  min-width: 320px;
   min-height: 100vh;
-  overflow-x: hidden;
+  min-height: 100dvh;
 
-  background: var(--color-bg-primary);
-  caret-color: transparent;
+  background-color: var(--color-bg-primary);
   color: var(--color-text-primary);
 }
 
-form,
-input,
-textarea,
-select,
-[contenteditable='true'] {
-  caret-color: auto;
-}
-
-button,
-input,
-select,
-textarea {
-  color: inherit;
-}
-
-button {
-  border: 0;
-}
-
 /* -----------------------------------------------------------
-   Root
-   Ensures the React application can fill the full viewport height.
+   Application Root
 ----------------------------------------------------------- */
 
 #root {
   min-height: 100vh;
+  min-height: 100dvh;
 }
 
 /* -----------------------------------------------------------
-   Focus
-   Provides a consistent keyboard focus style for accessibility.
+   Keyboard Focus
 ----------------------------------------------------------- */
 
 :focus-visible {
-  outline: 2px solid var(--color-brand-primary);
-  outline-offset: 3px;
+  outline: var(--focus-ring-width) solid var(--color-focus);
+  outline-offset: var(--focus-ring-offset);
 }
 
 /* -----------------------------------------------------------
    Scrollbar
-   Adds subtle branded styling for WebKit-based browsers.
 ----------------------------------------------------------- */
 
-::-webkit-scrollbar {
-  width: 0.75rem;
-}
-
-::-webkit-scrollbar-track {
-  background: var(--color-bg-primary);
-}
-
-::-webkit-scrollbar-thumb {
-  background: #4e55c7;
-  border: 3px solid var(--color-bg-primary);
-  border-radius: var(--radius-full);
+html {
+  scrollbar-width: auto;
+  scrollbar-color:
+    var(--color-scrollbar-thumb)
+    var(--color-scrollbar-track);
 }
 
 /* -----------------------------------------------------------
    Reduced Motion
-   Reduces animations and transitions for users who prefer less motion.
 ----------------------------------------------------------- */
 
 @media (prefers-reduced-motion: reduce) {

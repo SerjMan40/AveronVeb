@@ -1,0 +1,5 @@
+@use '../../../../styles/abstracts/mixins';
+
+.contact-honeypot {
+  @include mixins.visually-hidden;
+}

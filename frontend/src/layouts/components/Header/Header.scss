@@ -1,4 +1,113 @@
-﻿.site-header { position: sticky; z-index: var(--z-sticky); top: 0; background: var(--color-surface-primary); border-bottom: 1px solid var(--color-border-primary); }
-.site-header__inner { position: relative; display: flex; width: min(100% - 2rem, var(--container-width)); min-height: 4.5rem; margin-inline: auto; align-items: center; justify-content: space-between; gap: 1.5rem; }
-.site-header__menu-toggle { display: none; padding: .5rem; background: transparent; color: var(--color-text-primary); cursor: pointer; font-size: 1.5rem; }
-@media (max-width: 767px) { .site-header__desktop-nav { display: none; } .site-header__menu-toggle { display: inline-flex; align-items: center; justify-content: center; } }
+﻿@use '../../../styles/abstracts/mixins' as m;
+
+.site-header {
+  --navigation-link-font-size: var(--font-size-lg);
+  --navigation-link-color: var(--color-link);
+
+  position: sticky;
+  top: 0;
+  z-index: var(--z-sticky);
+  flex-shrink: 0;
+  color: var(--color-text-primary);
+
+  background-color: var(--color-bg-header, var(--color-surface-primary));
+  backdrop-filter: blur(var(--space-md));
+  border-bottom: var(--border-width-thin)
+    var(--border-style-solid) var(--color-border-primary);
+
+  &__inner {
+    @include m.grid($columns: auto minmax(0, 1fr) auto, $align: center, $gap: var(--space-lg));
+
+    position: relative;
+    min-height: calc(var(--space-3xl) + var(--space-lg));
+    padding-block: var(--space-md);
+
+    > .logo {
+      min-width: 0;
+    }
+
+    .logo__image {
+      max-width: 100%;
+      object-position: left center;
+    }
+  }
+
+  &__tools {
+    @include m.flex($align: center);
+
+    --button-underline-color: var(--navigation-link-color);
+    gap: var(--space-md);
+    margin-inline-start: auto;
+    flex-shrink: 0;
+
+    .ui-button--underline::after {
+      inset-block-end: calc(var(--space-2xs) / 2);
+    }
+  }
+
+  &__desktop-navigation {
+    justify-self: center;
+    gap: var(--space-md);
+    white-space: nowrap;
+
+    .primary-navigation__link::after {
+      inset-block-end: calc(-1 * var(--space-2xs));
+    }
+
+    .ui-link__icon {
+      display: none;
+    }
+  }
+
+  &__phone {
+    --color-link: var(--color-white);
+    --color-link-hover: var(--color-white);
+    white-space: nowrap;
+  }
+
+  &__phone-divider {
+    --color-border-primary: var(--color-border-secondary);
+  }
+
+  &__navigation-popover {
+    display: none;
+    --popover-offset: var(--space-xl);
+    --popover-inline-size: 16rem;
+  }
+
+  @include m.respond-below('xl') {
+    &__inner {
+      @include m.flex($align: center, $justify: space-between, $gap: var(--space-lg));
+    }
+
+    &__desktop-navigation,
+    &__phone,
+    &__phone-divider {
+      display: none;
+    }
+
+    &__navigation-popover {
+      display: inline-flex;
+    }
+  }
+
+  @include m.respond-below('sm') {
+    &__inner {
+      min-height: var(--space-3xl);
+      gap: var(--space-xs);
+      padding-block: var(--space-sm);
+
+      .logo__image {
+        height: var(--space-xl);
+      }
+    }
+
+    &__tools {
+      gap: var(--space-2xs);
+    }
+
+    &__navigation-popover {
+      --popover-offset: var(--space-lg);
+    }
+  }
+}

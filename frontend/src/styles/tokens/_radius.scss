@@ -1,15 +1,9 @@
 :root {
-  --radius-none: 0; /* No rounding */
-
-  --radius-xs: 0.25rem; /* Badge, Chip, Tag */
-
-  --radius-sm: 0.5rem; /* Input, Select, Checkbox, Textarea */
-
-  --radius-md: 0.75rem; /* Default Buttons, Small Cards */
-
-  --radius-lg: 1rem; /* Cards, Images, Content Blocks */
-
-  --radius-xl: 1.5rem; /* Hero, Modal, Large Containers */
-
-  --radius-full: 9999px; /* Avatar, Pills, Circular Buttons, Switch */
+  --radius-none: 0;
+  --radius-xs: 0.25rem;
+  --radius-sm: 0.5rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.5rem;
+  --radius-full: 9999px;
 }

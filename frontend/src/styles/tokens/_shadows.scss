@@ -1,21 +1,8 @@
 :root {
-  
-
-  --shadow-none: none; 
-  /* No shadow, flat elements */
-
-  --shadow-xs: 0 1px 2px var(--color-shadow-light);
-  /* Subtle separation: inputs, small buttons, chips */
-
-  --shadow-sm: 0 2px 6px var(--color-shadow-light);
-  /* Light elevation: small cards, hover states */
-
-  --shadow-md: 0 6px 16px var(--color-shadow-medium);
-  /* Default elevation: cards, dropdowns, popovers */
-
-  --shadow-lg: 0 12px 32px var(--color-shadow-medium);
-  /* Strong elevation: modals, drawers, large cards */
-
-  --shadow-xl: 0 20px 48px var(--color-shadow-heavy);
-  /* Maximum elevation: hero overlays, important floating panels */
+  --shadow-none: none;
+  --shadow-xs: 0 1px 2px var(--color-shadow);
+  --shadow-sm: 0 2px 6px var(--color-shadow);
+  --shadow-md: 0 6px 16px var(--color-shadow);
+  --shadow-lg: 0 12px 32px var(--color-shadow);
+  --shadow-xl: 0 20px 48px var(--color-shadow);
 }

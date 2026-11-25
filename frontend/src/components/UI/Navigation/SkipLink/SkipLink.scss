@@ -1,0 +1,15 @@
+.ui-skip-link {
+  position: fixed;
+  inset: var(--space-md) auto auto var(--space-md);
+  z-index: var(--z-tooltip);
+
+  padding: var(--space-sm) var(--space-md);
+  border-radius: var(--radius-sm);
+  background: var(--color-surface-primary);
+  color: var(--color-text-primary);
+  transform: translateY(-200%);
+
+  &:focus {
+    transform: translateY(0);
+  }
+}

@@ -1,0 +1,45 @@
+// _transitions.scss
+
+@mixin transition(
+  $properties: all,
+  $duration: 0.2s,
+  $timing: ease,
+  $delay: 0s
+) {
+  transition-property: $properties;
+  transition-duration: $duration;
+  transition-timing-function: $timing;
+  transition-delay: $delay;
+}
+
+@mixin transition-colors(
+  $duration: 0.2s
+) {
+  transition:
+    color $duration ease,
+    background-color $duration ease,
+    border-color $duration ease;
+}
+
+@mixin transition-transform(
+  $duration: 0.3s,
+  $timing: ease
+) {
+  transition: transform $duration $timing;
+}
+
+@mixin transition-opacity(
+  $duration: 0.2s
+) {
+  transition: opacity $duration ease;
+}
+
+@mixin transition-shadow(
+  $duration: 0.2s
+) {
+  transition: box-shadow $duration ease;
+}
+
+@mixin transition-none {
+  transition: none !important;
+}

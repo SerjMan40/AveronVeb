@@ -1,0 +1,97 @@
+@use '../../../../styles/abstracts/mixins';
+
+.ui-empty-state {
+  @include mixins.flex(
+    $direction: column,
+    $align: center,
+    $justify: center
+  );
+
+  width: 100%;
+  min-width: 0;
+  gap: var(--space-md);
+  text-align: center;
+
+  &__icon {
+    @include mixins.flex-center;
+
+    flex-shrink: 0;
+    color: var(--color-text-muted);
+
+    svg {
+      width: 1em;
+      height: 1em;
+    }
+  }
+
+  &__content {
+    display: grid;
+    gap: var(--space-xs);
+    width: 100%;
+    max-width: var(--content-width-sm);
+    min-width: 0;
+  }
+
+  &__title {
+    color: var(--color-text-primary);
+    font-weight: var(--font-weight-semibold);
+    line-height: var(--line-height-heading);
+    overflow-wrap: anywhere;
+  }
+
+  &__description {
+    color: var(--color-text-secondary);
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-base);
+    overflow-wrap: anywhere;
+  }
+
+  &__actions {
+    @include mixins.flex-center;
+
+    flex-wrap: wrap;
+    gap: var(--space-sm);
+  }
+
+  &--sm {
+    gap: var(--space-sm);
+    padding: var(--space-lg);
+
+    .ui-empty-state__icon {
+      font-size: var(--font-size-3xl);
+    }
+
+    .ui-empty-state__title {
+      font-size: var(--font-size-md);
+    }
+  }
+
+  &--md {
+    padding: var(--space-2xl);
+
+    .ui-empty-state__icon {
+      font-size: var(--font-size-4xl);
+    }
+
+    .ui-empty-state__title {
+      font-size: var(--font-size-xl);
+    }
+  }
+
+  &--lg {
+    gap: var(--space-lg);
+    padding: var(--space-3xl) var(--space-xl);
+
+    .ui-empty-state__icon {
+      font-size: var(--font-size-5xl);
+    }
+
+    .ui-empty-state__title {
+      font-size: var(--font-size-2xl);
+    }
+
+    .ui-empty-state__description {
+      font-size: var(--font-size-md);
+    }
+  }
+}

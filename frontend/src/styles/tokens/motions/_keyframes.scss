@@ -1,8 +1,6 @@
-/* -----------------------------------------------------------
-   Fade In
-   Smoothly reveals an element by increasing its opacity.
-   Commonly used for text, cards and images.
------------------------------------------------------------ */
+/* ===========================================================
+   Fade
+=========================================================== */
 
 @keyframes fade-in {
   from {
@@ -14,16 +12,24 @@
   }
 }
 
-/* -----------------------------------------------------------
-   Slide Up
-   Moves an element upward while fading it in.
-   Used for cards, modals and section content.
------------------------------------------------------------ */
+@keyframes fade-out {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
+/* ===========================================================
+   Slide
+=========================================================== */
 
 @keyframes slide-up {
   from {
     opacity: 0;
-    transform: translateY(0.75rem);
+    transform: translateY(var(--motion-distance));
   }
 
   to {
@@ -31,17 +37,11 @@
     transform: translateY(0);
   }
 }
-
-/* -----------------------------------------------------------
-   Slide Down
-   Moves an element downward while fading it in.
-   Commonly used for dropdowns and navigation menus.
------------------------------------------------------------ */
 
 @keyframes slide-down {
   from {
     opacity: 0;
-    transform: translateY(-0.75rem);
+    transform: translateY(calc(-1 * var(--motion-distance)));
   }
 
   to {
@@ -50,16 +50,38 @@
   }
 }
 
-/* -----------------------------------------------------------
-   Scale In
-   Gently scales an element while fading it in.
-   Perfect for dialogs, popovers and tooltips.
------------------------------------------------------------ */
+@keyframes slide-left {
+  from {
+    opacity: 0;
+    transform: translateX(var(--motion-distance));
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slide-right {
+  from {
+    opacity: 0;
+    transform: translateX(calc(-1 * var(--motion-distance)));
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* ===========================================================
+   Scale
+=========================================================== */
 
 @keyframes scale-in {
   from {
     opacity: 0;
-    transform: scale(0.96);
+    transform: scale(var(--motion-scale));
   }
 
   to {
@@ -68,19 +90,55 @@
   }
 }
 
-/* -----------------------------------------------------------
-   Soft Reveal
-   Gently reveals consecutive interface steps.
------------------------------------------------------------ */
+@keyframes scale-out {
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  to {
+    opacity: 0;
+    transform: scale(var(--motion-scale));
+  }
+}
+
+/* ===========================================================
+   Reveal
+=========================================================== */
 
 @keyframes soft-reveal {
   from {
     opacity: 0;
-    transform: translateY(var(--space-xs));
+    transform: translateY(var(--motion-distance-sm));
   }
 
   to {
     opacity: 1;
-    transform: translateY(var(--space-0));
+    transform: translateY(0);
+  }
+}
+
+/* ===========================================================
+   Continuous Animations
+=========================================================== */
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: var(--motion-pulse-opacity);
   }
 }

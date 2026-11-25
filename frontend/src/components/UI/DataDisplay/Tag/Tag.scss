@@ -1,0 +1,103 @@
+@use '../../../../styles/abstracts/mixins';
+
+$variants: (
+  'default': var(--color-text-secondary),
+  'primary': var(--color-link),
+  'success': var(--color-success),
+  'warning': var(--color-warning),
+  'error': var(--color-error),
+  'info': var(--color-info),
+);
+
+.ui-tag {
+  @include mixins.flex($align: center);
+
+  display: inline-flex;
+  max-width: 100%;
+  gap: var(--space-2xs);
+
+  border: var(--border-width-thin)
+    var(--border-style-solid) transparent;
+
+  border-radius: var(--radius-sm);
+  font-weight: var(--font-weight-medium);
+  line-height: var(--line-height-base);
+  vertical-align: middle;
+
+  @each $variant, $color in $variants {
+    &--#{$variant} {
+      color: $color;
+
+      &.ui-tag--soft {
+        background: color-mix(
+          in srgb,
+          #{$color} 12%,
+          transparent
+        );
+      }
+
+      &.ui-tag--outline {
+        border-color: $color;
+        background: transparent;
+      }
+    }
+  }
+
+  &--sm {
+    padding: var(--space-2xs) var(--space-xs);
+    font-size: var(--font-size-xs);
+  }
+
+  &--md {
+    padding: var(--space-2xs) var(--space-sm);
+    font-size: var(--font-size-sm);
+  }
+
+  &--lg {
+    padding: var(--space-xs) var(--space-md);
+    font-size: var(--font-size-md);
+  }
+
+  &--rounded {
+    border-radius: var(--radius-full);
+  }
+
+  &--disabled {
+    color: var(--color-text-muted);
+  }
+
+  &__label {
+    min-width: 0;
+    overflow-wrap: anywhere;
+  }
+
+  &__icon,
+  &__remove {
+    @include mixins.flex-center;
+
+    flex-shrink: 0;
+
+    svg {
+      width: 1em;
+      height: 1em;
+    }
+  }
+
+  &__remove {
+    @include mixins.transition-colors;
+
+    padding: var(--space-2xs);
+    border: 0;
+    border-radius: var(--radius-xs);
+    background: transparent;
+    color: inherit;
+
+    &:hover:not(:disabled) {
+      background: var(--color-surface-secondary);
+    }
+
+    &:disabled {
+      cursor: not-allowed;
+    }
+  }
+}

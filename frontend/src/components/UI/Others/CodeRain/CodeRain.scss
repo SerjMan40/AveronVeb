@@ -1,0 +1,46 @@
+@use '../../../../styles/abstracts/mixins';
+
+.ui-code-rain {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(0, 1fr);
+  overflow: hidden;
+  pointer-events: none;
+  color: var(--code-rain-color, var(--color-success));
+  font-size: clamp(var(--font-size-xs), 1.15vw, var(--font-size-md));
+  line-height: var(--line-height-relaxed);
+
+  .ui-code-marquee__track {
+    margin-inline: auto;
+  }
+
+  code {
+    padding-inline: 0;
+    mask-image: linear-gradient(180deg, transparent,
+      color-mix(in srgb, var(--color-black) 24%, transparent) 35%,
+      var(--color-black) 85%, transparent);
+  }
+
+  > :nth-child(3n) {
+    opacity: .55;
+  }
+
+  @include mixins.respond-below('sm') {
+    > :nth-child(even) {
+      display: none;
+    }
+  }
+
+  &--source {
+    filter: blur(var(--code-rain-blur, .65px));
+
+    .ui-code-marquee__track {
+      margin-inline: 0;
+    }
+
+    code {
+      padding-inline: var(--space-sm);
+      mask-image: none;
+    }
+  }
+}

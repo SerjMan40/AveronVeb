@@ -1,0 +1,55 @@
+// _borders.scss
+
+@mixin border(
+  $width: 1px,
+  $style: solid,
+  $color: var(--color-border)
+) {
+  border: $width $style $color;
+}
+
+@mixin border-radius(
+  $radius: var(--radius-md)
+) {
+  border-radius: $radius;
+}
+
+@mixin border-top(
+  $color: var(--color-border),
+  $width: 1px
+) {
+  border-top: $width solid $color;
+}
+
+@mixin border-bottom(
+  $color: var(--color-border),
+  $width: 1px
+) {
+  border-bottom: $width solid $color;
+}
+
+@mixin border-circle(
+  $size: 40px,
+  $color: var(--color-border)
+) {
+  width: $size;
+  height: $size;
+  border: 1px solid $color;
+  border-radius: 50%;
+}
+
+@mixin divider(
+  $color: var(--color-border),
+  $width: 1px,
+  $direction: horizontal
+) {
+  background: $color;
+
+  @if $direction == horizontal {
+    width: 100%;
+    height: $width;
+  } @else {
+    width: $width;
+    height: 100%;
+  }
+}

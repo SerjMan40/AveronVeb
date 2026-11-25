@@ -1,0 +1,68 @@
+// _positioning.scss
+
+@mixin position(
+  $position: relative,
+  $top: null,
+  $right: null,
+  $bottom: null,
+  $left: null,
+  $z-index: null
+) {
+  position: $position;
+
+  @if $top != null { top: $top; }
+  @if $right != null { right: $right; }
+  @if $bottom != null { bottom: $bottom; }
+  @if $left != null { left: $left; }
+  @if $z-index != null { z-index: $z-index; }
+}
+
+@mixin absolute-fill(
+  $inset: 0
+) {
+  position: absolute;
+  inset: $inset;
+}
+
+@mixin fixed-fill(
+  $inset: 0
+) {
+  position: fixed;
+  inset: $inset;
+}
+
+@mixin sticky(
+  $top: 0,
+  $z-index: 10
+) {
+  position: sticky;
+  top: $top;
+  z-index: $z-index;
+}
+
+@mixin overlay(
+  $background: rgba(0, 0, 0, 0.5),
+  $z-index: 100
+) {
+  position: fixed;
+  inset: 0;
+  z-index: $z-index;
+
+  background: $background;
+}
+
+@mixin aspect-ratio(
+  $ratio: 16 / 9
+) {
+  aspect-ratio: $ratio;
+}
+
+@mixin object-fit(
+  $fit: cover,
+  $position: center
+) {
+  width: 100%;
+  height: 100%;
+  object-fit: $fit;
+  object-position: $position;
+}

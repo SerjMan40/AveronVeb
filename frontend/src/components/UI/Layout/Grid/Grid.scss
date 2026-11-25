@@ -1,0 +1,16 @@
+.ui-grid {
+  display: grid;
+  min-width: 0;
+
+  &--inline {
+    display: inline-grid;
+  }
+
+  &--full-width {
+    width: 100%;
+  }
+
+  > * {
+    min-width: 0;
+  }
+}

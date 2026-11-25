@@ -1,0 +1,15 @@
+.ui-stack {
+  min-width: 0;
+
+  &--vertical {
+    > * {
+      min-width: 0;
+    }
+  }
+
+  &--horizontal {
+    > .ui-divider {
+      align-self: stretch;
+    }
+  }
+}

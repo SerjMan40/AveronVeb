@@ -1,0 +1,53 @@
+$radii: (
+  'none': var(--radius-none),
+  'xs': var(--radius-xs),
+  'sm': var(--radius-sm),
+  'md': var(--radius-md),
+  'lg': var(--radius-lg),
+  'xl': var(--radius-xl),
+  'full': var(--radius-full),
+);
+
+$fits: (
+  'cover',
+  'contain',
+  'fill',
+  'none',
+  'scale-down',
+);
+
+.ui-video {
+  position: relative;
+  width: 100%;
+  min-width: 0;
+  overflow: hidden;
+  background: var(--color-black);
+
+  @each $radius, $value in $radii {
+    &--#{$radius} {
+      border-radius: $value;
+    }
+  }
+
+  &__element {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: inherit;
+
+    @each $fit in $fits {
+      &--#{$fit} {
+        object-fit: $fit;
+      }
+    }
+  }
+
+  &--ratio {
+    .ui-video__element {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+    }
+  }
+}

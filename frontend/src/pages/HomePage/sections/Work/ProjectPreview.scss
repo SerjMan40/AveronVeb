@@ -1,0 +1,36 @@
+.project-art { position: relative; min-height: 15.5rem; overflow: hidden; padding: 1rem; background: #202944; transition: transform .5s cubic-bezier(.2,.75,.25,1); }
+.project-art__browser { position: absolute; z-index: 3; top: .8rem; right: .8rem; left: .8rem; display: flex; height: 1.35rem; align-items: center; gap: .22rem; padding-inline: .5rem; border: 1px solid rgba(255,255,255,.14); border-radius: .35rem; background: rgba(11, 16, 32, .54); backdrop-filter: blur(8px); }
+.project-art__browser i { width: .25rem; height: .25rem; border-radius: 50%; background: rgba(255,255,255,.4); }
+.project-art__browser span { margin-left: auto; color: rgba(255,255,255,.48); font-size: .4rem; letter-spacing: .08em; }
+.project-art__canvas { position: relative; display: flex; height: 13.5rem; align-items: center; justify-content: center; overflow: hidden; margin-top: .4rem; border: 1px solid rgba(255,255,255,.1); border-radius: .4rem; }
+.project-art--stay { background: linear-gradient(135deg, #61726e, #a4a88b 50%, #d2b98f); }
+.project-art--stay .project-art__canvas { background: linear-gradient(155deg, #d8c9a8, #82917d 49%, #445c55); }
+.project-art__sun { position: absolute; top: 2.1rem; right: 2rem; width: 4.5rem; aspect-ratio: 1; border-radius: 50%; background: rgba(246, 223, 169, .82); box-shadow: 0 0 50px rgba(255, 230, 173, .45); }
+.project-art__headline { position: absolute; z-index: 1; top: 1.6rem; left: 1rem; color: #f9f4e8; font-family: var(--font-family-display); font-size: clamp(2rem, 3.2vw, 3rem); letter-spacing: -.055em; line-height: .8; }
+.project-art__landscape { position: absolute; right: -10%; bottom: -2.2rem; left: -10%; height: 7rem; transform: rotate(-7deg); border-radius: 50% 50% 0 0; background: #40594f; }
+.project-art__landscape b { position: absolute; top: -1.8rem; left: 4%; width: 68%; height: 4rem; border-radius: 50%; background: #82907a; }
+.project-art__landscape i { position: absolute; top: -1rem; right: 3%; width: 40%; height: 3rem; border-radius: 50%; background: #5e7465; }
+.project-art__pill { position: absolute; z-index: 2; bottom: 1.1rem; left: 1rem; width: 4.6rem; height: .55rem; border: 1px solid rgba(255,255,255,.65); border-radius: 2rem; }
+.project-art--studio { background: linear-gradient(140deg, #25245b, #6760b8 55%, #b4a1ed); }
+.project-art--studio .project-art__canvas { display: block; padding: 2.3rem 1.2rem 1rem; background: linear-gradient(120deg, #eeebf4, #c4c0e1); }
+.project-art__studio-mark { color: #28234f; font-family: var(--font-family-display); font-size: 2.7rem; letter-spacing: -.1em; }
+.project-art__studio-mark span { color: #745fcd; }
+.project-art__studio-copy { display: flex; flex-direction: column; gap: .35rem; width: 55%; margin-top: .5rem; }
+.project-art__studio-copy i { height: .22rem; border-radius: 2rem; background: rgba(47, 43, 84, .34); }
+.project-art__studio-copy i:first-child { width: 94%; height: .4rem; background: #39325f; }
+.project-art__studio-copy i:last-child { width: 70%; }
+.project-art__studio-block { position: absolute; right: 1rem; bottom: .8rem; display: grid; width: 32%; height: 56%; place-items: center; border-radius: .35rem; background: linear-gradient(150deg, #9586dc, #4b477e); }
+.project-art__studio-block b { width: 48%; height: 48%; border: 1px solid rgba(255,255,255,.6); border-radius: 50%; box-shadow: inset 0 0 22px rgba(213,202,255,.4); }
+.project-art__studio-block i { position: absolute; right: -5%; bottom: 20%; width: 50%; height: 17%; border: 1px solid rgba(255,255,255,.7); border-radius: 50%; transform: rotate(-25deg); }
+.project-art--shop { background: linear-gradient(135deg, #b2a99a, #d6cfc0 52%, #827968); }
+.project-art--shop .project-art__canvas { display: block; padding: 2.2rem .8rem .75rem; background: #ece7dd; }
+.project-art__shop-top { display: flex; height: .32rem; justify-content: space-between; }
+.project-art__shop-top i { width: 1.6rem; height: .2rem; border-radius: 1rem; background: #77756b; }
+.project-art__shop-title { width: 52%; height: 1.2rem; margin: 1rem auto .8rem; background: #343a32; clip-path: polygon(0 14%, 100% 0, 95% 80%, 5% 100%); }
+.project-art__products { display: grid; height: 6.4rem; grid-template-columns: repeat(3, 1fr); gap: .35rem; }
+.project-art__products i { position: relative; border-radius: .25rem; background: linear-gradient(140deg, #d8c5a6, #8b8878); }
+.project-art__products i:nth-child(2) { background: linear-gradient(140deg, #a7b2a0, #536354); }
+.project-art__products i:nth-child(3) { background: linear-gradient(140deg, #d8d1c2, #827e70); }
+
+.project-art { width: 100%; }
+.project-art--large .project-art__canvas { height: 17rem; }

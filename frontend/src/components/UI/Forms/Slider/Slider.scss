@@ -1,0 +1,9 @@
+.ui-slider {
+  width: 100%;
+  min-width: 0;
+  accent-color: var(--color-brand-primary);
+
+  &:disabled {
+    opacity: .5;
+  }
+}

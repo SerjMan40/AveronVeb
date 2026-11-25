@@ -1,0 +1,32 @@
+@use '../Text/Text';
+
+.ui-label {
+  display: inline-flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: var(--space-2xs);
+
+  min-width: 0;
+
+  line-height: var(--line-height-base);
+
+  &__content {
+    min-width: 0;
+    overflow-wrap: anywhere;
+  }
+
+  &__required {
+    color: var(--color-error);
+    font-weight: var(--font-weight-semibold);
+  }
+
+  &__optional {
+    color: var(--color-text-muted);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-regular);
+  }
+
+  &--disabled {
+    cursor: not-allowed;
+  }
+}

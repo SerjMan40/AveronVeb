@@ -1,1 +1,0 @@
-﻿export { useFooter } from './useFooter'

@@ -1,0 +1,77 @@
+@use '../../../../styles/abstracts/mixins';
+
+$variants: (
+  'primary': var(--color-brand-primary),
+  'success': var(--color-success),
+  'warning': var(--color-warning),
+  'error': var(--color-error),
+  'info': var(--color-info),
+  'current': inherit,
+);
+
+$sizes: (
+  'xs': var(--space-md),
+  'sm': var(--space-lg),
+  'md': var(--space-xl),
+  'lg': var(--space-2xl),
+  'xl': var(--space-3xl),
+);
+
+.ui-spinner {
+  @include mixins.flex-center;
+
+  display: inline-flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  gap: var(--space-xs);
+  vertical-align: middle;
+
+  &__indicator {
+    display: block;
+    flex-shrink: 0;
+    aspect-ratio: 1;
+
+    border: var(--border-width-medium)
+      var(--border-style-solid)
+      var(--color-surface-secondary);
+
+    border-block-start-color: currentColor;
+    border-radius: var(--radius-full);
+
+    animation:
+      spin
+      var(--duration-spin)
+      var(--ease-linear)
+      infinite;
+  }
+
+  @each $variant, $color in $variants {
+    &--#{$variant} {
+      color: $color;
+    }
+  }
+
+  @each $size, $value in $sizes {
+    &--#{$size} {
+      .ui-spinner__indicator {
+        width: $value;
+      }
+    }
+  }
+
+  &__label {
+    color: var(--color-text-secondary);
+    font-size: var(--font-size-sm);
+    text-align: center;
+
+    &--hidden {
+      @include mixins.visually-hidden;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    &__indicator {
+      animation: none;
+    }
+  }
+}

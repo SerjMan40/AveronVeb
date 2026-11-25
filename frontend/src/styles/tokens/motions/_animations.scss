@@ -1,18 +1,27 @@
 :root {
-  
+  /* Fade */
 
-  --animation-fade-in: fade-in var(--duration-normal) var(--ease-out);
-  /* Basic fade-in animation */
+  --animation-fade-in: fade-in var(--duration-normal) var(--ease-out) both;
+  --animation-fade-out: fade-out var(--duration-normal) var(--ease-in) both;
 
-  --animation-slide-up: slide-up var(--duration-normal) var(--ease-out);
-  /* Element appears from bottom */
+  /* Slide */
 
-  --animation-slide-down: slide-down var(--duration-normal) var(--ease-out);
-  /* Element appears from top */
+  --animation-slide-up: slide-up var(--duration-normal) var(--ease-out) both;
+  --animation-slide-down: slide-down var(--duration-normal) var(--ease-out) both;
+  --animation-slide-left: slide-left var(--duration-normal) var(--ease-out) both;
+  --animation-slide-right: slide-right var(--duration-normal) var(--ease-out) both;
 
-  --animation-scale-in: scale-in var(--duration-normal) var(--ease-out);
-  /* Modal, popover, tooltip appearance */
+  /* Scale */
+
+  --animation-scale-in: scale-in var(--duration-normal) var(--ease-out) both;
+  --animation-scale-out: scale-out var(--duration-normal) var(--ease-in) both;
+
+  /* Reveal */
 
   --animation-soft-reveal: soft-reveal var(--duration-slow) var(--ease-in-out) both;
-  /* Smooth transition between booking form steps */
+
+  /* Continuous */
+
+  --animation-spin: spin var(--duration-spin) linear infinite;
+  --animation-pulse: pulse var(--duration-pulse) var(--ease-in-out) infinite;
 }

@@ -1,0 +1,63 @@
+@use '../../../../styles/abstracts/mixins';
+
+.ui-button-group {
+  display: inline-flex;
+  gap: var(--space-xs);
+
+  &--vertical {
+    flex-direction: column;
+  }
+
+  &--full-width {
+    display: flex;
+    width: 100%;
+
+    > .ui-button {
+      flex: 1;
+    }
+  }
+
+  &--attached {
+    gap: 0;
+
+    > .ui-button {
+      border-radius: 0;
+
+      &:focus-visible {
+        z-index: 1;
+      }
+    }
+  }
+
+  &--horizontal#{&}--attached {
+    > .ui-button:first-child {
+      border-start-start-radius: var(--radius-md);
+      border-end-start-radius: var(--radius-md);
+    }
+
+    > .ui-button:last-child {
+      border-start-end-radius: var(--radius-md);
+      border-end-end-radius: var(--radius-md);
+    }
+
+    > .ui-button + .ui-button {
+      margin-inline-start: calc(-1 * var(--border-width-thin));
+    }
+  }
+
+  &--vertical#{&}--attached {
+    > .ui-button:first-child {
+      border-start-start-radius: var(--radius-md);
+      border-start-end-radius: var(--radius-md);
+    }
+
+    > .ui-button:last-child {
+      border-end-start-radius: var(--radius-md);
+      border-end-end-radius: var(--radius-md);
+    }
+
+    > .ui-button + .ui-button {
+      margin-block-start: calc(-1 * var(--border-width-thin));
+    }
+  }
+}

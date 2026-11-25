@@ -1,0 +1,50 @@
+@use '../../../../styles/abstracts/mixins';
+
+.ui-image-gallery {
+  width: 100%;
+  min-width: 0;
+
+  &__item {
+    display: grid;
+    align-content: start;
+    gap: var(--space-xs);
+    min-width: 0;
+    margin: 0;
+  }
+
+  &__trigger {
+    display: block;
+    width: 100%;
+    min-width: 0;
+    padding: 0;
+    border: 0;
+    border-radius: var(--radius-md);
+    background: transparent;
+    color: inherit;
+    text-align: inherit;
+
+    @include mixins.transition-opacity;
+
+    &:hover {
+      opacity: .85;
+    }
+
+    &:focus-visible {
+      outline: var(--border-width-medium)
+        solid var(--color-focus);
+
+      outline-offset: var(--border-width-medium);
+    }
+  }
+
+  &__caption {
+    color: var(--color-text-secondary);
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-base);
+    overflow-wrap: anywhere;
+  }
+
+  &--empty {
+    text-align: center;
+  }
+}

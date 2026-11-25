@@ -1,0 +1,27 @@
+@use '../Text/Text';
+@use '../../../../styles/abstracts/mixins';
+
+.ui-heading {
+  min-width: 0;
+  margin: 0;
+
+  font-family: var(--font-family-heading);
+  line-height: var(--line-height-heading);
+  letter-spacing: var(--letter-spacing-normal);
+
+  overflow-wrap: anywhere;
+
+  @for $level from 1 through 6 {
+    &--level-#{$level} {
+      font-size: var(--font-size-h#{$level});
+    }
+  }
+
+  &--balance {
+    text-wrap: balance;
+  }
+
+  &--truncate {
+    @include mixins.text-truncate;
+  }
+}

@@ -1,0 +1,28 @@
+@use '../../../../styles/abstracts/mixins';
+
+.ui-avatar-group {
+  @include mixins.flex($align: center);
+
+  display: inline-flex;
+  gap: var(--space-xs);
+
+  &--overlap {
+    gap: 0;
+
+    > .ui-avatar {
+      border: var(--border-width-medium)
+        var(--border-style-solid)
+        var(--color-bg-primary);
+
+      + .ui-avatar {
+        margin-inline-start: calc(-1 * var(--space-sm));
+      }
+    }
+  }
+
+  &__overflow {
+    background: var(--color-surface-secondary);
+    color: var(--color-text-primary);
+    font-weight: var(--font-weight-semibold);
+  }
+}

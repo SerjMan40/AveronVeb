@@ -1,43 +1,104 @@
 :root {
-  --color-brand-primary: #6366f1;
-  --color-brand-secondary: #8b5cf6;
-  --color-brand-blue: #3b82f6;
+  /* Base */
+  --color-white: #ffffff;
+  --color-black: #000000;
 
+  /* Brand */
+  --color-brand-primary: #4f46e5;
+  --color-brand-secondary: #7c3aed;
+
+  /* Overlay */
+  --color-overlay: rgba(0, 0, 0, 0.5);
+}
+
+/* Light Theme */
+
+@mixin light-colors {
+  /* Background */
+  --color-bg-primary: #f8fafc;
+  --color-bg-secondary: #f1f5f9;
+
+  /* Surface */
+  --color-surface-primary: #ffffff;
+  --color-surface-secondary: #e2e8f0;
+
+  /* Text */
+  --color-text-primary: #0f172a;
+  --color-text-secondary: #334155;
+  --color-text-muted: #64748b;
+  --color-text-inverse: #ffffff;
+
+  /* Border */
+  --color-border-primary: #cbd5e1;
+  --color-border-secondary: #94a3b8;
+
+  /* Status */
+  --color-success: #15803d;
+  --color-warning: #b45309;
+  --color-error: #dc2626;
+  --color-info: #2563eb;
+
+  /* Interaction */
+  --color-focus: var(--color-brand-primary);
+  --color-link: var(--color-brand-primary);
+  --color-link-hover: #3730a3;
+
+  /* Selection */
+  --color-selection-bg: #c7d2fe;
+  --color-selection-text: var(--color-text-primary);
+
+  /* Scrollbar */
+  --color-scrollbar-thumb: #64748b;
+  --color-scrollbar-track: var(--color-bg-secondary);
+
+  /* Shadow */
+  --color-shadow: rgba(0, 0, 0, 0.15);
+}
+
+/* Dark Theme */
+
+@mixin dark-colors {
+  /* Background */
   --color-bg-primary: #101629;
   --color-bg-secondary: #121a2e;
-  --color-bg-dark: #0b1020;
   --color-bg-header: rgba(16, 22, 41, 0.86);
 
+  /* Surface */
   --color-surface-primary: #131b30;
   --color-surface-secondary: #18213a;
-  --color-surface-tertiary: #202a45;
 
+  /* Text */
   --color-text-primary: #f4f6ff;
   --color-text-secondary: #b0b8ce;
   --color-text-muted: #79839f;
   --color-text-inverse: #ffffff;
 
+  /* Border */
   --color-border-primary: rgba(187, 199, 231, 0.12);
   --color-border-secondary: rgba(187, 199, 231, 0.2);
 
-  --color-success: #65d6a5;
-  --color-warning: #e6bd74;
-  --color-error: #ff8a9a;
-  --color-info: #76a9ff;
+  /* Status */
+  --color-success: #4ade80;
+  --color-warning: #fbbf24;
+  --color-error: #f87171;
+  --color-info: #60a5fa;
 
-  --color-selection-bg: rgba(99, 102, 241, 0.45);
+  /* Interaction */
+  --color-focus: #a5b4fc;
+  --color-link: #a5b4fc;
+  --color-link-hover: #c7d2fe;
+  --color-action-bg: #9aa2ff;
+  --color-action-bg-end: #7784f5;
+  --color-action-text: #0a1025;
+
+  /* Selection */
+  --color-selection-bg: #3730a3;
   --color-selection-text: var(--color-text-primary);
-  --color-overlay-light: rgba(7, 12, 25, 0.32);
-  --color-overlay-medium: rgba(7, 12, 25, 0.58);
-  --color-overlay-dark: rgba(7, 12, 25, 0.82);
-  --color-shadow-light: rgba(1, 5, 18, 0.18);
-  --color-shadow-medium: rgba(1, 5, 18, 0.32);
-  --color-shadow-heavy: rgba(1, 5, 18, 0.52);
 
-  --color-brand-surface-soft: rgba(99, 102, 241, 0.1);
-  --color-brand-border-soft: rgba(99, 102, 241, 0.2);
-  --color-brand-border-medium: rgba(139, 92, 246, 0.34);
-  --color-booking-surface: rgba(24, 33, 58, 0.8);
-  --color-error-surface-soft: rgba(255, 138, 154, 0.1);
-  --opacity-disabled: 0.45;
+  /* Scrollbar */
+  --color-scrollbar-thumb: #64748b;
+  --color-scrollbar-track: var(--color-bg-secondary);
+
+  /* Shadow */
+  --color-shadow: rgba(0, 0, 0, 0.4);
 }

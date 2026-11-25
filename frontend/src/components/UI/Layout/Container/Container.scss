@@ -1,0 +1,27 @@
+$sizes: (
+  'sm': var(--container-width-sm),
+  'md': var(--container-width-md),
+  'lg': var(--container-width-lg),
+  'xl': var(--container-width-xl),
+  '2xl': var(--container-width-2xl),
+  'full': none,
+);
+
+.ui-container {
+  width: 100%;
+  min-width: 0;
+
+  @each $size, $value in $sizes {
+    &--#{$size} {
+      max-width: $value;
+    }
+  }
+
+  &--centered {
+    margin-inline: auto;
+  }
+
+  &--padded {
+    padding-inline: var(--container-padding);
+  }
+}

@@ -1,10 +1,9 @@
 :root {
-  
-  --z-base: 0;        /* Default page content */
-  --z-sticky: 100;    /* Sticky header, sticky sidebar */
-  --z-dropdown: 200;  /* Dropdowns, selects, menus */
-  --z-overlay: 300;   /* Page overlays, backdrops */
-  --z-modal: 400;     /* Modal windows, drawers */
-  --z-toast: 500;     /* Toast notifications */
-  --z-tooltip: 600;   /* Tooltips, floating hints */
+  --z-base: 0;
+  --z-sticky: 100;
+  --z-dropdown: 200;
+  --z-overlay: 300;
+  --z-modal: 400;
+  --z-toast: 500;
+  --z-tooltip: 600;
 }

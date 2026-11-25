@@ -1,0 +1,38 @@
+.ui-border-wink {
+  position: relative;
+  display: inline-grid;
+  max-inline-size: 100%;
+  border-radius: var(--border-wink-radius, var(--radius-lg));
+
+  &::after {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    border: var(--border-width-medium) solid var(--border-wink-color, var(--color-white));
+    border-radius: inherit;
+    opacity: 0;
+    content: '';
+  }
+
+  &:hover::after,
+  &:focus-within::after {
+    visibility: hidden;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    &::after {
+      animation: ui-border-wink 3500ms var(--ease-in-out) infinite;
+    }
+  }
+}
+
+@keyframes ui-border-wink {
+  // One wink every 500 ms, followed by 2500 ms with the border hidden.
+  0%, 14.285714%, 28.571429%, 100% {
+    opacity: 0;
+  }
+
+  5%, 19.285714% {
+    opacity: 1;
+  }
+}

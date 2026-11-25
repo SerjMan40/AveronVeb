@@ -1,0 +1,84 @@
+﻿// _layout.scss
+
+@mixin flex(
+  $direction: row,
+  $align: center,
+  $justify: flex-start,
+  $gap: 0,
+  $wrap: nowrap
+) {
+  display: flex;
+  flex-direction: $direction;
+  align-items: $align;
+  justify-content: $justify;
+  flex-wrap: $wrap;
+  gap: $gap;
+}
+
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin grid(
+  $columns: repeat(2, minmax(0, 1fr)),
+  $gap: 20px,
+  $align: stretch,
+  $justify: stretch
+) {
+  display: grid;
+  grid-template-columns: $columns;
+  align-items: $align;
+  justify-items: $justify;
+  gap: $gap;
+}
+
+@mixin grid-auto(
+  $min-width: 250px,
+  $gap: 20px
+) {
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(min(100%, $min-width), 1fr)
+  );
+  gap: $gap;
+}
+
+@mixin container(
+  $max-width: 1200px,
+  $padding: 20px
+) {
+  width: 100%;
+  max-width: $max-width;
+  margin-inline: auto;
+  padding-inline: $padding;
+}
+
+@mixin stack(
+  $gap: 16px,
+  $align: stretch
+) {
+  display: flex;
+  flex-direction: column;
+  align-items: $align;
+  gap: $gap;
+}
+
+@mixin center-content {
+  display: grid;
+  place-items: center;
+}
+
+@mixin full-size {
+  width: 100%;
+  height: 100%;
+}
+
+@mixin absolute-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}

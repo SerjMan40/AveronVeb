@@ -1,3 +1,15 @@
 :root {
+  /* Border Width */
+
+  --border-width-none: 0;
   --border-width-thin: 1px;
+  --border-width-medium: 2px;
+  --border-width-thick: 3px;
+  --border-width-extra-thick: 4px;
+
+  /* Border Style */
+
+  --border-style-solid: solid;
+  --border-style-dashed: dashed;
+  --border-style-dotted: dotted;
 }

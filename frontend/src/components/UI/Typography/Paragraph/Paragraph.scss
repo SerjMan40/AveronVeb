@@ -1,0 +1,12 @@
+.ui-paragraph {
+  margin: 0;
+  min-width: 0;
+
+  &--lead {
+    max-width: var(--content-width-lg);
+  }
+
+  &--pretty {
+    text-wrap: pretty;
+  }
+}

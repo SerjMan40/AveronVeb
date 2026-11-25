@@ -1,0 +1,70 @@
+@use '../../../../styles/abstracts/mixins';
+
+.ui-avatar {
+  @include mixins.flex-center;
+
+  display: inline-flex;
+  flex-shrink: 0;
+  aspect-ratio: 1;
+  overflow: hidden;
+  vertical-align: middle;
+  background: var(--color-surface-secondary);
+  color: var(--color-text-secondary);
+  font-weight: var(--font-weight-semibold);
+  line-height: 1;
+
+  &--xs {
+    width: var(--space-lg);
+    font-size: var(--font-size-xs);
+  }
+
+  &--sm {
+    width: var(--space-xl);
+    font-size: var(--font-size-sm);
+  }
+
+  &--md {
+    width: var(--space-2xl);
+    font-size: var(--font-size-md);
+  }
+
+  &--lg {
+    width: var(--space-3xl);
+    font-size: var(--font-size-xl);
+  }
+
+  &--xl {
+    width: var(--space-4xl);
+    font-size: var(--font-size-3xl);
+  }
+
+  &--circle {
+    border-radius: var(--radius-full);
+  }
+
+  &--rounded {
+    border-radius: var(--radius-md);
+  }
+
+  &--square {
+    border-radius: var(--radius-none);
+  }
+
+  &__image {
+    @include mixins.full-size;
+
+    object-fit: cover;
+  }
+
+  &__fallback {
+    @include mixins.flex-center;
+    @include mixins.full-size;
+
+    user-select: none;
+
+    svg {
+      width: 50%;
+      height: 50%;
+    }
+  }
+}

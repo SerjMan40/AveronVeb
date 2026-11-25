@@ -1,53 +1,105 @@
-﻿import { useEffect, useState } from 'react'
+import { useEffect, useRef } from 'react'
 import { IoArrowUpOutline } from 'react-icons/io5'
 import { Outlet, useLocation } from 'react-router-dom'
-import { Footer } from '../components/Footer/Footer'
-import { Header } from '../components/Header/Header'
-import { MainContent } from '../components/MainContent/MainContent'
+
+import { Footer, Header, PageContainer } from '../components'
+import { BackToTop, SkipLink } from '../../components/UI'
 import { isLocale } from '../../i18n/content'
+
 import './MainLayout.scss'
 
+const layoutLabels = {
+  uk: {
+    skip: 'Перейти до вмісту',
+    backToTop: 'Повернутися нагору',
+  },
+  en: {
+    skip: 'Skip to content',
+    backToTop: 'Back to top',
+  },
+  ru: {
+    skip: 'Перейти к содержимому',
+    backToTop: 'Вернуться наверх',
+  },
+} as const
+
 export function MainLayout() {
-  const [showBackToTop, setShowBackToTop] = useState(false)
-  const { pathname, hash, state } = useLocation()
-  const preservedScrollY = (state as { preserveScrollY?: number } | null)?.preserveScrollY
+  const { pathname, hash, key, state } = useLocation()
+  const initialScroll = useRef(true)
+
   const localeSegment = pathname.split('/')[1]
   const locale = isLocale(localeSegment) ? localeSegment : 'uk'
-  useEffect(() => {
-    if (typeof preservedScrollY === 'number') {
-      const frame = requestAnimationFrame(() => window.scrollTo({ top: preservedScrollY, left: 0 }))
-      return () => cancelAnimationFrame(frame)
-    }
-    if (hash) {
-      requestAnimationFrame(() => document.getElementById(decodeURIComponent(hash.slice(1)))?.scrollIntoView())
-      return
-    }
-    window.scrollTo({ top: 0, left: 0 })
-  }, [pathname, hash, preservedScrollY])
+  const labels = layoutLabels[locale]
+
+  const scrollState = state as { preserveScrollY?: number; smoothScroll?: boolean } | null
+  const preservedScrollY = scrollState?.preserveScrollY
+  const smoothScroll = scrollState?.smoothScroll === true
 
   useEffect(() => {
-    const updateVisibility = () => setShowBackToTop(window.scrollY > 480)
-    window.addEventListener('scroll', updateVisibility, { passive: true })
-    updateVisibility()
-    return () => window.removeEventListener('scroll', updateVisibility)
-  }, [])
+    const frame = requestAnimationFrame(() => {
+      if (initialScroll.current) {
+        initialScroll.current = false
+        const [navigation] = performance.getEntriesByType('navigation') as PerformanceNavigationTiming[]
+        // Reloads use the browser's scroll restoration for the current entry.
+        if (navigation?.type === 'reload') return
+      }
+
+      if (Number.isFinite(preservedScrollY)) {
+        window.scrollTo({
+          top: preservedScrollY,
+          left: 0,
+          behavior: 'instant',
+        })
+        return
+      }
+
+      if (hash) {
+        let id = hash.slice(1)
+
+        try {
+          id = decodeURIComponent(id)
+        } catch {
+          // Use the original fragment if decoding fails.
+        }
+
+        const target = document.getElementById(id)
+
+        if (target) {
+          target.scrollIntoView({ behavior: smoothScroll ? 'auto' : 'instant' })
+          return
+        }
+      }
+
+      window.scrollTo({
+        top: 0,
+        left: 0,
+        behavior: smoothScroll ? 'auto' : 'instant',
+      })
+    })
+
+    return () => cancelAnimationFrame(frame)
+  }, [pathname, hash, key, preservedScrollY, smoothScroll])
 
   return (
-    <div className="app-layout">
-      <a className="app-layout__skip-link" href="#main-content">{{ uk: 'Перейти до вмісту', en: 'Skip to content', ru: 'Перейти к содержимому' }[locale]}</a>
+    <PageContainer>
+      <SkipLink href="#main-content">{labels.skip}</SkipLink>
+
       <Header />
-      <MainContent id="main-content"><Outlet /></MainContent>
-      <Footer />
-      <button
-        className={showBackToTop ? 'back-to-top back-to-top--visible' : 'back-to-top'}
-        type="button"
-        aria-label={{ uk: 'Повернутися нагору', en: 'Back to top', ru: 'Вернуться наверх' }[locale]}
-        aria-hidden={!showBackToTop}
-        tabIndex={showBackToTop ? 0 : -1}
-        onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+
+      <main
+        id="main-content"
+        className="app-layout__main"
+        tabIndex={-1}
       >
-        <IoArrowUpOutline aria-hidden="true" />
-      </button>
-    </div>
+        <Outlet />
+      </main>
+
+      <Footer />
+
+      <BackToTop
+        icon={<IoArrowUpOutline />}
+        aria-label={labels.backToTop}
+      />
+    </PageContainer>
   )
 }

@@ -1,0 +1,85 @@
+@use '../../../../styles/abstracts/mixins';
+
+$variants: (
+  'default': var(--color-text-secondary),
+  'primary': var(--color-link),
+  'success': var(--color-success),
+  'warning': var(--color-warning),
+  'error': var(--color-error),
+  'info': var(--color-info),
+);
+
+.ui-badge {
+  @include mixins.flex($align: center, $justify: center);
+
+  display: inline-flex;
+  gap: var(--space-2xs);
+  border: var(--border-width-thin) solid transparent;
+  border-radius: var(--radius-xs);
+  font-weight: var(--font-weight-medium);
+  line-height: var(--line-height-tight);
+  vertical-align: middle;
+  white-space: nowrap;
+
+  &--sm {
+    padding: var(--space-2xs);
+    font-size: var(--font-size-xs);
+  }
+
+  &--md {
+    padding: var(--space-2xs) var(--space-xs);
+    font-size: var(--font-size-sm);
+  }
+
+  &--lg {
+    padding: var(--space-xs) var(--space-sm);
+    font-size: var(--font-size-md);
+  }
+
+  @each $variant, $color in $variants {
+    &--#{$variant} {
+      color: $color;
+
+      &.ui-badge--solid {
+        background: $color;
+        color: var(--color-bg-primary);
+      }
+
+      &.ui-badge--soft {
+        background: color-mix(
+          in srgb,
+          #{$color} 12%,
+          transparent
+        );
+      }
+
+      &.ui-badge--outline {
+        border-color: $color;
+        background: transparent;
+      }
+    }
+  }
+
+  &--rounded {
+    border-radius: var(--radius-full);
+  }
+
+  &__dot {
+    flex-shrink: 0;
+    width: var(--space-2xs);
+    height: var(--space-2xs);
+    border-radius: var(--radius-full);
+    background: currentColor;
+  }
+
+  &__icon {
+    @include mixins.flex-center;
+
+    flex-shrink: 0;
+
+    svg {
+      width: 1em;
+      height: 1em;
+    }
+  }
+}

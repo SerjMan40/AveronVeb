@@ -1,13 +1,12 @@
 :root {
+  /* Standard */
+
   --ease-standard: ease;
-  /* Default transition curve */
+  --ease-linear: linear;
+
+  /* Directional */
 
   --ease-in: ease-in;
-  /* Accelerating motion */
-
   --ease-out: ease-out;
-  /* Decelerating motion */
-
   --ease-in-out: ease-in-out;
-  /* Smooth start and end */
 }

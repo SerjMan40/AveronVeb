@@ -1,0 +1,12 @@
+.ui-flex {
+  display: flex;
+  min-width: 0;
+
+  &--inline {
+    display: inline-flex;
+  }
+
+  &--full-width {
+    width: 100%;
+  }
+}

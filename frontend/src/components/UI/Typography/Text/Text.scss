@@ -1,0 +1,152 @@
+@use '../../../../styles/abstracts/mixins';
+
+$sizes: (
+  'xs',
+  'sm',
+  'md',
+  'lg',
+  'xl',
+  '2xl',
+  '3xl',
+  '4xl',
+  '5xl'
+);
+
+$weights: (
+  'light',
+  'regular',
+  'medium',
+  'semibold',
+  'bold'
+);
+
+$colors: (
+  'primary': var(--color-text-primary),
+  'secondary': var(--color-text-secondary),
+  'muted': var(--color-text-muted),
+  'inverse': var(--color-text-inverse),
+  'brand': var(--color-link),
+  'success': var(--color-success),
+  'warning': var(--color-warning),
+  'error': var(--color-error),
+  'info': var(--color-info),
+  'inherit': inherit,
+);
+
+$line-heights: (
+  'tight',
+  'heading',
+  'base',
+  'relaxed'
+);
+
+$alignments: (
+  'start',
+  'center',
+  'end',
+  'justify'
+);
+
+$transforms: (
+  'none',
+  'uppercase',
+  'lowercase',
+  'capitalize'
+);
+
+.ui-text {
+  min-width: 0;
+  margin: 0;
+
+  overflow-wrap: anywhere;
+
+  @each $size in $sizes {
+    &--size-#{$size} {
+      font-size: var(--font-size-#{$size});
+    }
+  }
+
+  &--size-inherit {
+    font-size: inherit;
+  }
+
+  @each $weight in $weights {
+    &--weight-#{$weight} {
+      font-weight: var(--font-weight-#{$weight});
+    }
+  }
+
+  &--weight-inherit {
+    font-weight: inherit;
+  }
+
+  @each $name, $value in $colors {
+    &--color-#{$name} {
+      color: $value;
+    }
+  }
+
+  @each $height in $line-heights {
+    &--line-height-#{$height} {
+      line-height: var(--line-height-#{$height});
+    }
+  }
+
+  &--line-height-inherit {
+    line-height: inherit;
+  }
+
+  @each $align in $alignments {
+    &--align-#{$align} {
+      text-align: #{$align};
+    }
+  }
+
+  @each $transform in $transforms {
+    &--transform-#{$transform} {
+      text-transform: #{$transform};
+    }
+  }
+
+  &--italic {
+    font-style: italic;
+  }
+
+  &--underline {
+    text-decoration-line: underline;
+    text-underline-offset:
+      var(--text-underline-offset);
+  }
+
+  &--strike-through {
+    text-decoration-line: line-through;
+  }
+
+  &--underline#{&}--strike-through {
+    text-decoration-line: underline line-through;
+  }
+
+  &--truncate {
+    display: block;
+
+    @include mixins.text-truncate;
+  }
+
+  &--clamp {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  &--no-wrap {
+    white-space: nowrap;
+  }
+
+  &--mono {
+    font-family: var(--font-family-mono);
+  }
+
+  &--tabular {
+    font-variant-numeric: tabular-nums;
+  }
+}

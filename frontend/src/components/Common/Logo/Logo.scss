@@ -1,0 +1,28 @@
+﻿@use '../../../styles/abstracts/mixins';
+
+.logo {
+  @include mixins.flex($align: center);
+
+  gap: var(--space-xs);
+  color: var(--color-text-primary);
+  text-decoration: none;
+
+  > .ui-link__content {
+    @include mixins.flex($align: center, $gap: var(--space-xs));
+  }
+
+  &__image {
+    width: auto;
+    height: var(--space-2xl);
+    object-fit: contain;
+  }
+
+  &__name {
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-bold);
+  }
+
+  &:hover {
+    color: var(--color-text-primary);
+  }
+}

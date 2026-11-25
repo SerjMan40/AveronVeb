@@ -1,0 +1,28 @@
+@use '../../../../styles/abstracts/mixins';
+
+.ui-carousel__viewport {
+  inline-size: 100%;
+  min-inline-size: 0;
+}
+
+.ui-carousel__status {
+  @include mixins.visually-hidden;
+}
+
+.ui-carousel__pagination .ui-carousel__page {
+  inline-size: clamp(.75rem, 2.8vw, 2.5rem);
+  min-block-size: 1.5rem;
+  padding: 0;
+
+  &::after {
+    inline-size: 100%;
+    block-size: var(--space-2xs);
+    border-radius: var(--radius-full);
+    background: color-mix(in srgb, var(--color-brand-primary) 25%, var(--color-surface-secondary));
+    content: '';
+  }
+
+  &[aria-current='true']::after {
+    background: var(--color-brand-secondary);
+  }
+}

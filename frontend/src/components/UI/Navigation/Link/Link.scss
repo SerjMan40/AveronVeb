@@ -1,0 +1,86 @@
+@use '../../../../styles/abstracts/mixins';
+
+$variants: (
+  'primary': var(--color-link),
+  'secondary': var(--color-text-secondary),
+  'muted': var(--color-text-muted),
+  'inherit': inherit,
+);
+
+.ui-link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2xs);
+  min-width: 0;
+
+  text-decoration-thickness:
+    var(--border-width-thin);
+
+  text-underline-offset:
+    var(--text-underline-offset);
+
+  @include mixins.transition-colors;
+
+  @each $variant, $color in $variants {
+    &--#{$variant} {
+      color: $color;
+    }
+  }
+
+  &:hover {
+    color: var(--color-link-hover);
+  }
+
+  &--underline-always {
+    text-decoration-line: underline;
+  }
+
+  &--underline-hover {
+    text-decoration-line: none;
+
+    &:hover,
+    &:focus-visible {
+      text-decoration-line: underline;
+    }
+  }
+
+  &--underline-none {
+    text-decoration: none;
+  }
+
+  &--button {
+    @include mixins.button-base;
+    @include mixins.button-action;
+  }
+
+  &--button-outline {
+    border-color: var(--color-border-secondary);
+    background: transparent;
+    color: var(--color-text-primary);
+    box-shadow: none;
+
+    &:hover,
+    &:focus-visible {
+      border-color: var(--color-focus);
+      background: color-mix(in srgb, var(--color-brand-primary) 14%, transparent);
+      color: var(--color-text-primary);
+      box-shadow: none;
+    }
+  }
+
+  &__content {
+    min-width: 0;
+    overflow-wrap: anywhere;
+  }
+
+  &__icon {
+    @include mixins.flex-center;
+
+    flex-shrink: 0;
+
+    svg {
+      width: 1em;
+      height: 1em;
+    }
+  }
+}

@@ -1,6 +1,6 @@
 import { createBrowserRouter, Navigate, redirect } from 'react-router-dom'
 import { isLocale } from '../i18n/content'
-import { MainLayout } from '../layouts/MainLayout/MainLayout'
+import { MainLayout } from '../layouts'
 import { HomePage, LegalPage, LocaleRedirect } from '../pages/HomePage'
 
 export const router = createBrowserRouter([

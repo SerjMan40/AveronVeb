@@ -1,29 +1,68 @@
+/* -----------------------------------------------------------
+   Box Model
+----------------------------------------------------------- */
+
 *,
 *::before,
 *::after {
   box-sizing: border-box;
 }
 
+/* -----------------------------------------------------------
+   Document
+----------------------------------------------------------- */
+
 html,
 body {
   margin: 0;
+  padding: 0;
 }
+
+/* -----------------------------------------------------------
+   Form Controls
+----------------------------------------------------------- */
 
 button,
 input,
 textarea,
 select {
   font: inherit;
+  color: inherit;
 }
 
-button {
+button:not(:disabled) {
   cursor: pointer;
 }
 
+button:disabled {
+  cursor: not-allowed;
+}
+
+/* -----------------------------------------------------------
+   Media Elements
+----------------------------------------------------------- */
+
+img,
 picture,
 video,
-canvas,
-svg {
+canvas {
   display: block;
   max-width: 100%;
+}
+
+img,
+video {
+  height: auto;
+}
+
+svg {
+  max-width: 100%;
+}
+
+/* -----------------------------------------------------------
+   Hidden Elements
+----------------------------------------------------------- */
+
+[hidden]:not([hidden='until-found']) {
+  display: none !important;
 }

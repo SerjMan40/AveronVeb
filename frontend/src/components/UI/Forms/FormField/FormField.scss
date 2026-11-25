@@ -1,0 +1,19 @@
+.ui-form-field {
+  display: grid;
+  gap: var(--space-xs);
+  min-width: 0;
+
+  &__label {
+    font-weight: var(--font-weight-medium);
+  }
+
+  &__description {
+    color: var(--color-text-secondary);
+    font-size: var(--font-size-sm);
+  }
+
+  &__error {
+    color: var(--color-error);
+    font-size: var(--font-size-sm);
+  }
+}

@@ -1,0 +1,50 @@
+@use '../../../../styles/abstracts/mixins';
+
+.ui-confirm-dialog {
+  &__content {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-md);
+    min-width: 0;
+  }
+
+  &__icon {
+    @include mixins.flex-center;
+
+    flex-shrink: 0;
+
+    width: var(--space-2xl);
+    height: var(--space-2xl);
+
+    border-radius: var(--radius-full);
+
+    background: var(--color-surface-secondary);
+    color: var(--color-link);
+
+    font-size: var(--font-size-2xl);
+
+    svg {
+      width: 1em;
+      height: 1em;
+    }
+  }
+
+  &__message {
+    flex: 1;
+    min-width: 0;
+
+    color: var(--color-text-secondary);
+    line-height: var(--line-height-base);
+    overflow-wrap: anywhere;
+  }
+
+  &--danger &__icon {
+    color: var(--color-error);
+
+    background: color-mix(
+      in srgb,
+      var(--color-error) 12%,
+      var(--color-surface-primary)
+    );
+  }
+}

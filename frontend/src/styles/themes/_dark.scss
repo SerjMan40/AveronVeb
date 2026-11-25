@@ -1,18 +1,13 @@
-:root[data-theme='dark'] {
-  color-scheme: dark;
+@use '../tokens/colors';
 
-  --color-bg-primary: #191816;
-  --color-bg-secondary: #23211e;
-  --color-bg-dark: #11100f;
-  --color-bg-header: #302923;
-  --color-surface-primary: #26231f;
-  --color-surface-secondary: #2c2925;
-  --color-text-primary: #f3eee6;
-  --color-text-secondary: #c4bdb3;
-  --color-text-muted: #978f84;
-  --color-border-primary: #3d3933;
-  --color-border-secondary: #514b43;
-  --color-shadow-light: rgba(0, 0, 0, 0.2);
-  --color-shadow-medium: rgba(0, 0, 0, 0.35);
-  --color-shadow-heavy: rgba(0, 0, 0, 0.5);
+[data-theme='dark'] {
+  color-scheme: dark;
+  @include colors.dark-colors;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) {
+    color-scheme: dark;
+    @include colors.dark-colors;
+  }
 }

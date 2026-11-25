@@ -1,0 +1,101 @@
+@use '../../../../styles/abstracts/mixins';
+
+.ui-table-wrapper {
+  width: 100%;
+  min-width: 0;
+  overflow: auto;
+
+  &--bordered {
+    border: var(--border-width-thin)
+      var(--border-style-solid)
+      var(--color-border-primary);
+
+    border-radius: var(--radius-md);
+  }
+}
+
+.ui-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  background: var(--color-surface-primary);
+  color: var(--color-text-primary);
+  font-size: var(--font-size-sm);
+
+  &__caption {
+    padding: var(--space-md);
+    color: var(--color-text-secondary);
+    font-weight: var(--font-weight-medium);
+    text-align: start;
+  }
+
+  &__head {
+    background: var(--color-surface-secondary);
+
+    th {
+      background: var(--color-surface-secondary);
+      color: var(--color-text-secondary);
+      font-weight: var(--font-weight-semibold);
+    }
+  }
+
+  &__cell {
+    border-bottom: var(--border-width-thin)
+      var(--border-style-solid)
+      var(--color-border-primary);
+
+    vertical-align: middle;
+
+    &--start {
+      text-align: start;
+    }
+
+    &--center {
+      text-align: center;
+    }
+
+    &--end {
+      text-align: end;
+    }
+  }
+
+  &__body tr:last-child > &__cell {
+    border-bottom: 0;
+  }
+
+  &--sm &__cell {
+    padding: var(--space-xs) var(--space-sm);
+  }
+
+  &--md &__cell {
+    padding: var(--space-sm) var(--space-md);
+  }
+
+  &--lg &__cell {
+    padding: var(--space-md) var(--space-lg);
+  }
+
+  &--striped &__row:nth-child(even) {
+    background: var(--color-bg-secondary);
+  }
+
+  &--hoverable &__row {
+    @include mixins.transition-colors;
+
+    &:hover {
+      background: var(--color-surface-secondary);
+    }
+  }
+
+  &--sticky-header &__head th {
+    position: sticky;
+    top: 0;
+    z-index: var(--z-base);
+  }
+
+  &__empty {
+    padding: var(--space-2xl);
+    color: var(--color-text-muted);
+    text-align: center;
+  }
+}

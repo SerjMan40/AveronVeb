@@ -1,0 +1,92 @@
+$spacings: (
+  'none': var(--space-0),
+  'xs': var(--space-xs),
+  'sm': var(--space-sm),
+  'md': var(--space-md),
+  'lg': var(--space-lg),
+  'xl': var(--space-xl),
+);
+
+.ui-divider {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+
+  &::before,
+  &::after {
+    flex: 1;
+    border-color: var(--color-border-primary);
+    border-style: solid;
+    border-width: 0;
+    content: '';
+  }
+
+  &--horizontal {
+    width: 100%;
+
+    &::before,
+    &::after {
+      border-block-start-width:
+        var(--border-width-thin);
+    }
+  }
+
+  &--vertical {
+    align-self: stretch;
+    flex-direction: column;
+
+    &::before,
+    &::after {
+      border-inline-start-width:
+        var(--border-width-thin);
+    }
+  }
+
+  &--dashed {
+    &::before,
+    &::after {
+      border-style: dashed;
+    }
+  }
+
+  &--dotted {
+    &::before,
+    &::after {
+      border-style: dotted;
+    }
+  }
+
+  &--labeled {
+    gap: var(--space-sm);
+  }
+
+  &__label {
+    flex-shrink: 0;
+    max-width: 100%;
+    color: var(--color-text-muted);
+    font-size: var(--font-size-sm);
+    overflow-wrap: anywhere;
+  }
+
+  &--labeled#{&}--align-start {
+    &::before {
+      flex: 0 0 var(--space-md);
+    }
+  }
+
+  &--labeled#{&}--align-end {
+    &::after {
+      flex: 0 0 var(--space-md);
+    }
+  }
+
+  @each $spacing, $value in $spacings {
+    &--horizontal#{&}--spacing-#{$spacing} {
+      margin-block: $value;
+    }
+
+    &--vertical#{&}--spacing-#{$spacing} {
+      margin-inline: $value;
+    }
+  }
+}
