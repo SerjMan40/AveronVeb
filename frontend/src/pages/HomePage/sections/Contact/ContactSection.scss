@@ -1,5 +1,108 @@
 @use '../../../../styles/abstracts/mixins';
 
+$contact-field-active-background: rgb(12 18 37 / 72%);
+$contact-field-active-border: rgb(139 92 246 / 72%);
+
 .contact-honeypot {
   @include mixins.visually-hidden;
+}
+
+.landing-contact__panel :is(.ui-input, .ui-select, .ui-textarea) {
+  transition: border-color .2s ease, background-color .2s ease, box-shadow .2s ease;
+
+  &:focus:not([aria-invalid='true']) {
+    border-color: $contact-field-active-border;
+    outline: none;
+    background-color: $contact-field-active-background;
+    box-shadow: 0 0 0 3px rgb(139 92 246 / 12%);
+  }
+}
+
+.landing-contact__artwork {
+  position: relative;
+  min-block-size: clamp(14rem, 40vw, 22rem);
+  overflow: hidden;
+  border: var(--border-width-thin) solid var(--color-border-secondary);
+  border-radius: var(--radius-lg);
+  background: var(--color-bg-primary);
+
+  img {
+    position: absolute;
+    inset: 0;
+    inline-size: 100%;
+    block-size: 100%;
+    object-fit: cover;
+  }
+}
+
+.landing-contact__panel .contact-service-trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-sm);
+  border-radius: var(--radius-md);
+  text-align: start;
+  cursor: pointer;
+
+  svg {
+    display: block;
+  }
+}
+
+.contact-service-positioner {
+  z-index: var(--z-dropdown);
+  inline-size: var(--anchor-width);
+}
+
+.contact-service-popup {
+  @include mixins.reveal-down;
+  @include mixins.accent-dropdown-surface;
+
+  max-block-size: var(--available-height);
+  overflow: auto;
+  padding: var(--space-xs);
+}
+
+.landing-contact__panel .contact-service-trigger[data-popup-open]:not([aria-invalid='true']) {
+  border-color: $contact-field-active-border;
+  background-color: $contact-field-active-background;
+}
+
+.contact-service-option {
+  @include mixins.accent-dropdown-item;
+
+  --navigation-link-color: var(--color-link);
+  cursor: pointer;
+
+  &[data-selected] {
+    @include mixins.accent-dropdown-item-selected;
+  }
+
+  &[data-highlighted],
+  &:focus-visible {
+    @include mixins.accent-dropdown-item-highlighted;
+
+    border-color: $contact-field-active-border;
+    outline: none;
+  }
+
+  &__icon {
+    @include mixins.accent-dropdown-item-icon;
+
+    display: flex;
+    flex-shrink: 0;
+  }
+
+  &__label {
+    flex: 1;
+  }
+
+  &__arrow {
+    flex-shrink: 0;
+    color: var(--color-text-muted);
+  }
+
+  &:is([data-highlighted], [data-selected]) &__arrow {
+    color: var(--color-link);
+  }
 }

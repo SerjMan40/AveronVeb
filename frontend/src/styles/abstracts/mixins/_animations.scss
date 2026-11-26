@@ -50,6 +50,28 @@
   }
 }
 
+@mixin reveal-down(
+  $collapsed: '[data-starting-style], [data-ending-style]',
+  $duration: var(--duration-slow)
+) {
+  $collapsed-clip: inset(0 -2rem 100%);
+
+  clip-path: inset(-2rem);
+  transition: clip-path $duration var(--ease-out);
+
+  @starting-style {
+    clip-path: $collapsed-clip;
+  }
+
+  &:is(#{$collapsed}) {
+    clip-path: $collapsed-clip;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    transition: none;
+  }
+}
+
 @mixin rotate(
   $duration: 1s,
   $timing: linear

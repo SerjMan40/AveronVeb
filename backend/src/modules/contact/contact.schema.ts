@@ -6,7 +6,6 @@ export const contactSchema = z.object({
   company: z.string().trim().max(140).optional().default(''),
   message: z.string().trim().min(20).max(3000),
   service: z.enum(['service_1', 'service_2', 'service_3', 'service_4', 'service_5']),
-  consent: z.literal(true),
   website: z.string().max(300).optional().default(''),
   locale: z.enum(['uk', 'en', 'ru']),
 })

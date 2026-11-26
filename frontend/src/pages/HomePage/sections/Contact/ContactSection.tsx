@@ -1,16 +1,28 @@
 import { useState, type FormEvent } from 'react'
+import { Select } from '@base-ui/react/select'
+import {
+  IoArrowForwardOutline, IoChevronDownOutline, IoCodeSlashOutline,
+  IoColorPaletteOutline, IoSearchOutline, IoTrendingUpOutline, IoConstructOutline,
+} from 'react-icons/io5'
 import { apiClient } from '../../../../api/client'
+import projectArtwork from '../../../../assets/images/contact-website-sketch.png'
 import { Section } from '../../../../components/Common'
 import {
-  Alert, Button, Card, Checkbox, Container, Flex, FormField, Grid, Heading,
-  Input, Link, Paragraph, Select, Stack, Text, Textarea,
+  Alert, Button, Card, Container, FormField, Grid, Heading,
+  Input, Link, Paragraph, Stack, Textarea,
 } from '../../../../components/UI'
 import { siteContent, type Locale } from '../../../../i18n/content'
 
 import './ContactSection.scss'
 
+const serviceIcons = [
+  IoCodeSlashOutline, IoColorPaletteOutline, IoConstructOutline, IoSearchOutline, IoTrendingUpOutline,
+]
+
 export function ContactSection({ locale }: { locale: Locale }) {
   const { contact } = siteContent[locale]
+  const services = contact.options.map((label, index) => ({ label, value: `service_${index + 1}` }))
+  const [service, setService] = useState<string | null>(null)
   const [submitting, setSubmitting] = useState(false)
   const [formState, setFormState] = useState<'idle' | 'success' | 'error'>('idle')
 
@@ -26,7 +38,6 @@ export function ContactSection({ locale }: { locale: Locale }) {
       company: String(data.get('company') ?? ''),
       message: String(data.get('message') ?? ''),
       service: String(data.get('service') ?? ''),
-      consent: data.get('consent') === 'on',
       website: String(data.get('website') ?? ''),
       locale,
     }
@@ -36,6 +47,7 @@ export function ContactSection({ locale }: { locale: Locale }) {
     try {
       await apiClient.post('/contact', payload, { signal: AbortSignal.timeout(15000) })
       form.reset()
+      setService(null)
       setFormState('success')
     } catch {
       setFormState('error')
@@ -45,19 +57,18 @@ export function ContactSection({ locale }: { locale: Locale }) {
   }
 
   return (
-    <Section id="contact" className="landing-section landing-section--light" data-theme="light">
+    <Section id="contact" className="landing-section landing-contact" data-theme="dark">
       <Container size="2xl">
         <Stack gap="lg">
           <Stack gap="sm" className="landing-section__heading">
-              <Heading level={2} accent={contact.titleAccent}>{contact.title}</Heading>
+            <Heading level={2} accent={contact.titleAccent}>{contact.title}</Heading>
             <Paragraph className="landing-section__intro">{contact.intro}</Paragraph>
           </Stack>
-          <Card padding="none" className="landing-contact__panel" data-theme="dark">
-            <Grid columns="var(--contact-columns)" className="landing-contact__grid" gap="xl" align="start">
-              <Stack gap="md">
-                <Text weight="bold">AVERON WEB</Text>
-                <Text italic>Build. Launch. Evolve.</Text>
-              </Stack>
+          <Card variant="plain" padding="none" className="landing-contact__panel">
+            <Grid columns="var(--contact-columns)" className="landing-contact__grid" gap="xl">
+              <div className="landing-contact__artwork">
+                <img src={projectArtwork} alt="" loading="lazy" />
+              </div>
 
               <form onSubmit={handleSubmit}>
                 <Stack gap="md">
@@ -72,12 +83,31 @@ export function ContactSection({ locale }: { locale: Locale }) {
                       <Input id="contact-company" name="company" autoComplete="organization" placeholder={contact.companyPlaceholder} maxLength={140} />
                     </FormField>
                     <FormField label={contact.service} htmlFor="contact-service" required>
-                      <Select id="contact-service" name="service" required defaultValue="">
-                        <option value="" disabled>{contact.choose}</option>
-                        {contact.options.map((option, index) => (
-                          <option value={`service_${index + 1}`} key={option}>{option}</option>
-                        ))}
-                      </Select>
+                      <Select.Root name="service" items={services} value={service} onValueChange={setService} required modal={false}>
+                        <Select.Trigger id="contact-service" className="ui-select contact-service-trigger">
+                          <Select.Value placeholder={contact.choose} />
+                          <Select.Icon><IoChevronDownOutline /></Select.Icon>
+                        </Select.Trigger>
+                        <Select.Portal>
+                          <Select.Positioner data-theme="dark" className="contact-service-positioner" sideOffset={6} alignItemWithTrigger={false}>
+                            <Select.Popup className="contact-service-popup">
+                              <Select.List>
+                                {services.map(({ label, value }, index) => {
+                                  const ServiceIcon = serviceIcons[index] ?? IoCodeSlashOutline
+
+                                  return (
+                                    <Select.Item key={value} value={value} className="contact-service-option">
+                                      <span className="contact-service-option__icon" aria-hidden="true"><ServiceIcon /></span>
+                                      <Select.ItemText className="contact-service-option__label">{label}</Select.ItemText>
+                                      <IoArrowForwardOutline className="contact-service-option__arrow" aria-hidden="true" />
+                                    </Select.Item>
+                                  )
+                                })}
+                              </Select.List>
+                            </Select.Popup>
+                          </Select.Positioner>
+                        </Select.Portal>
+                      </Select.Root>
                     </FormField>
                   </Grid>
 
@@ -90,10 +120,10 @@ export function ContactSection({ locale }: { locale: Locale }) {
                     <Input name="website" tabIndex={-1} autoComplete="off" />
                   </label>
 
-                  <Flex gap="xs" wrap="wrap" align="center">
-                    <Checkbox name="consent" label={contact.consent} aria-describedby="contact-privacy" required />
-                    <Link href={`/${locale}/privacy`} id="contact-privacy">{contact.privacy}</Link>
-                  </Flex>
+                  <Paragraph size="sm" color="secondary">
+                    {contact.privacyNotice}{' '}
+                    <Link href={`/${locale}/privacy`}>{contact.privacy}</Link>
+                  </Paragraph>
 
                   <Stack gap="sm" align="start">
                     <Button type="submit" loading={submitting}>

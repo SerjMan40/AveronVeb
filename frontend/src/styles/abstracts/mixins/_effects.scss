@@ -1,5 +1,52 @@
 // _effects.scss
 
+@mixin brand-underline {
+  block-size: var(--border-width-thin);
+  background: linear-gradient(90deg, var(--color-brand-primary), var(--color-brand-secondary));
+  content: '';
+}
+
+@mixin accent-dropdown-surface {
+  border: var(--border-width-thin) solid
+    color-mix(in srgb, var(--color-brand-secondary) 52%, var(--color-border-primary));
+  border-radius: var(--radius-xl);
+  background:
+    radial-gradient(ellipse at top right, color-mix(in srgb, var(--color-brand-primary) 22%, transparent), transparent 72%),
+    var(--color-surface-primary);
+  color: var(--color-text-primary);
+  box-shadow: var(--shadow-xl);
+}
+
+@mixin accent-dropdown-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-sm);
+  border: var(--border-width-thin) solid transparent;
+  border-radius: var(--radius-md);
+  color: var(--navigation-link-color, var(--color-text-secondary));
+  font-weight: var(--font-weight-semibold);
+}
+
+@mixin accent-dropdown-item-highlighted {
+  border-color: var(--color-border-primary);
+  background: var(--color-surface-secondary);
+  color: var(--color-text-primary);
+}
+
+@mixin accent-dropdown-item-selected {
+  border-color: color-mix(in srgb, var(--color-brand-secondary) 54%, var(--color-border-primary));
+  background: color-mix(in srgb, var(--color-brand-primary) 18%, var(--color-surface-primary));
+  color: var(--color-text-primary);
+}
+
+@mixin accent-dropdown-item-icon {
+  padding: var(--space-2xs);
+  border-radius: var(--radius-sm);
+  background: color-mix(in srgb, var(--color-brand-secondary) 16%, transparent);
+  color: var(--color-link);
+}
+
 @mixin hover-effect(
   $property: transform,
   $value: translateY(-2px),

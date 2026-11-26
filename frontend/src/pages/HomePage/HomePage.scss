@@ -84,13 +84,6 @@
   font-size: 1.8125rem;
 }
 
-.landing-section--light {
-  background:
-    linear-gradient(150deg, transparent 58%, color-mix(in srgb, var(--color-brand-secondary) 9%, transparent)),
-    var(--color-bg-primary);
-  color: var(--color-text-primary);
-}
-
 .landing-services {
   position: relative;
   isolation: isolate;
@@ -486,12 +479,12 @@
 }
 
 .landing-contact {
+  background: #080c2c url('../../assets/images/contact-indigo-horizon-clean.png') center bottom / cover no-repeat;
+  color: var(--color-text-primary);
+
   &__panel {
     align-items: stretch;
-    color: var(--color-text-primary);
     padding: clamp(var(--space-lg), 5vw, var(--space-3xl));
-    background: radial-gradient(ellipse at 0% 0%, color-mix(in srgb, var(--color-brand-primary) 22%, transparent), transparent 55%),
-      var(--color-bg-secondary);
   }
 
   &__grid {
@@ -500,6 +493,11 @@
 
   &__fields {
     --contact-fields: repeat(2, minmax(0, 1fr));
+  }
+
+  .ui-form-field__label,
+  form .ui-paragraph {
+    text-shadow: 0 1px 3px #080c2c, 0 1px 8px #080c2c;
   }
 }
 
@@ -548,6 +546,8 @@
   .landing-contact__grid {
     --contact-columns: minmax(0, 1fr);
   }
+
+
 }
 
 @include mixins.respond-below('xs') {
