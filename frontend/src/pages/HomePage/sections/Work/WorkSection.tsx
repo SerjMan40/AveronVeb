@@ -31,6 +31,7 @@ export function WorkSection({ locale }: { locale: Locale }) {
     {
       name: 'Lumina Beauty Studio',
       logo: luminaLogo,
+      logoClassName: 'landing-work__project-logo--lumina',
       screenshot: luminaHomepage,
       description: gallery.description,
       href: 'https://beauty-salon-project-nine.vercel.app/',
@@ -65,7 +66,12 @@ export function WorkSection({ locale }: { locale: Locale }) {
                 </div>
                 <Stack gap="md" align="start" justify="evenly" className="landing-work__project-copy">
                   <Heading level={3} className="landing-work__project-title">
-                    <Image src={project.logo} alt={project.name} wrapperClassName={project.lightLogo ? 'landing-work__project-logo--light' : undefined} />
+                    <Image
+                      src={project.logo}
+                      alt={project.name}
+                      className={project.logoClassName}
+                      wrapperClassName={project.lightLogo ? 'landing-work__project-logo--light' : undefined}
+                    />
                   </Heading>
                   <Paragraph className="landing-card-description">{project.description}</Paragraph>
                   <Link

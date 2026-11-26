@@ -386,6 +386,11 @@
     .ui-image__element {
       filter: contrast(1.12);
       scale: 1.08;
+
+      &.landing-work__project-logo--lumina {
+        filter: contrast(1.5);
+        scale: 1.188;
+      }
     }
 
     .ui-image {
