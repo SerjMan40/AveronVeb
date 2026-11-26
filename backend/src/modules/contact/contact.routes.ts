@@ -19,6 +19,29 @@ const serviceNames = {
   en: ['Website development', 'Web design', 'Website maintenance', 'SEO & optimization', 'Website improvement'],
   ru: ['Разработка сайтов', 'Веб-дизайн', 'Техническое сопровождение', 'SEO и оптимизация', 'Развитие сайта'],
 } as const
+const websiteTypeNames = {
+  ru: {
+    'landing-page': 'Лендинг',
+    'multi-page-website': 'Многостраничный сайт',
+    'online-store': 'Интернет-магазин',
+    'catalog-website': 'Сайт-каталог',
+    'undecided': 'Пока не определились',
+  },
+  uk: {
+    'landing-page': 'Лендінг',
+    'multi-page-website': 'Багатосторінковий сайт',
+    'online-store': 'Інтернет-магазин',
+    'catalog-website': 'Сайт-каталог',
+    'undecided': 'Ще не визначилися',
+  },
+  en: {
+    'landing-page': 'Landing page',
+    'multi-page-website': 'Multi-page website',
+    'online-store': 'Online store',
+    'catalog-website': 'Catalog website',
+    'undecided': 'Not sure yet',
+  },
+} as const
 
 contactRouter.post('/', contactRateLimit, validate(contactSchema), asyncHandler(async (request, response) => {
   const submission = request.body as ContactSubmission
@@ -37,6 +60,10 @@ contactRouter.post('/', contactRateLimit, validate(contactSchema), asyncHandler(
   }
 
   let delivery: Response
+  const { locale, service } = submission
+  const selection = service.startsWith('service_')
+    ? serviceNames[locale][Number(service.slice(-1)) - 1]
+    : websiteTypeNames[locale][service as keyof (typeof websiteTypeNames)['en']]
   try {
     delivery = await fetch(env.CONTACT_WEBHOOK_URL, {
       method: 'POST',
@@ -52,7 +79,7 @@ contactRouter.post('/', contactRateLimit, validate(contactSchema), asyncHandler(
           email: submission.email,
           company: submission.company,
           message: submission.message,
-          service: serviceNames[submission.locale][Number(submission.service.slice(-1)) - 1],
+          service: selection,
           locale: submission.locale,
         },
       }),

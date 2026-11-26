@@ -52,15 +52,15 @@ export const en = {
   },
   contact: {
     title: 'Tell us about', titleAccent: 'your idea.', intro: 'We’ll help you plan and build a website for your business.',
-    name: 'Your name', email: 'Email address', company: 'Company name', message: 'A little about your project', service: 'What are you interested in?', choose: 'Choose a service',
-    options: ['Website development', 'Web design', 'Website maintenance', 'SEO & optimization', 'Website improvement'],
+    name: 'Your name', email: 'Email address', company: 'Company name', message: 'A little about your project', service: 'What are you interested in?', choose: 'Choose a website type',
+    options: ['Landing page', 'Multi-page website', 'Online store', 'Catalog website', 'Not sure yet'],
     privacyNotice: 'We use your information to respond to your inquiry.', privacy: 'Privacy Policy', submit: 'Start your project', sending: 'Sending…', success: 'Thank you — your message has been sent.', error: 'Your message could not be sent. Please try again later.',
-    namePlaceholder: 'How should we address you?', emailPlaceholder: 'you@company.com', companyPlaceholder: 'Optional', messagePlaceholder: 'What do you need, and what should the website help you achieve?',
+    namePlaceholder: 'How should we address you?', emailPlaceholder: 'you@company.com', companyPlaceholder: 'Optional', messagePlaceholder: 'Tell us more about what you want the website to achieve. What should it help you do?',
   },
   footer: { navigation: 'Explore', contact: 'Contact', privacy: 'Privacy policy', terms: 'Terms of use', rights: 'All rights reserved.' },
   legal: {
     privacyTitle: 'Privacy policy', termsTitle: 'Terms of use', back: 'Back to home', draft: 'Publication details to complete: add the data controller’s legal name, official contact details and confirmed retention periods before launch.',
-    privacy: 'The inquiry form collects your name and email address, and optionally your company name, project description and selected service. This information is used to respond to your request. Once configured, the server will send the inquiry to a destination chosen by the site owner, such as an email address or inquiry management system. Please do not include sensitive information in the form.',
+    privacy: 'The inquiry form collects your name and email address, and your project description and selected website type, plus your company name if provided. This information is used to respond to your request. Once configured, the server will send the inquiry to a destination chosen by the site owner, such as an email address or inquiry management system. Please do not include sensitive information in the form.',
     terms: 'This website describes services that AVERON WEB may provide. Service scope, monthly fees, timing, maintenance, website buyout and transfer of rights are agreed in a separate contract before work starts. Use of specific projects and third-party materials remains subject to their respective rights holders.',
   },
 } as const satisfies Dictionary

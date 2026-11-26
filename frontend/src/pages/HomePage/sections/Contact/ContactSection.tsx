@@ -1,8 +1,8 @@
 import { useState, type FormEvent } from 'react'
 import { Select } from '@base-ui/react/select'
 import {
-  IoArrowForwardOutline, IoChevronDownOutline, IoCodeSlashOutline,
-  IoColorPaletteOutline, IoSearchOutline, IoTrendingUpOutline, IoConstructOutline,
+  IoArrowForwardOutline, IoChevronDownOutline, IoDocumentOutline,
+  IoDocumentsOutline, IoCartOutline, IoGridOutline, IoHelpCircleOutline,
 } from 'react-icons/io5'
 import { apiClient } from '../../../../api/client'
 import projectArtwork from '../../../../assets/images/contact-website-sketch.png'
@@ -15,13 +15,17 @@ import { getTranslations, type Locale } from '../../../../i18n'
 
 import './ContactSection.scss'
 
-const serviceIcons = [
-  IoCodeSlashOutline, IoColorPaletteOutline, IoConstructOutline, IoSearchOutline, IoTrendingUpOutline,
-]
+const websiteTypes = [
+  { value: 'landing-page', icon: IoDocumentOutline },
+  { value: 'multi-page-website', icon: IoDocumentsOutline },
+  { value: 'online-store', icon: IoCartOutline },
+  { value: 'catalog-website', icon: IoGridOutline },
+  { value: 'undecided', icon: IoHelpCircleOutline },
+] as const
 
 export function ContactSection({ locale }: { locale: Locale }) {
   const { contact } = getTranslations(locale)
-  const services = contact.options.map((label, index) => ({ label, value: `service_${index + 1}` }))
+  const services = websiteTypes.map((type, index) => ({ ...type, label: contact.options[index] }))
   const [service, setService] = useState<string | null>(null)
   const [submitting, setSubmitting] = useState(false)
   const [formState, setFormState] = useState<'idle' | 'success' | 'error'>('idle')
@@ -92,8 +96,7 @@ export function ContactSection({ locale }: { locale: Locale }) {
                           <Select.Positioner data-theme="dark" className="contact-service-positioner" sideOffset={6} alignItemWithTrigger={false}>
                             <Select.Popup className="contact-service-popup">
                               <Select.List>
-                                {services.map(({ label, value }, index) => {
-                                  const ServiceIcon = serviceIcons[index] ?? IoCodeSlashOutline
+                                {services.map(({ label, value, icon: ServiceIcon }) => {
 
                                   return (
                                     <Select.Item key={value} value={value} className="contact-service-option">
