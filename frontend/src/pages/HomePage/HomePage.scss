@@ -94,20 +94,29 @@
 .landing-services {
   position: relative;
   isolation: isolate;
-  background: radial-gradient(ellipse at center,
-    color-mix(in srgb, var(--color-brand-primary) 29%, var(--color-bg-primary)),
-    var(--color-bg-primary) 88%);
+  --services-edge-light: color-mix(in srgb, var(--color-link) 24%, transparent);
+  background:
+    linear-gradient(90deg, var(--services-edge-light), transparent 42%, transparent 58%, var(--services-edge-light)),
+    radial-gradient(ellipse at center,
+      color-mix(in srgb, var(--color-brand-primary) 29%, var(--color-bg-secondary)),
+      var(--color-bg-secondary) 88%);
   color: var(--color-text-primary);
 
   &__backdrop {
-    --code-rain-color: var(--color-link);
+    --code-rain-color: color-mix(in srgb, var(--color-link) 80%, var(--color-text-primary));
     --code-rain-duration: 60s;
     --code-rain-blur: 3px;
     position: absolute;
     inset: 0;
     z-index: -1;
     font-size: clamp(var(--font-size-xl), 2.5vw, var(--font-size-4xl));
-    opacity: .45;
+    opacity: .27;
+    mask-image: linear-gradient(90deg,
+      #000 6%,
+      rgb(0 0 0 / 70%) 25%,
+      rgb(0 0 0 / 35%) 50%,
+      rgb(0 0 0 / 70%) 75%,
+      #000 94%);
 
     .ui-code-marquee__track {
       position: relative;
@@ -122,10 +131,20 @@
   }
 
   &__copy-panel {
+    position: relative;
+    z-index: 0;
     max-inline-size: 100%;
     padding: var(--space-md) var(--space-lg);
-    border-radius: var(--radius-lg);
-    backdrop-filter: blur(5px);
+
+    &::before {
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      pointer-events: none;
+      backdrop-filter: blur(5px);
+      mask-image: radial-gradient(ellipse, #000 30%, transparent 70%);
+      content: '';
+    }
   }
 
   &__heading {
