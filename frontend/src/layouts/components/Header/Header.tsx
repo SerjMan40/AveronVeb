@@ -1,7 +1,7 @@
 import { useLayoutEffect, useMemo, useRef, useState } from 'react'
 import {
   IoBriefcaseOutline, IoCloseOutline, IoGitBranchOutline, IoHomeOutline,
-  IoLayersOutline, IoMailOutline, IoMenuOutline, IoPeopleOutline,
+  IoLayersOutline, IoMailOutline, IoMenuOutline,
   IoCallOutline,
 } from 'react-icons/io5'
 import { useParams } from 'react-router-dom'
@@ -28,10 +28,9 @@ const navigationIcons = {
   services: IoLayersOutline,
   work: IoBriefcaseOutline,
   process: IoGitBranchOutline,
-  partnership: IoPeopleOutline,
   contact: IoMailOutline,
 }
-const sectionIds = ['home', 'services', 'work', 'process', 'partnership', 'contact'] as const
+const sectionIds = ['home', 'services', 'work', 'process', 'contact'] as const
 const defaultPhone = '+380 98 125 62 84'
 const configuredPhone = import.meta.env.VITE_PUBLIC_CONTACT_PHONE?.trim() ?? ''
 const configuredNumber = configuredPhone.replace(/[^+\d]/g, '')

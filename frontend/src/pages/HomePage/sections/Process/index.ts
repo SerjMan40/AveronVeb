@@ -1,1 +1,1 @@
-export { BuyoutSection, PartnershipSection, ProcessSection } from './ProcessSection'
+﻿export { ProcessSection } from './ProcessSection'

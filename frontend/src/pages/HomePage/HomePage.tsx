@@ -5,7 +5,7 @@ import { Alert, Badge, Container, Link, Paragraph, Stack } from '../../component
 import { HeroSection } from './sections/Hero'
 import { ServicesSection } from './sections/Services'
 import { WorkSection } from './sections/Work'
-import { BuyoutSection, PartnershipSection, ProcessSection } from './sections/Process'
+import { ProcessSection } from './sections/Process'
 import { ContactSection } from './sections/Contact'
 import { isLocale, siteContent, type Locale } from '../../i18n/content'
 import './HomePage.scss'
@@ -101,8 +101,6 @@ export function HomePage() {
       <ServicesSection locale={locale} />
       <WorkSection locale={locale} />
       <ProcessSection locale={locale} />
-      <PartnershipSection locale={locale} />
-      <BuyoutSection locale={locale} />
       <ContactSection locale={locale} />
     </>
   )
