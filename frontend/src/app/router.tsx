@@ -1,20 +1,22 @@
 import { createBrowserRouter, Navigate, redirect } from 'react-router-dom'
-import { isLocale } from '../i18n/content'
+import { defaultLocale, isLocale } from '../i18n'
 import { MainLayout } from '../layouts'
 import { HomePage, LegalPage, LocaleRedirect } from '../pages/HomePage'
+
+const defaultPath = `/${defaultLocale}`
 
 export const router = createBrowserRouter([
   { path: '/', element: <LocaleRedirect /> },
   {
     path: '/:locale',
     element: <MainLayout />,
-    loader: ({ params }) => isLocale(params.locale) ? null : redirect('/uk'),
+    loader: ({ params }) => isLocale(params.locale) ? null : redirect(defaultPath),
     children: [
       { index: true, element: <HomePage /> },
       { path: 'privacy', element: <LegalPage type="privacy" /> },
       { path: 'terms', element: <LegalPage type="terms" /> },
-      { path: '*', element: <Navigate replace to="/uk" /> },
+      { path: '*', element: <Navigate replace to={defaultPath} /> },
     ],
   },
-  { path: '*', element: <Navigate replace to="/uk" /> },
+  { path: '*', element: <Navigate replace to={defaultPath} /> },
 ])

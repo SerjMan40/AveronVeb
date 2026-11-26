@@ -11,7 +11,7 @@ import {
   Alert, Button, Card, Container, FormField, Grid, Heading,
   Input, Link, Paragraph, Stack, Textarea,
 } from '../../../../components/UI'
-import { siteContent, type Locale } from '../../../../i18n/content'
+import { getTranslations, type Locale } from '../../../../i18n'
 
 import './ContactSection.scss'
 
@@ -20,7 +20,7 @@ const serviceIcons = [
 ]
 
 export function ContactSection({ locale }: { locale: Locale }) {
-  const { contact } = siteContent[locale]
+  const { contact } = getTranslations(locale)
   const services = contact.options.map((label, index) => ({ label, value: `service_${index + 1}` }))
   const [service, setService] = useState<string | null>(null)
   const [submitting, setSubmitting] = useState(false)

@@ -1,10 +1,10 @@
 import { PageHeader, Section } from '../../../../components/Common'
 import { BorderWink, Card, Container, Flex, Icon, Image, Link, Paragraph, Stack, Text } from '../../../../components/UI'
 import { IoArrowForwardOutline, IoEllipse } from 'react-icons/io5'
-import { siteContent, type Locale } from '../../../../i18n/content'
+import { getTranslations, type Locale } from '../../../../i18n'
 
 export function HeroSection({ locale }: { locale: Locale }) {
-  const { hero } = siteContent[locale]
+  const { hero } = getTranslations(locale)
 
   return (
     <Section id="home" className="landing-hero" data-theme="dark">

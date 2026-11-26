@@ -1,7 +1,7 @@
 import { Section } from '../../../../components/Common'
 import { Card, CodeRain, Container, Grid, Heading, Image, Paragraph, Stack } from '../../../../components/UI'
 import { portfolioCode } from '../Work/portfolioCode'
-import { siteContent, type Locale } from '../../../../i18n/content'
+import { getTranslations, type Locale } from '../../../../i18n'
 import websiteDevelopmentImage from '../../../../assets/images/services/website-development.png'
 import webDesignImage from '../../../../assets/images/services/web-design.png'
 import seoOptimizationImage from '../../../../assets/images/services/seo-optimization.png'
@@ -19,7 +19,7 @@ const serviceImages = [
 ]
 
 export function ServicesSection({ locale }: { locale: Locale }) {
-  const { services } = siteContent[locale]
+  const { services } = getTranslations(locale)
 
   return (
     <Section id="services" className="landing-section landing-services" data-theme="dark">

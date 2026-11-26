@@ -1,21 +1,7 @@
 import type { ComponentPropsWithoutRef } from 'react'
 import { useLocation, useNavigate, useParams } from 'react-router-dom'
-import { isLocale } from '../../../i18n/content'
+import { getTranslations, isLocale, languages, resolveLocale, type Locale } from '../../../i18n'
 import { Button, ButtonGroup } from '../../UI/Buttons'
-
-const languages = [
-  { value: 'uk', label: 'UA', name: 'Українська' },
-  { value: 'ru', label: 'RU', name: 'Русский' },
-  { value: 'en', label: 'EN', name: 'English' },
-] as const
-
-const accessibleLabels = {
-  uk: 'Мова',
-  en: 'Language',
-  ru: 'Язык',
-} as const
-
-type Locale = (typeof languages)[number]['value']
 
 export type LanguageSwitcherProps = ComponentPropsWithoutRef<'div'>
 
@@ -27,7 +13,7 @@ export function LanguageSwitcher({
   const { pathname, search, hash } = useLocation()
   const navigate = useNavigate()
 
-  const locale = isLocale(routeLocale) ? routeLocale : 'uk'
+  const locale = resolveLocale(routeLocale)
 
   function changeLocale(nextLocale: Locale) {
     if (nextLocale === locale) return
@@ -49,7 +35,7 @@ export function LanguageSwitcher({
     <ButtonGroup
       {...props}
       className={className}
-      aria-label={accessibleLabels[locale]}
+      aria-label={getTranslations(locale).layout.language}
     >
       {languages.map(({ value, label, name }) => (
         <Button

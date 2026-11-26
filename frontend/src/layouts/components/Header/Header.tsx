@@ -6,7 +6,7 @@ import {
 } from 'react-icons/io5'
 import { useParams } from 'react-router-dom'
 
-import { isLocale, siteContent } from '../../../i18n/content'
+import { getTranslations, resolveLocale } from '../../../i18n'
 import {
   LanguageSwitcher,
   Logo,
@@ -18,12 +18,6 @@ import { contactPhone, contactPhoneHref } from '../contactPhone'
 import { sectionIds } from '../sectionIds'
 
 import './Header.scss'
-
-const menuLabels = {
-  uk: { open: 'Відкрити меню', close: 'Закрити меню' },
-  en: { open: 'Open menu', close: 'Close menu' },
-  ru: { open: 'Открыть меню', close: 'Закрыть меню' },
-} as const
 
 const navigationIcons = {
   home: IoHomeOutline,
@@ -57,13 +51,13 @@ export function Header() {
     }
   }, [])
 
-  const locale = isLocale(routeLocale) ? routeLocale : 'uk'
+  const locale = resolveLocale(routeLocale)
+  const { nav, layout, footer } = getTranslations(locale)
   const navigationItems = useMemo(() => sectionIds.map(id => {
     const ItemIcon = navigationIcons[id]
-    return { id, label: siteContent[locale].nav[id], icon: <ItemIcon /> }
-  }), [locale])
-  const labels = menuLabels[locale]
-  const navigationLabel = siteContent[locale].footer.navigation
+    return { id, label: nav[id], icon: <ItemIcon /> }
+  }), [nav])
+  const navigationLabel = footer.navigation
   const navigationProps = {
     items: navigationItems,
     basePath: `/${locale}`,
@@ -96,7 +90,7 @@ export function Header() {
             onOpenChange={setIsOpen}
             align="end"
             appearance="accent"
-            triggerLabel={isOpen ? labels.close : labels.open}
+            triggerLabel={isOpen ? layout.closeMenu : layout.openMenu}
             trigger={<Icon size="xl"><MenuIcon /></Icon>}
           >
             <Stack gap="xs">

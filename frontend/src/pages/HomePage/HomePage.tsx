@@ -7,22 +7,12 @@ import { ServicesSection } from './sections/Services'
 import { WorkSection } from './sections/Work'
 import { ProcessSection } from './sections/Process'
 import { ContactSection } from './sections/Contact'
-import { isLocale, siteContent, type Locale } from '../../i18n/content'
+import { defaultLocale, getTranslations, locales, resolveLocale, resolvePreferredLocale, type Locale } from '../../i18n'
 import './HomePage.scss'
 function usePageMetadata(locale: Locale) {
-  const title = {
-    uk: 'AVERON WEB вЂ” Р РѕР·СЂРѕР±РєР° С‚Р° СЂРѕР·РІРёС‚РѕРє СЃР°Р№С‚С–РІ РґР»СЏ Р±С–Р·РЅРµСЃСѓ',
-    en: 'AVERON WEB вЂ” Websites built to grow with your business',
-    ru: 'AVERON WEB вЂ” Р Р°Р·СЂР°Р±РѕС‚РєР° Рё СЂР°Р·РІРёС‚РёРµ СЃР°Р№С‚РѕРІ РґР»СЏ Р±РёР·РЅРµСЃР°',
-  }[locale]
-  const description = {
-    uk: 'РЎС‚РІРѕСЂРµРЅРЅСЏ, Р·Р°РїСѓСЃРє С– СЃСѓРїСЂРѕРІС–Рґ РїСЂРѕС„РµСЃС–Р№РЅРёС… СЃР°Р№С‚С–РІ РґР»СЏ Р±С–Р·РЅРµСЃСѓ. Р©РѕРјС–СЃСЏС‡РЅР° РјРѕРґРµР»СЊ СЃРїС–РІРїСЂР°С†С– С‚Р° РјРѕР¶Р»РёРІС–СЃС‚СЊ РІРёРєСѓРїСѓ.',
-    en: 'Build, launch and evolve professional business websites with monthly development, ongoing care and an optional buyout.',
-    ru: 'РЎРѕР·РґР°РЅРёРµ, Р·Р°РїСѓСЃРє Рё СЃРѕРїСЂРѕРІРѕР¶РґРµРЅРёРµ РїСЂРѕС„РµСЃСЃРёРѕРЅР°Р»СЊРЅС‹С… СЃР°Р№С‚РѕРІ РґР»СЏ Р±РёР·РЅРµСЃР°. Р•Р¶РµРјРµСЃСЏС‡РЅР°СЏ РјРѕРґРµР»СЊ СЃРѕС‚СЂСѓРґРЅРёС‡РµСЃС‚РІР° Рё РІРѕР·РјРѕР¶РЅРѕСЃС‚СЊ РІС‹РєСѓРїР°.',
-  }[locale]
+  const { metadata: { title, description }, services } = getTranslations(locale)
 
   useEffect(() => {
-    document.title = title
     document.documentElement.lang = locale
 
     const setMeta = (selector: string, attribute: 'name' | 'property', key: string, value: string) => {
@@ -51,7 +41,7 @@ function usePageMetadata(locale: Locale) {
     canonical.href = canonicalHref
 
     document.head.querySelectorAll('link[data-hreflang="averon"]').forEach((node) => node.remove())
-    for (const language of ['uk', 'en', 'ru'] as const) {
+    for (const language of locales) {
       const alternate = document.createElement('link')
       alternate.rel = 'alternate'
       alternate.hreflang = language
@@ -62,7 +52,7 @@ function usePageMetadata(locale: Locale) {
     const defaultAlternate = document.createElement('link')
     defaultAlternate.rel = 'alternate'
     defaultAlternate.hreflang = 'x-default'
-    defaultAlternate.href = `${origin}/uk`
+    defaultAlternate.href = `${origin}/${defaultLocale}`
     defaultAlternate.dataset.hreflang = 'averon'
     document.head.append(defaultAlternate)
     const organizationScript = document.getElementById('averon-organization-schema')
@@ -79,20 +69,20 @@ function usePageMetadata(locale: Locale) {
       knowsAbout: ['Website development', 'Web design', 'Website maintenance', 'Search engine optimization'],
       hasOfferCatalog: {
         '@type': 'OfferCatalog',
-        name: `${siteContent[locale].services.title} ${siteContent[locale].services.titleAccent}`,
-        itemListElement: siteContent[locale].services.items.map(([name, serviceDescription]) => ({
+        name: `${services.title} ${services.titleAccent}`,
+        itemListElement: services.items.map(([name, serviceDescription]) => ({
           '@type': 'Offer',
           itemOffered: { '@type': 'Service', name, description: serviceDescription },
         })),
       },
     })
     document.head.append(schema)
-  }, [description, locale, title])
+  }, [description, locale, services, title])
 }
 
 export function HomePage() {
   const { locale: routeLocale } = useParams()
-  const locale: Locale = isLocale(routeLocale) ? routeLocale : 'uk'
+  const locale = resolveLocale(routeLocale)
   usePageMetadata(locale)
 
   return (
@@ -108,15 +98,12 @@ export function HomePage() {
 
 export function LegalPage({ type }: { type: 'privacy' | 'terms' }) {
   const { locale: routeLocale } = useParams()
-  const locale: Locale = isLocale(routeLocale) ? routeLocale : 'uk'
-  const t = siteContent[locale].legal
+  const locale = resolveLocale(routeLocale)
+  const { legal: t, metadata } = getTranslations(locale)
+  const descriptionText = type === 'privacy' ? metadata.privacyDescription : metadata.termsDescription
   const title = type === 'privacy' ? t.privacyTitle : t.termsTitle
   useEffect(() => {
-    document.title = `${title} вЂ” AVERON WEB`
     document.documentElement.lang = locale
-    const descriptionText = type === 'privacy'
-      ? { uk: 'Р†РЅС„РѕСЂРјР°С†С–СЏ РїСЂРѕ РѕР±СЂРѕР±РєСѓ Р·РІРµСЂРЅРµРЅСЊ С– РїРµСЂСЃРѕРЅР°Р»СЊРЅРёС… РґР°РЅРёС… AVERON WEB.', en: 'Information about inquiry and personal data handling by AVERON WEB.', ru: 'РРЅС„РѕСЂРјР°С†РёСЏ РѕР± РѕР±СЂР°Р±РѕС‚РєРµ РѕР±СЂР°С‰РµРЅРёР№ Рё РїРµСЂСЃРѕРЅР°Р»СЊРЅС‹С… РґР°РЅРЅС‹С… AVERON WEB.' }[locale]
-      : { uk: 'РЈРјРѕРІРё СЃРїС–РІРїСЂР°С†С– С‚Р° РІРёРєРѕСЂРёСЃС‚Р°РЅРЅСЏ РјР°С‚РµСЂС–Р°Р»С–РІ AVERON WEB.', en: 'Service and material use terms for AVERON WEB.', ru: 'РЈСЃР»РѕРІРёСЏ СЃРѕС‚СЂСѓРґРЅРёС‡РµСЃС‚РІР° Рё РёСЃРїРѕР»СЊР·РѕРІР°РЅРёСЏ РјР°С‚РµСЂРёР°Р»РѕРІ AVERON WEB.' }[locale]
     const ensureMeta = (selector: string, key: string, content: string, attribute: 'name' | 'property') => {
       let element = document.head.querySelector<HTMLMetaElement>(selector)
       if (!element) { element = document.createElement('meta'); element.setAttribute(attribute, key); document.head.append(element) }
@@ -132,7 +119,7 @@ export function LegalPage({ type }: { type: 'privacy' | 'terms' }) {
     if (!canonical) { canonical = document.createElement('link'); canonical.rel = 'canonical'; document.head.append(canonical) }
     canonical.href = `${window.location.origin}${path}`
     document.head.querySelectorAll('link[data-hreflang="averon"]').forEach((node) => node.remove())
-    for (const language of ['uk', 'en', 'ru'] as const) {
+    for (const language of locales) {
       const alternate = document.createElement('link')
       alternate.rel = 'alternate'
       alternate.hreflang = language
@@ -143,10 +130,10 @@ export function LegalPage({ type }: { type: 'privacy' | 'terms' }) {
     const defaultAlternate = document.createElement('link')
     defaultAlternate.rel = 'alternate'
     defaultAlternate.hreflang = 'x-default'
-    defaultAlternate.href = `${window.location.origin}/uk/${type}`
+    defaultAlternate.href = `${window.location.origin}/${defaultLocale}/${type}`
     defaultAlternate.dataset.hreflang = 'averon'
     document.head.append(defaultAlternate)
-  }, [locale, title, type])
+  }, [descriptionText, locale, title, type])
   return (
     <Section>
       <Container size="lg">
@@ -163,7 +150,8 @@ export function LegalPage({ type }: { type: 'privacy' | 'terms' }) {
 }
 
 export function LocaleRedirect() {
-  const language = typeof navigator === 'undefined' ? 'uk' : navigator.languages?.join(',').toLowerCase() ?? navigator.language.toLowerCase()
-  const preferred = language.includes('uk') ? 'uk' : language.includes('en') ? 'en' : language.includes('ru') ? 'ru' : 'uk'
+  const preferred = typeof navigator === 'undefined'
+    ? defaultLocale
+    : resolvePreferredLocale(navigator.languages.length > 0 ? navigator.languages : [navigator.language])
   return <Navigate replace to={`/${preferred}`} />
 }

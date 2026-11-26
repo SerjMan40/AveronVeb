@@ -5,35 +5,19 @@ import { Badge, Button, Card, Carousel, Container, Grid, Heading, Image, Link, M
 import averonHomepage from '../../../../assets/images/averon-homepage.png'
 import luminaHomepage from '../../../../assets/images/lumina-homepage.png'
 import luminaLogo from '../../../../assets/images/logo-lumina-transparent.png'
-import { siteContent, type Locale } from '../../../../i18n/content'
+import { getTranslations, type Locale, type ProjectTranslation } from '../../../../i18n'
 import { ProjectPreview } from './ProjectPreview'
 
-type Project = (typeof siteContent)[Locale]['work']['projects'][number]
-
-const slideLabels = {
-  uk: { previous: 'Попередня робота', next: 'Наступна робота' },
-  en: { previous: 'Previous project', next: 'Next project' },
-  ru: { previous: 'Предыдущая работа', next: 'Следующая работа' },
-} as const
-
-const galleryLabels = {
-  uk: { description: 'Сучасний сайт для салону краси з онлайн-записом і керуванням послугами.', view: 'Переглянути проєкт', upcoming: 'Проєкт готується' },
-  en: { description: 'A modern website for a beauty salon with online booking and service management.', view: 'View project', upcoming: 'Project coming soon' },
-  ru: { description: 'Современный сайт для салона красоты с онлайн-записью и управлением услугами.', view: 'Посмотреть проект', upcoming: 'Проект готовится' },
-} as const
-
 export function WorkSection({ locale }: { locale: Locale }) {
-  const { hero, work } = siteContent[locale]
-  const [selectedProject, setSelectedProject] = useState<Project | null>(null)
-  const labels = slideLabels[locale]
-  const gallery = galleryLabels[locale]
+  const { hero, work } = getTranslations(locale)
+  const [selectedProject, setSelectedProject] = useState<ProjectTranslation | null>(null)
   const featuredProjects = [
     {
       name: 'Lumina Beauty Studio',
       logo: luminaLogo,
       logoClassName: 'landing-work__project-logo--lumina',
       screenshot: luminaHomepage,
-      description: gallery.description,
+      description: work.luminaDescription,
       href: 'https://beauty-salon-project-nine.vercel.app/',
     },
     {
@@ -53,8 +37,8 @@ export function WorkSection({ locale }: { locale: Locale }) {
           <Heading level={2} weight="bold" className="landing-work__heading">{work.title}</Heading>
           <Carousel
             label={work.title}
-            previousLabel={labels.previous}
-            nextLabel={labels.next}
+            previousLabel={work.previous}
+            nextLabel={work.next}
             transitionDuration={1100}
             effect="fade"
             pagination
@@ -82,7 +66,7 @@ export function WorkSection({ locale }: { locale: Locale }) {
                     className="landing-project-action landing-work__project-action"
                     rightIcon={<IoArrowForwardOutline />}
                   >
-                    {gallery.view}
+                    {work.viewProject}
                   </Link>
                 </Stack>
               </Grid>
@@ -120,7 +104,7 @@ export function WorkSection({ locale }: { locale: Locale }) {
               padding="none"
               className="landing-work__slide landing-work__slide--pending"
             >
-              <Heading level={3}>{gallery.upcoming}</Heading>
+              <Heading level={3}>{work.upcoming}</Heading>
             </Card>
           </Carousel>
         </Stack>

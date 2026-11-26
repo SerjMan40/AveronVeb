@@ -8,7 +8,7 @@ import { contactPhone, contactPhoneHref } from '../contactPhone'
 import { sectionIds } from '../sectionIds'
 import { Logo } from '../../../components/Common'
 import { Divider, Flex, Grid, Heading, Link, Paragraph, Stack, Text } from '../../../components/UI'
-import { isLocale, siteContent } from '../../../i18n/content'
+import { getTranslations, resolveLocale } from '../../../i18n'
 import { classNames } from '../../../Utils'
 
 import './Footer.scss'
@@ -35,8 +35,8 @@ export function Footer({
   ...props
 }: FooterProps) {
   const { locale: routeLocale } = useParams()
-  const locale = isLocale(routeLocale) ? routeLocale : 'uk'
-  const { footer, nav } = siteContent[locale]
+  const locale = resolveLocale(routeLocale)
+  const { footer, nav } = getTranslations(locale)
   const home = `/${locale}`
   const email = import.meta.env.VITE_PUBLIC_CONTACT_EMAIL?.trim()
 

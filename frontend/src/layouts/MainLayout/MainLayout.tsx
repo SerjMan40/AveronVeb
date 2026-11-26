@@ -4,32 +4,16 @@ import { Outlet, useLocation } from 'react-router-dom'
 
 import { Footer, Header, PageContainer } from '../components'
 import { BackToTop, SkipLink } from '../../components/UI'
-import { isLocale } from '../../i18n/content'
+import { getTranslations } from '../../i18n'
 
 import './MainLayout.scss'
-
-const layoutLabels = {
-  uk: {
-    skip: 'Перейти до вмісту',
-    backToTop: 'Повернутися нагору',
-  },
-  en: {
-    skip: 'Skip to content',
-    backToTop: 'Back to top',
-  },
-  ru: {
-    skip: 'Перейти к содержимому',
-    backToTop: 'Вернуться наверх',
-  },
-} as const
 
 export function MainLayout() {
   const { pathname, hash, key, state } = useLocation()
   const initialScroll = useRef(true)
 
   const localeSegment = pathname.split('/')[1]
-  const locale = isLocale(localeSegment) ? localeSegment : 'uk'
-  const labels = layoutLabels[locale]
+  const { layout: labels } = getTranslations(localeSegment)
 
   const scrollState = state as { preserveScrollY?: number; smoothScroll?: boolean } | null
   const preservedScrollY = scrollState?.preserveScrollY

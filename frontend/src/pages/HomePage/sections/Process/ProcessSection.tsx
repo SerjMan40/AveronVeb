@@ -1,9 +1,9 @@
 ﻿import { Section } from '../../../../components/Common'
 import { Container, Grid, Heading, Paragraph, Stack } from '../../../../components/UI'
-import { siteContent, type Locale } from '../../../../i18n/content'
+import { getTranslations, type Locale } from '../../../../i18n'
 
 export function ProcessSection({ locale }: { locale: Locale }) {
-  const { process } = siteContent[locale]
+  const { process } = getTranslations(locale)
 
   return (
     <Section id="process" className="landing-section landing-process" data-theme="dark">
