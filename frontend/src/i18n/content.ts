@@ -1,7 +1,7 @@
 export const siteContent = {
   uk: {
     language: 'Українська',
-    nav: { home: 'Головна', services: 'Послуги', work: 'Галерея', process: 'Співпраця', partnership: 'Партнерство', buyout: 'Викуп', contact: 'Контакти' },
+    nav: { home: 'Головна', services: 'Послуги', work: 'Галерея', process: 'Процес', buyout: 'Викуп', contact: 'Обговорити проєкт' },
     hero: {
       eyebrow: 'Веб-дизайн та розробка',
       title: 'Ваші ідеї — у продуманому', titleAccent: 'цифровому форматі.',
@@ -46,7 +46,7 @@ export const siteContent = {
       privacyNotice: 'Використовуємо ваші дані, щоб відповісти на запит.', privacy: 'Політика конфіденційності', submit: 'Надіслати запит', sending: 'Надсилаємо…', success: 'Дякуємо! Ваш запит надіслано.', error: 'Не вдалося надіслати запит. Спробуйте ще раз пізніше.',
       namePlaceholder: 'Як до вас звертатися?', emailPlaceholder: 'you@company.com', companyPlaceholder: 'Необов’язково', messagePlaceholder: 'Який сайт потрібен і чого ви хочете досягти?', required: 'Обов’язкове поле',
     },
-    footer: { tagline: 'Створюємо. Запускаємо. Розвиваємо.', navigation: 'Навігація', contact: 'Контакт', privacy: 'Конфіденційність', terms: 'Умови використання', rights: 'Усі права захищені.' },
+    footer: { navigation: 'Навігація', contact: 'Контакт', privacy: 'Конфіденційність', terms: 'Умови використання', rights: 'Усі права захищені.' },
     legal: {
       privacyTitle: 'Політика конфіденційності', termsTitle: 'Умови використання', back: 'На головну', draft: 'Інформація для публікації: перед запуском сторінку потрібно доповнити юридичною назвою оператора даних, офіційними контактами та підтвердженими строками зберігання.',
       privacy: 'Форма запиту збирає ім’я, електронну пошту, за бажанням — назву компанії, опис проєкту та обрану послугу. Ці дані потрібні, щоб відповісти на звернення. Після налаштування сервер надсилатиме запит на визначену власником сайту адресу або до системи обробки звернень. Не вводьте чутливу інформацію у форму.',
@@ -55,7 +55,7 @@ export const siteContent = {
   },
   en: {
     language: 'English',
-    nav: { home: 'Home', services: 'Services', work: 'Gallery', process: 'Process', partnership: 'Partnership', buyout: 'Buyout', contact: 'Contact' },
+    nav: { home: 'Home', services: 'Services', work: 'Gallery', process: 'Process', buyout: 'Buyout', contact: 'Discuss your project' },
     hero: {
       eyebrow: 'Web design & development',
       title: 'Your ideas, thoughtfully built for the', titleAccent: 'digital world.',
@@ -100,7 +100,7 @@ export const siteContent = {
       privacyNotice: 'We use your information to respond to your inquiry.', privacy: 'Privacy Policy', submit: 'Start your project', sending: 'Sending…', success: 'Thank you — your message has been sent.', error: 'Your message could not be sent. Please try again later.',
       namePlaceholder: 'How should we address you?', emailPlaceholder: 'you@company.com', companyPlaceholder: 'Optional', messagePlaceholder: 'What do you need, and what should the website help you achieve?', required: 'This field is required',
     },
-    footer: { tagline: 'Build. Launch. Evolve.', navigation: 'Explore', contact: 'Contact', privacy: 'Privacy policy', terms: 'Terms of use', rights: 'All rights reserved.' },
+    footer: { navigation: 'Explore', contact: 'Contact', privacy: 'Privacy policy', terms: 'Terms of use', rights: 'All rights reserved.' },
     legal: {
       privacyTitle: 'Privacy policy', termsTitle: 'Terms of use', back: 'Back to home', draft: 'Publication details to complete: add the data controller’s legal name, official contact details and confirmed retention periods before launch.',
       privacy: 'The inquiry form collects your name and email address, and optionally your company name, project description and selected service. This information is used to respond to your request. Once configured, the server will send the inquiry to a destination chosen by the site owner, such as an email address or inquiry management system. Please do not include sensitive information in the form.',
@@ -109,7 +109,7 @@ export const siteContent = {
   },
   ru: {
     language: 'Русский',
-    nav: { home: 'Главная', services: 'Услуги', work: 'Галерея', process: 'Процесс', partnership: 'Партнёрство', buyout: 'Выкуп', contact: 'Контакты' },
+    nav: { home: 'Главная', services: 'Услуги', work: 'Галерея', process: 'Процесс', buyout: 'Выкуп', contact: 'Обсудить проект' },
     hero: {
       eyebrow: 'Веб-дизайн и разработка',
       title: 'Ваши идеи — в продуманном', titleAccent: 'цифровом формате.',
@@ -154,7 +154,7 @@ export const siteContent = {
       privacyNotice: 'Используем ваши данные, чтобы ответить на запрос.', privacy: 'Политика конфиденциальности', submit: 'Отправить запрос', sending: 'Отправляем…', success: 'Спасибо! Ваш запрос отправлен.', error: 'Не удалось отправить запрос. Попробуйте позже.',
       namePlaceholder: 'Как к вам обращаться?', emailPlaceholder: 'you@company.com', companyPlaceholder: 'Необязательно', messagePlaceholder: 'Какой сайт нужен и каких целей вы хотите достичь?', required: 'Обязательное поле',
     },
-    footer: { tagline: 'Создаём. Запускаем. Развиваем.', navigation: 'Навигация', contact: 'Контакты', privacy: 'Конфиденциальность', terms: 'Условия использования', rights: 'Все права защищены.' },
+    footer: { navigation: 'Навигация', contact: 'Контакты', privacy: 'Конфиденциальность', terms: 'Условия использования', rights: 'Все права защищены.' },
     legal: {
       privacyTitle: 'Политика конфиденциальности', termsTitle: 'Условия использования', back: 'На главную', draft: 'Перед публикацией добавьте юридическое наименование оператора данных, официальные контакты и подтверждённые сроки хранения информации.',
       privacy: 'Форма обращения собирает имя и адрес электронной почты, а также по желанию — название компании, описание проекта и выбранную услугу. Эти данные нужны, чтобы ответить на запрос. После настройки сервер будет отправлять обращение на выбранный владельцем сайта адрес или в систему обработки заявок. Не указывайте в форме чувствительную информацию.',

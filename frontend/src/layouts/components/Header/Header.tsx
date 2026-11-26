@@ -14,6 +14,8 @@ import {
 } from '../../../components/Common'
 import { Divider, Icon, Link, Popover, Stack, Text } from '../../../components/UI'
 import { ContentContainer } from '../containers'
+import { contactPhone, contactPhoneHref } from '../contactPhone'
+import { sectionIds } from '../sectionIds'
 
 import './Header.scss'
 
@@ -30,12 +32,6 @@ const navigationIcons = {
   process: IoGitBranchOutline,
   contact: IoMailOutline,
 }
-const sectionIds = ['home', 'services', 'work', 'process', 'contact'] as const
-const defaultPhone = '+380 98 125 62 84'
-const configuredPhone = import.meta.env.VITE_PUBLIC_CONTACT_PHONE?.trim() ?? ''
-const configuredNumber = configuredPhone.replace(/[^+\d]/g, '')
-const contactPhone = /^\+?\d{7,15}$/.test(configuredNumber) ? configuredPhone : defaultPhone
-const dialNumber = contactPhone.replace(/[^+\d]/g, '')
 
 export function Header() {
   const headerRef = useRef<HTMLElement>(null)
@@ -88,7 +84,7 @@ export function Header() {
 
         <div className="site-header__tools">
           <div className="site-header__phone">
-            <Link href={`tel:${dialNumber}`} underline="none" leftIcon={<IoCallOutline />}>{contactPhone}</Link>
+            <Link href={contactPhoneHref} underline="none" leftIcon={<IoCallOutline />}>{contactPhone}</Link>
           </div>
 
           <Divider className="site-header__phone-divider" orientation="vertical" spacing="none" decorative />

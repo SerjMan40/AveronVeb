@@ -73,6 +73,11 @@
     display: none;
     --popover-offset: var(--space-xl);
     --popover-inline-size: 16rem;
+
+    .ui-popover__content {
+      @include m.reveal-down;
+      animation: none;
+    }
   }
 
   @include m.respond-below('xl') {
