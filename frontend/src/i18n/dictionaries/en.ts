@@ -22,7 +22,7 @@ export const en = {
   services: {
     title: 'Everything a', titleAccent: 'modern website needs.', intro: 'From the first structure to continuous improvement, we help your business show up online.',
     items: [
-      ['Website development', 'We plan the structure and build a responsive website around your goals, from a clear company presence to a fully featured web service.'],
+      ['Website development', 'We plan the structure and build a responsive website around your goals. It’s easy to use on screens from smartphones to widescreen monitors.'],
       ['Web design', 'We turn your brand and audience needs into a cohesive interface with clear navigation and thoughtful interaction patterns.'],
       ['SEO & optimization', 'We improve loading speed, technical structure and metadata so your website is ready for indexing and long-term search growth.'],
       ['Website maintenance', 'We handle updates, backups, security and availability for your website.'],
