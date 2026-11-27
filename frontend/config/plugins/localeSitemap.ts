@@ -26,7 +26,7 @@ export function localeSitemap(configuredUrl?: string): Plugin {
         throw new Error('AVERON_SITE_URL must be a valid HTTPS origin, for example https://averonweb.com')
       }
 
-      const pagePaths = ['/uk', '/en', '/ru', '/uk/privacy', '/en/privacy', '/ru/privacy', '/uk/terms', '/en/terms', '/ru/terms']
+      const pagePaths = ['/uk', '/en', '/ru']
       const alternatesFor = (path: string) => {
         const slug = path.replace(/^\/(uk|en|ru)/, '')
         return ['uk', 'en', 'ru'].map((language) => `      <xhtml:link rel="alternate" hreflang="${language}" href="${base}/${language}${slug}" />`).join('\n')

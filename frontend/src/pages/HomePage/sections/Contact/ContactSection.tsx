@@ -5,11 +5,11 @@ import {
   IoDocumentsOutline, IoCartOutline, IoGridOutline, IoHelpCircleOutline,
 } from 'react-icons/io5'
 import { apiClient } from '../../../../api/client'
-import projectArtwork from '../../../../assets/images/contact-website-sketch.png'
+import projectArtwork from '../../../../assets/images/contact-website-sketch.webp'
 import { Section } from '../../../../components/Common'
 import {
   Alert, Button, Card, Container, FormField, Grid, Heading,
-  Input, Link, Paragraph, Stack, Textarea,
+  Input, Paragraph, Stack, Textarea,
 } from '../../../../components/UI'
 import { getTranslations, type Locale } from '../../../../i18n'
 
@@ -89,11 +89,19 @@ export function ContactSection({ locale }: { locale: Locale }) {
                     <FormField label={contact.service} htmlFor="contact-service" required>
                       <Select.Root name="service" items={services} value={service} onValueChange={setService} required modal={false}>
                         <Select.Trigger id="contact-service" className="ui-select contact-service-trigger">
-                          <Select.Value placeholder={contact.choose} />
+                          <Select.Value className="contact-service-trigger__value" placeholder={contact.choose} />
                           <Select.Icon><IoChevronDownOutline /></Select.Icon>
                         </Select.Trigger>
                         <Select.Portal>
-                          <Select.Positioner data-theme="dark" className="contact-service-positioner" sideOffset={6} alignItemWithTrigger={false}>
+                          <Select.Positioner
+                            data-theme="dark"
+                            className="contact-service-positioner"
+                            side="bottom"
+                            align="end"
+                            sideOffset={6}
+                            alignItemWithTrigger={false}
+                            collisionAvoidance={{ side: 'none', align: 'shift', fallbackAxisSide: 'none' }}
+                          >
                             <Select.Popup className="contact-service-popup">
                               <Select.List>
                                 {services.map(({ label, value, icon: ServiceIcon }) => {
@@ -123,9 +131,8 @@ export function ContactSection({ locale }: { locale: Locale }) {
                     <Input name="website" tabIndex={-1} autoComplete="off" />
                   </label>
 
-                  <Paragraph size="sm" color="secondary">
-                    {contact.privacyNotice}{' '}
-                    <Link href={`/${locale}/privacy`}>{contact.privacy}</Link>
+                  <Paragraph size="xs" color="secondary">
+                    {contact.privacyNotice}
                   </Paragraph>
 
                   <Stack gap="sm" align="start">

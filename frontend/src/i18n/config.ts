@@ -16,12 +16,3 @@ export function isLocale(value: string | null | undefined): value is Locale {
 export function resolveLocale(value?: string | null): Locale {
   return isLocale(value) ? value : defaultLocale
 }
-
-export function resolvePreferredLocale(preferences: readonly string[]): Locale {
-  for (const preference of preferences) {
-    const language = preference.toLowerCase().split('-')[0]
-    if (isLocale(language)) return language
-  }
-
-  return defaultLocale
-}

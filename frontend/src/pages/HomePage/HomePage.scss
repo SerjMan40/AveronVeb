@@ -40,6 +40,13 @@
     letter-spacing: inherit;
   }
 
+  @include mixins.respond-below('sm') {
+    &__surface {
+      min-height: calc(100svh - var(--site-header-height, var(--space-3xl)));
+      padding-block: var(--space-xl);
+      --container-padding: var(--space-md);
+    }
+  }
 }
 
 .landing-project-action {
@@ -192,6 +199,10 @@
         grid-column: span 5;
       }
 
+      &.landing-services__seo-card {
+        display: none;
+        grid-column: 1 / -1;
+      }
     }
   }
 
@@ -226,6 +237,8 @@
 }
 
 .landing-work {
+  --gallery-laptop-width: 850;
+  --gallery-laptop-height: 546;
   --gallery-section-height: calc(100vh - var(--site-header-height, 6rem));
   --gallery-padding-limit: max(var(--space-sm), calc(var(--gallery-section-height) * .1 - var(--space-lg)));
   position: relative;
@@ -237,7 +250,7 @@
     position: absolute;
     inset: 0;
     z-index: -1;
-    background: var(--color-surface-secondary) url('../../assets/images/gallery-background.png') center / cover no-repeat;
+    background: var(--color-surface-secondary) url('../../assets/images/gallery-background.webp') center / cover no-repeat;
     filter: saturate(1.2);
     content: '';
   }
@@ -308,24 +321,8 @@
     }
   }
 
-  .ui-carousel__viewport,
-  .ui-carousel__viewport .swiper-slide > div {
-    display: flex;
+  .ui-carousel__viewport {
     flex: 1;
-  }
-
-  .ui-carousel__viewport.swiper-fade .swiper-slide {
-    transition-property: opacity;
-    transition-timing-function: var(--ease-in-out);
-  }
-
-  .ui-carousel__viewport .swiper-wrapper,
-  .ui-carousel__viewport .swiper-slide {
-    block-size: auto;
-  }
-
-  .ui-carousel__viewport .swiper-slide {
-    display: flex;
   }
 
   &__slide {
@@ -346,8 +343,8 @@
   &__laptop {
     position: relative;
     inline-size: 100%;
-    aspect-ratio: 850 / 546;
-    background: url('../../assets/images/beauty-salon-gallery-reference.png') 20.35% 58.49% / 201.18% 202.2% no-repeat;
+    aspect-ratio: var(--gallery-laptop-width) / var(--gallery-laptop-height);
+    background: url('../../assets/images/beauty-salon-gallery-reference.webp') 20.35% 58.49% / 201.18% 202.2% no-repeat;
     clip-path: polygon(
       10.4% .2%, 88.3% .2%, 89.4% .8%, 90.3% 1.9%, 90.9% 3.5%, 91.2% 5.4%, 91.3% 7.2%,
       91.3% 87.9%, 99.8% 87.9%, 99.8% 90.7%, 98.2% 92.4%, 95% 93.6%,
@@ -370,6 +367,10 @@
       align-self: stretch;
       text-align: center;
     }
+  }
+
+  &__project-details {
+    display: contents;
   }
 
   &__project-title {
@@ -406,12 +407,6 @@
     border-radius: var(--radius-md);
     background: var(--color-text-primary);
   }
-
-  &__slide--pending {
-    min-block-size: 16rem;
-    align-items: center;
-    justify-content: center;
-  }
 }
 
 .landing-process {
@@ -432,22 +427,24 @@
 
   &__step {
     display: grid;
-    grid-template-columns: 2.5ch minmax(0, 1fr) auto;
+    grid-template-columns: var(--space-2xl) minmax(0, 1fr);
     align-items: center;
     gap: clamp(.65rem, 2vw, 1rem);
     padding-block: var(--space-md);
     border-block-end: var(--border-width-thin) solid var(--color-border-primary);
   }
 
-  &__number,
-  &__arrow {
+  &__number {
+    display: grid;
+    place-items: center;
+    min-block-size: var(--space-xl);
+    border: var(--border-width-thin) solid color-mix(in srgb, var(--color-link) 32%, transparent);
+    border-radius: var(--radius-md);
+    background: color-mix(in srgb, var(--color-link) 10%, transparent);
     color: var(--color-link);
     font-size: var(--font-size-sm);
-  }
-
-  &__number {
+    font-weight: var(--font-weight-semibold);
     font-variant-numeric: tabular-nums;
-    text-align: center;
   }
 }
 
@@ -479,7 +476,7 @@
 }
 
 .landing-contact {
-  background: #080c2c url('../../assets/images/contact-indigo-horizon-clean.png') center bottom / cover no-repeat;
+  background: #080c2c url('../../assets/images/contact-indigo-horizon-clean.webp') center bottom / cover no-repeat;
   color: var(--color-text-primary);
 
   &__panel {
@@ -507,16 +504,161 @@
   .landing-services__grid > .ui-card:nth-child(2) {
     grid-column: span 6;
   }
+
+  .landing-services__seo {
+    display: none;
+  }
+
+  .landing-services__grid > .ui-card.landing-services__seo-card {
+    display: flex;
+  }
+
+  .landing-work {
+    min-block-size: auto;
+
+    .ui-carousel {
+      --gallery-mobile-padding: clamp(var(--space-md), 3vw, var(--space-2xl));
+      --gallery-controls-height: var(--space-2xl);
+      --gallery-laptop-available-width: calc(100cqi - var(--space-md));
+      --gallery-laptop-inline-size: min(
+        calc(var(--gallery-laptop-available-width) * 2.57 / 3.57),
+        calc(var(--gallery-laptop-available-width) - 11rem)
+      );
+      container-type: inline-size;
+      min-block-size: auto;
+    }
+
+    .ui-carousel__viewport {
+      position: relative;
+    }
+
+    .ui-carousel__slide[inert] {
+      position: absolute;
+      inset: 0;
+    }
+
+    .ui-carousel__controls {
+      grid-template-columns: auto minmax(0, 1fr) auto;
+
+      .ui-carousel__pagination {
+        display: none;
+      }
+
+      .ui-carousel__status {
+        position: static;
+        grid-area: 1 / 2;
+        justify-self: center;
+        width: auto;
+        height: auto;
+        margin: 0;
+        padding: var(--space-2xs) var(--space-sm);
+        overflow: visible;
+        clip: auto;
+        border-radius: var(--radius-full);
+        background: var(--color-surface-primary);
+      }
+
+      .ui-button-group {
+        display: contents;
+      }
+
+      .ui-icon-button {
+        grid-area: 1 / 1;
+        justify-self: start;
+        pointer-events: auto;
+
+        &:last-child {
+          grid-column: 3;
+          justify-self: end;
+        }
+      }
+    }
+
+    &__slide--featured {
+      align-content: start;
+    }
+
+    &__laptop {
+      align-self: start;
+    }
+
+    .ui-carousel:has(.ui-carousel__slide:not([inert]) > .landing-work__slide--featured) {
+      padding-block-end: var(--gallery-mobile-padding);
+
+      .ui-carousel__controls {
+        inset-block-start: calc(
+          var(--gallery-mobile-padding) + var(--gallery-laptop-inline-size) * var(--gallery-laptop-height) / var(--gallery-laptop-width)
+        );
+        inset-block-end: auto;
+        inset-inline-start: calc(var(--gallery-mobile-padding) + var(--space-sm));
+        inset-inline-end: auto;
+        inline-size: calc(var(--gallery-laptop-inline-size) - 2 * var(--space-sm));
+        min-block-size: var(--gallery-controls-height);
+      }
+    }
+  }
+}
+
+@include mixins.respond-between('md', 'lg') {
+  .landing-work {
+    &__laptop {
+      margin-block-end: var(--gallery-controls-height);
+    }
+
+    &__slide--featured {
+      --gallery-featured-row-gap: 0px;
+      grid-template-rows: max-content max-content minmax(0, 1fr);
+    }
+
+    &__project-copy {
+      display: contents;
+    }
+
+    &__project-details {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+      grid-area: 1 / 2 / 4 / 3;
+      align-self: start;
+    }
+
+    &__project-action.landing-project-action {
+      grid-area: 2 / 1;
+      align-self: center;
+      justify-self: center;
+      margin-block-start: var(--space-md);
+    }
+
+  }
 }
 
 @include mixins.respond-below('md') {
+  .landing-work {
+    .ui-carousel {
+      --gallery-laptop-inline-size: 100cqi;
+      --gallery-featured-row-gap: calc(var(--gallery-controls-height) + var(--space-lg));
+    }
+
+    &__slide {
+      --work-slide-columns: minmax(0, 1fr);
+    }
+
+    &__project-action.landing-project-action {
+      align-self: center;
+    }
+
+  }
+
   .landing-hero {
     &__surface {
       --card-media-overlay: linear-gradient(90deg, rgba(7, 12, 25, .83), rgba(7, 12, 25, .5));
     }
 
     &__copy h1 {
-      font-size: clamp(2.5rem, 9vw, 4rem);
+      max-width: min(16ch, 100%);
+      font-size: clamp(2rem, 6.77vw, 3.25rem);
+      overflow-wrap: anywhere;
+      text-wrap: balance;
     }
   }
 
@@ -531,16 +673,12 @@
     }
   }
 
-  .landing-services__seo {
-    --services-feature-columns: minmax(0, 1fr);
-  }
-
-  .landing-work__slide {
-    --work-slide-columns: minmax(0, 1fr);
-  }
-
   .landing-process__grid {
     --process-columns: minmax(0, 1fr);
+  }
+
+  .model-card {
+    padding-block: clamp(var(--space-lg), 7vw, var(--space-xl));
   }
 
   .landing-contact__grid {
@@ -566,6 +704,10 @@
   border: 1px solid rgba(143, 156, 247, .26);
   border-radius: 50%;
   background: radial-gradient(circle, rgba(112, 97, 232, .24), transparent 72%);
+
+  @include mixins.respond-below('md') {
+    inline-size: min(62%, 18rem);
+  }
 
   &::before,
   &::after {

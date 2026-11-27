@@ -1,8 +1,28 @@
 @use '../../../../styles/abstracts/mixins';
 
 .ui-carousel__viewport {
+  display: grid;
+  isolation: isolate;
+  grid-template-columns: minmax(0, 1fr);
   inline-size: 100%;
   min-inline-size: 0;
+}
+
+.ui-carousel__slide {
+  display: flex;
+  grid-area: 1 / 1;
+  min-inline-size: 0;
+  opacity: 1;
+  transition: opacity var(--duration-slow) var(--ease-in-out);
+
+  &[inert] {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    transition-property: none;
+  }
 }
 
 .ui-carousel__status {

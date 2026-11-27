@@ -21,7 +21,7 @@ export function ProcessSection({ locale }: { locale: Locale }) {
                 ))}
                 <img
                   className="model-card__orbit-logo"
-                  src="/brand/averon-logo.png"
+                  src="/brand/averon-logo.webp"
                   alt="AVERON WEB"
                   loading="lazy"
                 />
@@ -34,7 +34,6 @@ export function ProcessSection({ locale }: { locale: Locale }) {
                     {String(index + 1).padStart(2, '0')}
                   </span>
                   <Heading level={3}>{title}</Heading>
-                  <span className="landing-process__arrow" aria-hidden="true">↗</span>
                 </li>
               ))}
             </ol>

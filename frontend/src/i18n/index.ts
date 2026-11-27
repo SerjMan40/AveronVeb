@@ -4,9 +4,8 @@ import { ru } from './dictionaries/ru'
 import { uk } from './dictionaries/uk'
 import type { Dictionary } from './types'
 
-export { defaultLocale, isLocale, languages, locales, resolveLocale, resolvePreferredLocale } from './config'
+export { defaultLocale, isLocale, languages, locales, resolveLocale } from './config'
 export type { Locale } from './config'
-export type { ProjectTranslation } from './types'
 
 const dictionaries: Readonly<Record<Locale, Dictionary>> = { uk, en, ru }
 

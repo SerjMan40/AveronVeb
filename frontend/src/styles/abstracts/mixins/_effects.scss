@@ -47,6 +47,41 @@
   color: var(--color-link);
 }
 
+@mixin accent-navigation-item($selected) {
+  @include accent-dropdown-item;
+
+  background: transparent;
+  font-size: var(--navigation-link-font-size, var(--font-size-sm));
+  text-align: start;
+
+  &:hover,
+  &:focus-visible {
+    @include accent-dropdown-item-highlighted;
+  }
+
+  &#{$selected} {
+    @include accent-dropdown-item-selected;
+  }
+
+  > .ui-link__content {
+    flex: 1;
+  }
+
+  > .ui-link__icon:first-child {
+    @include accent-dropdown-item-icon;
+  }
+
+  > .ui-link__icon:last-child {
+    color: var(--color-text-muted);
+  }
+
+  &:hover > .ui-link__icon:last-child,
+  &:focus-visible > .ui-link__icon:last-child,
+  &#{$selected} > .ui-link__icon:last-child {
+    color: var(--color-link);
+  }
+}
+
 @mixin hover-effect(
   $property: transform,
   $value: translateY(-2px),

@@ -1,15 +1,10 @@
-import { Children, isValidElement, useId, useRef, useState } from 'react'
+import { Children, isValidElement, useId, useState } from 'react'
 import type { ReactNode } from 'react'
 import { IoChevronBackOutline, IoChevronForwardOutline } from 'react-icons/io5'
-import { Swiper, SwiperSlide } from 'swiper/react'
-import type { Swiper as SwiperInstance } from 'swiper'
-import { EffectFade } from 'swiper/modules'
 import { Button, ButtonGroup, IconButton } from '../../Buttons'
 import { Flex, Stack } from '../../Layout'
 import { Text } from '../../Typography'
 
-import 'swiper/css'
-import 'swiper/css/effect-fade'
 import './Carousel.scss'
 
 export interface CarouselProps {
@@ -19,7 +14,6 @@ export interface CarouselProps {
   nextLabel?: string
   pagination?: boolean
   transitionDuration?: number
-  effect?: 'slide' | 'fade'
 }
 
 export function Carousel({
@@ -29,39 +23,40 @@ export function Carousel({
   nextLabel = 'Next slide',
   pagination = false,
   transitionDuration,
-  effect = 'slide',
 }: CarouselProps) {
   const slides = Children.toArray(children)
-  const swiper = useRef<SwiperInstance | null>(null)
-  const [activeIndex, setActiveIndex] = useState(0)
+  const [index, setIndex] = useState(0)
   const viewportId = useId()
 
   if (slides.length === 0) return null
 
+  const lastIndex = slides.length - 1
+  const activeIndex = Math.min(index, lastIndex)
+
+  function moveBy(offset: number) {
+    setIndex(current => Math.max(0, Math.min(lastIndex, Math.min(current, lastIndex) + offset)))
+  }
+
   return (
     <Stack className="ui-carousel" gap="md" role="region" aria-label={label}>
-      <Swiper
+      <div
         id={viewportId}
         className="ui-carousel__viewport"
-        modules={[EffectFade]}
-        effect={effect}
-        fadeEffect={{ mode: 'cross-fade' }}
-        speed={transitionDuration}
-        onSwiper={instance => { swiper.current = instance }}
-        onSlideChange={instance => setActiveIndex(instance.activeIndex)}
+        onDragStart={event => event.preventDefault()}
       >
         {slides.map((slide, index) => (
-          <SwiperSlide
+          <div
             key={isValidElement(slide) ? slide.key : index}
+            className="ui-carousel__slide"
+            inert={index !== activeIndex}
+            style={{ transitionDuration: transitionDuration == null ? undefined : `${transitionDuration}ms` }}
             role="group"
             aria-label={`${index + 1} / ${slides.length}`}
           >
-            <div inert={index !== activeIndex}>
-              {slide}
-            </div>
-          </SwiperSlide>
+            {slide}
+          </div>
         ))}
-      </Swiper>
+      </div>
 
       {slides.length > 1 && (
         <Flex className="ui-carousel__controls" justify="between" align="center" gap="sm">
@@ -78,7 +73,7 @@ export function Carousel({
                   aria-label={`${label} · ${index + 1} / ${slides.length}`}
                   aria-controls={viewportId}
                   aria-current={index === activeIndex ? 'true' : undefined}
-                  onClick={() => swiper.current?.slideTo(index)}
+                  onClick={() => setIndex(index)}
                 />
               ))}
             </Flex>
@@ -90,15 +85,15 @@ export function Carousel({
               aria-label={previousLabel}
               aria-controls={viewportId}
               disabled={activeIndex === 0}
-              onClick={() => swiper.current?.slidePrev()}
+              onClick={() => moveBy(-1)}
             />
             <IconButton
               variant="outline"
               icon={<IoChevronForwardOutline />}
               aria-label={nextLabel}
               aria-controls={viewportId}
-              disabled={activeIndex >= slides.length - 1}
-              onClick={() => swiper.current?.slideNext()}
+              disabled={activeIndex === lastIndex}
+              onClick={() => moveBy(1)}
             />
           </ButtonGroup>
         </Flex>

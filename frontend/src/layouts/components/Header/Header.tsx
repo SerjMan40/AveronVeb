@@ -2,7 +2,7 @@ import { useLayoutEffect, useMemo, useRef, useState } from 'react'
 import {
   IoBriefcaseOutline, IoCloseOutline, IoGitBranchOutline, IoHomeOutline,
   IoLayersOutline, IoMailOutline, IoMenuOutline,
-  IoCallOutline,
+  IoArrowForwardOutline, IoCallOutline,
 } from 'react-icons/io5'
 import { useParams } from 'react-router-dom'
 
@@ -30,6 +30,7 @@ const navigationIcons = {
 export function Header() {
   const headerRef = useRef<HTMLElement>(null)
   const [isOpen, setIsOpen] = useState(false)
+  const [isPhoneOpen, setIsPhoneOpen] = useState(false)
   const { locale: routeLocale } = useParams()
 
   useLayoutEffect(() => {
@@ -69,7 +70,7 @@ export function Header() {
   return (
     <header ref={headerRef} className="site-header" data-theme="dark">
       <ContentContainer size="2xl" className="site-header__inner">
-        <Logo name="AVERON WEB" src="/brand/averon-logo.png" showName={false} href={`/${locale}`} smoothScroll />
+        <Logo name="AVERON WEB" src="/brand/averon-logo.webp" showName={false} href={`/${locale}`} smoothScroll />
 
         <Navigation
           {...navigationProps}
@@ -80,9 +81,35 @@ export function Header() {
           <div className="site-header__phone">
             <Link href={contactPhoneHref} underline="none" leftIcon={<IoCallOutline />}>{contactPhone}</Link>
           </div>
+          <Popover
+            className="site-header__phone-popover"
+            open={isPhoneOpen}
+            onOpenChange={setIsPhoneOpen}
+            align="end"
+            appearance="accent"
+            triggerLabel={footer.contact}
+            trigger={<Icon size="xl"><IoCallOutline /></Icon>}
+          >
+            <Stack gap="xs">
+              <Text size="xs" align="center" transform="uppercase" weight="semibold" color="secondary" aria-hidden="true">
+                {footer.contact}
+              </Text>
+              <Divider spacing="none" decorative />
+              <Link
+                className="site-header__phone-option"
+                href={contactPhoneHref}
+                variant="inherit"
+                underline="none"
+                leftIcon={<IoCallOutline />}
+                rightIcon={<IoArrowForwardOutline />}
+                onClick={() => setIsPhoneOpen(false)}
+              >
+                {contactPhone}
+              </Link>
+            </Stack>
+          </Popover>
 
           <Divider className="site-header__phone-divider" orientation="vertical" spacing="none" decorative />
-          <LanguageSwitcher />
 
           <Popover
             className="site-header__navigation-popover"
@@ -106,6 +133,7 @@ export function Header() {
               />
             </Stack>
           </Popover>
+          <LanguageSwitcher className="site-header__languages" compactClassName="site-header__language-popover" />
         </div>
       </ContentContainer>
     </header>

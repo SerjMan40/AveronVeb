@@ -32,7 +32,10 @@ export function BackToTop({
       className={classNames('ui-back-to-top', visible && 'ui-back-to-top--visible', className)}
       aria-hidden={!visible}
       tabIndex={visible ? 0 : -1}
-      onClick={() => window.scrollTo({ top: 0 })}
+      onClick={() => {
+        const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+        window.scrollTo({ top: 0, behavior: reduceMotion ? 'auto' : 'smooth' })
+      }}
     />
   )
 }

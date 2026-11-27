@@ -70,38 +70,12 @@
     gap: var(--space-2xs);
 
     .primary-navigation__link {
-      @include mixins.accent-dropdown-item;
+      @include mixins.accent-navigation-item("[aria-current='location']");
 
       &::after {
         display: none;
       }
 
-      &:hover,
-      &:focus-visible {
-        @include mixins.accent-dropdown-item-highlighted;
-      }
-
-      &[aria-current='location'] {
-        @include mixins.accent-dropdown-item-selected;
-      }
-
-      > .ui-link__content {
-        flex: 1;
-      }
-
-      > .ui-link__icon:first-child {
-        @include mixins.accent-dropdown-item-icon;
-      }
-
-      > .ui-link__icon:last-child {
-        color: var(--color-text-muted);
-      }
-
-      &:hover > .ui-link__icon:last-child,
-      &:focus-visible > .ui-link__icon:last-child,
-      &[aria-current='location'] > .ui-link__icon:last-child {
-        color: var(--color-link);
-      }
     }
   }
 }

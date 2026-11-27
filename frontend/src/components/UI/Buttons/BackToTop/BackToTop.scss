@@ -1,6 +1,6 @@
 @use '../../../../styles/abstracts/mixins';
 
-.ui-back-to-top {
+.ui-back-to-top.ui-icon-button {
   @include mixins.transition;
 
   position: fixed;
@@ -11,7 +11,7 @@
   pointer-events: none;
   transform: translateY(var(--space-xs));
 
-  &--visible {
+  &.ui-back-to-top--visible {
     opacity: 1;
     visibility: visible;
     pointer-events: auto;
@@ -21,5 +21,18 @@
   @include mixins.respond-below('sm') {
     inset-inline-end: var(--space-md);
     inset-block-end: var(--space-md);
+    width: 3rem;
+    height: 3rem;
+    padding: 0;
+    border-radius: var(--radius-full);
+
+    .ui-button__content {
+      flex: none;
+    }
+
+    svg {
+      width: var(--font-size-xl);
+      height: var(--font-size-xl);
+    }
   }
 }

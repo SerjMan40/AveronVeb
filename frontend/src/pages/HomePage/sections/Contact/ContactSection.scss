@@ -44,6 +44,16 @@ $contact-field-active-border: rgb(139 92 246 / 72%);
   text-align: start;
   cursor: pointer;
 
+  &__value {
+    min-inline-size: 0;
+    white-space: normal;
+    overflow-wrap: anywhere;
+  }
+
+  > :last-child {
+    flex-shrink: 0;
+  }
+
   svg {
     display: block;
   }
@@ -51,7 +61,8 @@ $contact-field-active-border: rgb(139 92 246 / 72%);
 
 .contact-service-positioner {
   z-index: var(--z-dropdown);
-  inline-size: var(--anchor-width);
+  inline-size: max-content;
+  max-inline-size: min(var(--available-width, 100vw), calc(100vw - var(--space-xl)));
 }
 
 .contact-service-popup {
@@ -95,6 +106,8 @@ $contact-field-active-border: rgb(139 92 246 / 72%);
 
   &__label {
     flex: 1;
+    min-inline-size: 0;
+    overflow-wrap: anywhere;
   }
 
   &__arrow {

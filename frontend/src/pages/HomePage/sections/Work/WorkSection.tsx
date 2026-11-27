@@ -1,16 +1,13 @@
-import { useState } from 'react'
 import { IoArrowForwardOutline } from 'react-icons/io5'
 import { Section } from '../../../../components/Common'
-import { Badge, Button, Card, Carousel, Container, Grid, Heading, Image, Link, Modal, Paragraph, Stack } from '../../../../components/UI'
-import averonHomepage from '../../../../assets/images/averon-homepage.png'
-import luminaHomepage from '../../../../assets/images/lumina-homepage.png'
-import luminaLogo from '../../../../assets/images/logo-lumina-transparent.png'
-import { getTranslations, type Locale, type ProjectTranslation } from '../../../../i18n'
-import { ProjectPreview } from './ProjectPreview'
+import { Carousel, Container, Grid, Heading, Image, Link, Paragraph, Stack } from '../../../../components/UI'
+import averonHomepage from '../../../../assets/images/averon-homepage.webp'
+import luminaHomepage from '../../../../assets/images/lumina-homepage.webp'
+import luminaLogo from '../../../../assets/images/logo-lumina-transparent.webp'
+import { getTranslations, type Locale } from '../../../../i18n'
 
 export function WorkSection({ locale }: { locale: Locale }) {
   const { hero, work } = getTranslations(locale)
-  const [selectedProject, setSelectedProject] = useState<ProjectTranslation | null>(null)
   const featuredProjects = [
     {
       name: 'Lumina Beauty Studio',
@@ -22,7 +19,7 @@ export function WorkSection({ locale }: { locale: Locale }) {
     },
     {
       name: 'Averon Web',
-      logo: '/brand/averon-logo.png',
+      logo: '/brand/averon-logo.webp',
       screenshot: averonHomepage,
       description: hero.description,
       href: `/${locale}`,
@@ -40,24 +37,33 @@ export function WorkSection({ locale }: { locale: Locale }) {
             previousLabel={work.previous}
             nextLabel={work.next}
             transitionDuration={1100}
-            effect="fade"
             pagination
           >
             {featuredProjects.map(project => (
-              <Grid as="article" key={project.name} columns="var(--work-slide-columns)" gap="md" align="center" className="landing-work__slide landing-work__slide--featured">
+              <Grid
+                as="article"
+                key={project.name}
+                columns="var(--work-slide-columns)"
+                gap="md"
+                align="center"
+                className="landing-work__slide landing-work__slide--featured"
+                style={{ rowGap: 'var(--gallery-featured-row-gap, var(--space-md))' }}
+              >
                 <div className="landing-work__laptop">
                   <Image src={project.screenshot} alt={project.name} wrapperClassName="landing-work__laptop-screen" aspectRatio="auto" fit="fill" />
                 </div>
                 <Stack gap="md" align="start" justify="evenly" className="landing-work__project-copy">
-                  <Heading level={3} className="landing-work__project-title">
-                    <Image
-                      src={project.logo}
-                      alt={project.name}
-                      className={project.logoClassName}
-                      wrapperClassName={project.lightLogo ? 'landing-work__project-logo--light' : undefined}
-                    />
-                  </Heading>
-                  <Paragraph className="landing-card-description">{project.description}</Paragraph>
+                  <div className="landing-work__project-details">
+                    <Heading level={3} className="landing-work__project-title">
+                      <Image
+                        src={project.logo}
+                        alt={project.name}
+                        className={project.logoClassName}
+                        wrapperClassName={project.lightLogo ? 'landing-work__project-logo--light' : undefined}
+                      />
+                    </Heading>
+                    <Paragraph className="landing-card-description">{project.description}</Paragraph>
+                  </div>
                   <Link
                     href={project.href}
                     appearance="button"
@@ -71,60 +77,9 @@ export function WorkSection({ locale }: { locale: Locale }) {
                 </Stack>
               </Grid>
             ))}
-            {work.projects.map(project => (
-              <Card
-                as="article"
-                key={project.name}
-                variant="plain"
-                padding="none"
-                className="landing-work__slide"
-                data-theme="light"
-              >
-                <Grid columns="var(--work-slide-columns)" gap="lg" align="center">
-                  <ProjectPreview kind={project.kind} large />
-                  <Stack gap="sm" align="start">
-                    <Badge>{project.category}</Badge>
-                    <Heading level={3}>{project.name}</Heading>
-                    <Paragraph>{project.description}</Paragraph>
-                    <Badge>{work.concept}</Badge>
-                    <Button
-                      variant="outline"
-                      onClick={() => setSelectedProject(project)}
-                      aria-label={`${work.open}: ${project.name}`}
-                    >
-                      {work.open}
-                    </Button>
-                  </Stack>
-                </Grid>
-              </Card>
-            ))}
-            <Card
-              as="article"
-              variant="plain"
-              padding="none"
-              className="landing-work__slide landing-work__slide--pending"
-            >
-              <Heading level={3}>{work.upcoming}</Heading>
-            </Card>
           </Carousel>
         </Stack>
       </Container>
-      <Modal
-        open={selectedProject !== null}
-        onClose={() => setSelectedProject(null)}
-        title={selectedProject?.name}
-        closeLabel={work.close}
-        closeOnBackdrop={false}
-      >
-        {selectedProject && (
-          <Stack gap="md" align="start">
-            <ProjectPreview kind={selectedProject.kind} large />
-            <Badge>{work.conceptLabel}</Badge>
-            <Badge>{selectedProject.category}</Badge>
-            <Paragraph>{selectedProject.description}</Paragraph>
-          </Stack>
-        )}
-      </Modal>
     </Section>
   )
 }

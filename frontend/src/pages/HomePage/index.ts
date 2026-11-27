@@ -1,1 +1,1 @@
-﻿export { HomePage, LegalPage, LocaleRedirect } from './HomePage'
+export { HomePage, LocaleRedirect } from './HomePage'

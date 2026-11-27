@@ -51,7 +51,7 @@ export function Footer({
           <Stack gap="md">
             <Grid columns="var(--footer-columns)" className="footer__top" gap="xl" align="start">
               <Stack gap="sm" align="start" className="footer__brand">
-                <Logo name="AVERON WEB" src="/brand/averon-logo.png" showName={false} href={home} smoothScroll />
+                <Logo name="AVERON WEB" src="/brand/averon-logo.webp" showName={false} href={home} smoothScroll />
                 <Paragraph lang="en">Build. Launch. Evolve.</Paragraph>
               </Stack>
               <Stack gap="xs" align="start">
@@ -91,10 +91,6 @@ export function Footer({
             <Divider decorative />
             <Flex gap="md" wrap="wrap" justify="between" align="center">
               <Text size="sm">© {new Date().getFullYear()} AVERON WEB. {footer.rights}</Text>
-              <Flex gap="md" wrap="wrap">
-                <Link href={`${home}/privacy`} variant="secondary">{footer.privacy}</Link>
-                <Link href={`${home}/terms`} variant="secondary">{footer.terms}</Link>
-              </Flex>
             </Flex>
           </Stack>
         )}

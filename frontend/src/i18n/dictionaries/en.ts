@@ -9,8 +9,6 @@ export const en = {
   metadata: {
     title: 'AVERON WEB ? Websites built to grow with your business',
     description: 'Build, launch and evolve professional business websites with monthly development, ongoing care and an optional buyout.',
-    privacyDescription: 'Information about inquiry and personal data handling by AVERON WEB.',
-    termsDescription: 'Service and material use terms for AVERON WEB.',
   },
   hero: {
     eyebrow: 'Web design & development',
@@ -31,14 +29,8 @@ export const en = {
   },
   work: {
     previous: 'Previous project', next: 'Next project',
-    luminaDescription: 'A modern website for a beauty salon with online booking and service management.', viewProject: 'View project', upcoming: 'Project coming soon',
+    luminaDescription: 'A modern website for a beauty salon with online booking and service management.', viewProject: 'View project',
     title: 'Project Gallery',
-    concept: 'Demo · concept', open: 'Explore concept', close: 'Close preview', conceptLabel: 'Concept work — not a client project',
-    projects: [
-      { name: 'A slower kind of stay', category: 'Hospitality', description: 'A website concept for a countryside retreat, shaped around atmosphere and booking.', kind: 'stay' },
-      { name: 'Expertise, made clear', category: 'Professional services', description: 'A corporate website concept that explains services and makes starting a conversation easy.', kind: 'studio' },
-      { name: 'Everyday essentials', category: 'E-commerce', description: 'A storefront concept with clear navigation and a product-first presentation.', kind: 'shop' },
-    ],
   },
   process: {
     title: 'How we', titleAccent: 'work.', intro: 'From the first conversation to launch and ongoing improvements.',
@@ -54,13 +46,8 @@ export const en = {
     title: 'Tell us about', titleAccent: 'your idea.', intro: 'We’ll help you plan and build a website for your business.',
     name: 'Your name', email: 'Email address', company: 'Company name', message: 'A little about your project', service: 'What are you interested in?', choose: 'Choose a website type',
     options: ['Landing page', 'Multi-page website', 'Online store', 'Catalog website', 'Not sure yet'],
-    privacyNotice: 'We use your information to respond to your inquiry.', privacy: 'Privacy Policy', submit: 'Start your project', sending: 'Sending…', success: 'Thank you — your message has been sent.', error: 'Your message could not be sent. Please try again later.',
+    privacyNotice: 'We’ll use your contact details to respond to your inquiry.', submit: 'Start your project', sending: 'Sending…', success: 'Thank you — your message has been sent.', error: 'Your message could not be sent. Please try again later.',
     namePlaceholder: 'How should we address you?', emailPlaceholder: 'you@company.com', companyPlaceholder: 'Optional', messagePlaceholder: 'Tell us more about what you want the website to achieve. What should it help you do?',
   },
-  footer: { navigation: 'Explore', contact: 'Contact', privacy: 'Privacy policy', terms: 'Terms of use', rights: 'All rights reserved.' },
-  legal: {
-    privacyTitle: 'Privacy policy', termsTitle: 'Terms of use', back: 'Back to home', draft: 'Publication details to complete: add the data controller’s legal name, official contact details and confirmed retention periods before launch.',
-    privacy: 'The inquiry form collects your name and email address, and your project description and selected website type, plus your company name if provided. This information is used to respond to your request. Once configured, the server will send the inquiry to a destination chosen by the site owner, such as an email address or inquiry management system. Please do not include sensitive information in the form.',
-    terms: 'This website describes services that AVERON WEB may provide. Service scope, monthly fees, timing, maintenance, website buyout and transfer of rights are agreed in a separate contract before work starts. Use of specific projects and third-party materials remains subject to their respective rights holders.',
-  },
+  footer: { navigation: 'Explore', contact: 'Contact', rights: 'All rights reserved.' },
 } as const satisfies Dictionary
