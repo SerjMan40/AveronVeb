@@ -7,7 +7,7 @@ export const en = {
     skip: 'Skip to content', backToTop: 'Back to top',
   },
   metadata: {
-    title: 'AVERON WEB ? Websites built to grow with your business',
+    title: 'AVERON WEB — Websites built to grow with your business',
     description: 'Build, launch and evolve professional business websites with monthly development, ongoing care and an optional buyout.',
   },
   hero: {

@@ -43,6 +43,8 @@ services:
     build:
       context: ./frontend
       target: production
+      args:
+        AVERON_SITE_URL: ${AVERON_SITE_URL:-}
     restart: unless-stopped
     depends_on:
       backend:

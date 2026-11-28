@@ -66,11 +66,11 @@
 
     &:hover,
     &:focus-visible,
-    &[aria-pressed='true'] {
+    &:is([aria-pressed='true'], [aria-current='page']) {
       color: var(--color-text-primary);
     }
 
-    &[aria-pressed='true']::after {
+    &:is([aria-pressed='true'], [aria-current='page'])::after {
       transform: scaleX(1);
     }
   }

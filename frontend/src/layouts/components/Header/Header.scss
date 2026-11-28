@@ -91,7 +91,11 @@
     }
   }
 
-  .language-switcher__options > button,
+  .language-switcher__options > a {
+    @include m.accent-navigation-item("[aria-current='page']");
+    text-decoration: none;
+  }
+
   &__phone-option {
     @include m.accent-navigation-item("[aria-pressed='true']");
   }
