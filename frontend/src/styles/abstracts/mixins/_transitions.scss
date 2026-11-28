@@ -28,18 +28,8 @@
   transition: transform $duration $timing;
 }
 
-@mixin transition-opacity(
-  $duration: 0.2s
-) {
-  transition: opacity $duration ease;
-}
-
 @mixin transition-shadow(
   $duration: 0.2s
 ) {
   transition: box-shadow $duration ease;
-}
-
-@mixin transition-none {
-  transition: none !important;
 }

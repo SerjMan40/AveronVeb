@@ -11,16 +11,6 @@ $breakpoints: (
   xxl: 1400px
 );
 
-@mixin respond-to($breakpoint) {
-  @if map.has-key($breakpoints, $breakpoint) {
-    @media (min-width: map.get($breakpoints, $breakpoint)) {
-      @content;
-    }
-  } @else {
-    @warn "Unknown breakpoint: #{$breakpoint}";
-  }
-}
-
 @mixin respond-below($breakpoint) {
   @if map.has-key($breakpoints, $breakpoint) {
     @media (max-width: (map.get($breakpoints, $breakpoint) - 0.02px)) {
@@ -42,40 +32,5 @@ $breakpoints: (
     }
   } @else {
     @warn "Unknown breakpoint range: #{$min} - #{$max}";
-  }
-}
-
-@mixin responsive-property(
-  $property,
-  $mobile,
-  $tablet: null,
-  $desktop: null
-) {
-  #{$property}: $mobile;
-
-  @if $tablet != null {
-    @include respond-to(md) {
-      #{$property}: $tablet;
-    }
-  }
-
-  @if $desktop != null {
-    @include respond-to(lg) {
-      #{$property}: $desktop;
-    }
-  }
-}
-
-@mixin hide-below($breakpoint) {
-  @include respond-below($breakpoint) {
-    display: none !important;
-  }
-}
-
-@mixin show-below($breakpoint) {
-  display: none;
-
-  @include respond-below($breakpoint) {
-    display: initial;
   }
 }

@@ -1,7 +1,3 @@
-/* ===========================================================
-   Fade
-=========================================================== */
-
 @keyframes fade-in {
   from {
     opacity: 0;
@@ -12,116 +8,6 @@
   }
 }
 
-@keyframes fade-out {
-  from {
-    opacity: 1;
-  }
-
-  to {
-    opacity: 0;
-  }
-}
-
-/* ===========================================================
-   Slide
-=========================================================== */
-
-@keyframes slide-up {
-  from {
-    opacity: 0;
-    transform: translateY(var(--motion-distance));
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes slide-down {
-  from {
-    opacity: 0;
-    transform: translateY(calc(-1 * var(--motion-distance)));
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes slide-left {
-  from {
-    opacity: 0;
-    transform: translateX(var(--motion-distance));
-  }
-
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-@keyframes slide-right {
-  from {
-    opacity: 0;
-    transform: translateX(calc(-1 * var(--motion-distance)));
-  }
-
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-/* ===========================================================
-   Scale
-=========================================================== */
-
-@keyframes scale-in {
-  from {
-    opacity: 0;
-    transform: scale(var(--motion-scale));
-  }
-
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
-@keyframes scale-out {
-  from {
-    opacity: 1;
-    transform: scale(1);
-  }
-
-  to {
-    opacity: 0;
-    transform: scale(var(--motion-scale));
-  }
-}
-
-/* ===========================================================
-   Reveal
-=========================================================== */
-
-@keyframes soft-reveal {
-  from {
-    opacity: 0;
-    transform: translateY(var(--motion-distance-sm));
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* ===========================================================
-   Continuous Animations
-=========================================================== */
-
 @keyframes spin {
   from {
     transform: rotate(0deg);
@@ -129,16 +15,5 @@
 
   to {
     transform: rotate(360deg);
-  }
-}
-
-@keyframes pulse {
-  0%,
-  100% {
-    opacity: 1;
-  }
-
-  50% {
-    opacity: var(--motion-pulse-opacity);
   }
 }

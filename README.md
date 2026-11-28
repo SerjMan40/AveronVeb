@@ -4,7 +4,7 @@ International web development studio website. The frontend uses React, TypeScrip
 
 ## Local development
 
-Use Node.js 24 and Yarn Classic. From the repository root, run `npm install` to install dependencies, then `npm run dev`. Vite serves http://localhost:5173 and proxies `/api` to port 4000.
+Use Node.js 24 and Yarn Classic. From the repository root, run `npm ci` to install dependencies from the committed lockfiles, then `npm run dev`. Vite serves http://localhost:5173 and proxies `/api` to port 4000.
 
 Set `MONGODB_URI` in the local `backend/.env` to point at a MongoDB database. Without it, the site can run locally but the API returns 503 for valid inquiries. For a local end-to-end setup with MongoDB and Nginx, run `docker compose up --build` and open http://localhost:8080. Compose credentials are for local use.
 
@@ -39,7 +39,7 @@ MongoDB expires inquiry records 90 days after submission by default. Set `INQUIR
 1. Create or select a MongoDB Atlas project and cluster. Create a dedicated application database user with `readWrite` on the inquiry database, and allow connections from the selected Render service's outbound addresses. [Atlas connection setup](https://www.mongodb.com/docs/atlas/connect-to-database-deployment/)
 2. Verify the sender domain in Resend and create a sending key. Set the from and recipient addresses when configuring Render. [Resend email API](https://resend.com/docs/api-reference/emails/send-email)
 3. Deploy the repository with the Render Blueprint in `render.yaml`. Set `MONGODB_URI`, the HTTPS frontend origins in `CLIENT_ORIGIN` (comma-separated, with no trailing slash), and the settings for each notification channel you want to enable. Use an always-running instance if retries must proceed during periods without traffic. Confirm the trusted proxy hop count for the service. [Render Blueprint reference](https://render.com/docs/blueprint-spec)
-4. On Vercel, select `frontend` as the project root and Node.js 24. Set `VITE_API_BASE_URL` to the Render HTTPS URL including `/api`, and set `AVERON_SITE_URL` to the canonical frontend HTTPS origin for the sitemap. Optional public contact details are listed in `frontend/.env.example`. [Vite on Vercel](https://vercel.com/docs/frameworks/frontend/vite)
-5. Check HTTPS, `/api/health`, language routes, and a test form submission. Confirm the resulting database row, receipt in the notification mailbox and the client's address in Reply-To.
+4. On Vercel, select `frontend` as the project root and Node.js 24. Set `VITE_API_BASE_URL` to the Render HTTPS URL including `/api`. Set the build-time `AVERON_SITE_URL` to the canonical frontend HTTPS origin for page metadata, `robots.txt` and `sitemap.xml`. For a production Docker build, pass the same value as a build argument. Optional public contact details are listed in `frontend/.env.example`. [Vite on Vercel](https://vercel.com/docs/frameworks/frontend/vite)
+5. Check HTTPS, `/api/health`, the prerendered `/uk`, `/en` and `/ru` routes, and the sitemap. Verify that `/` redirects to `/uk` with HTTP 308 and an unknown path returns HTTP 404. Submit a test inquiry and confirm the resulting database row, receipt in the notification mailbox and the client's address in Reply-To.
 
-Run `npm run build` to compile both applications. Run `yarn --cwd backend test` for API smoke tests. Set `INQUIRY_TEST_MONGODB_URI` to a local loopback MongoDB URI to additionally exercise persistence, duplicate requests and notification retries in a disposable database.
+Run `npm run build` to compile both applications and `yarn --cwd frontend typecheck` to check the frontend and Vite configuration types. Run `yarn --cwd backend test` for API smoke tests. Set `INQUIRY_TEST_MONGODB_URI` to a local loopback MongoDB URI to additionally exercise persistence, duplicate requests and notification retries in a disposable database.

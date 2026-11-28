@@ -1,5 +1,3 @@
 export * from './Icon'
 export * from './Image'
-export * from './ImageGallery'
-export * from './Video'
 export * from './Carousel'

@@ -3,11 +3,10 @@ import { IoCallOutline } from 'react-icons/io5'
 import { FaFacebookF, FaInstagram, FaLinkedinIn, FaTelegramPlane } from 'react-icons/fa'
 import { useParams } from 'react-router-dom'
 
-import { ContentContainer } from '../containers'
 import { contactPhone, contactPhoneHref } from '../contactPhone'
 import { sectionIds } from '../sectionIds'
 import { Logo } from '../../../components/Common'
-import { Divider, Flex, Grid, Heading, Link, Paragraph, Stack, Text } from '../../../components/UI'
+import { Container, Divider, Flex, Grid, Heading, Link, Paragraph, Stack, Text } from '../../../components/UI'
 import { getTranslations, resolveLocale } from '../../../i18n'
 import { classNames } from '../../../Utils'
 
@@ -46,7 +45,7 @@ export function Footer({
       data-theme="dark"
       className={classNames('footer', className)}
     >
-      <ContentContainer size="2xl">
+      <Container size="2xl">
         {children ?? (
           <Stack gap="md">
             <Grid columns="var(--footer-columns)" className="footer__top" gap="xl" align="start">
@@ -94,7 +93,7 @@ export function Footer({
             </Flex>
           </Stack>
         )}
-      </ContentContainer>
+      </Container>
     </footer>
   )
 }

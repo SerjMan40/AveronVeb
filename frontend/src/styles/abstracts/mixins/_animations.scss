@@ -1,55 +1,5 @@
 // _animations.scss
 
-@mixin fade-in(
-  $duration: 0.3s,
-  $delay: 0s
-) {
-  animation: fade-in $duration ease $delay both;
-
-  @keyframes fade-in {
-    from { opacity: 0; }
-    to { opacity: 1; }
-  }
-}
-
-@mixin fade-up(
-  $distance: 20px,
-  $duration: 0.4s
-) {
-  animation: fade-up $duration ease both;
-
-  @keyframes fade-up {
-    from {
-      opacity: 0;
-      transform: translateY($distance);
-    }
-
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-}
-
-@mixin fade-down(
-  $distance: 20px,
-  $duration: 0.4s
-) {
-  animation: fade-down $duration ease both;
-
-  @keyframes fade-down {
-    from {
-      opacity: 0;
-      transform: translateY(-$distance);
-    }
-
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-}
-
 @mixin reveal-down(
   $collapsed: '[data-starting-style], [data-ending-style]',
   $duration: var(--duration-slow)
@@ -69,57 +19,5 @@
 
   @media (prefers-reduced-motion: reduce) {
     transition: none;
-  }
-}
-
-@mixin rotate(
-  $duration: 1s,
-  $timing: linear
-) {
-  animation: rotate $duration $timing infinite;
-
-  @keyframes rotate {
-    to { transform: rotate(360deg); }
-  }
-}
-
-@mixin pulse(
-  $duration: 1.5s,
-  $scale: 1.05
-) {
-  animation: pulse $duration ease-in-out infinite;
-
-  @keyframes pulse {
-    50% {
-      transform: scale($scale);
-    }
-  }
-}
-
-@mixin slide-in(
-  $direction: left,
-  $distance: 30px,
-  $duration: 0.4s
-) {
-  animation: slide-in $duration ease both;
-
-  @if $direction == left {
-    @keyframes slide-in {
-      from { transform: translateX(-$distance); opacity: 0; }
-      to { transform: translateX(0); opacity: 1; }
-    }
-  } @else if $direction == right {
-    @keyframes slide-in {
-      from { transform: translateX($distance); opacity: 0; }
-      to { transform: translateX(0); opacity: 1; }
-    }
-  }
-}
-
-@mixin reduced-motion {
-  @media (prefers-reduced-motion: reduce) {
-    animation: none !important;
-    transition: none !important;
-    scroll-behavior: auto !important;
   }
 }
