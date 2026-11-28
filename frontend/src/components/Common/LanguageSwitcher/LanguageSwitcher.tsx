@@ -1,9 +1,10 @@
-import { useState, type ComponentPropsWithoutRef } from 'react'
+import { useState, type ComponentPropsWithoutRef, type MouseEvent } from 'react'
 import { IoArrowForwardOutline } from 'react-icons/io5'
 import { useLocation, useNavigate, useParams } from 'react-router-dom'
-import { getTranslations, isLocale, languages, resolveLocale, type Locale } from '../../../i18n'
-import { Button, ButtonGroup } from '../../UI/Buttons'
-import { Divider, Popover, Stack, Text } from '../../UI'
+import { getTranslations, languages, resolveLocale } from '../../../i18n'
+import { ButtonGroup } from '../../UI/Buttons'
+import { Stack } from '../../UI'
+import { PopoverPanel } from '../PopoverPanel'
 
 export type LanguageSwitcherProps = ComponentPropsWithoutRef<'div'> & {
   compactClassName?: string
@@ -15,7 +16,7 @@ export function LanguageSwitcher({
   ...props
 }: LanguageSwitcherProps) {
   const { locale: routeLocale } = useParams()
-  const { pathname, search, hash } = useLocation()
+  const { search, hash } = useLocation()
   const navigate = useNavigate()
   const [isOpen, setIsOpen] = useState(false)
 
@@ -23,20 +24,17 @@ export function LanguageSwitcher({
   const languageLabel = getTranslations(locale).layout.language
   const currentLanguage = languages.find(({ value }) => value === locale)
 
-  function changeLocale(nextLocale: Locale) {
-    if (nextLocale === locale) return
+  function changeLocale(event: MouseEvent<HTMLAnchorElement>) {
+    if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return
+    event.preventDefault()
+    setIsOpen(false)
 
-    const segments = pathname.split('/')
-
-    if (isLocale(segments[1])) {
-      segments[1] = nextLocale
-    } else {
-      segments.splice(1, 0, nextLocale)
+    const nextPath = event.currentTarget.pathname
+    if (nextPath !== `/${locale}`) {
+      navigate(`${nextPath}${search}${hash}`, {
+        state: { preserveScrollY: window.scrollY },
+      })
     }
-
-    navigate(`${segments.join('/')}${search}${hash}`, {
-      state: { preserveScrollY: window.scrollY },
-    })
   }
 
   return (
@@ -47,55 +45,46 @@ export function LanguageSwitcher({
         aria-label={languageLabel}
       >
         {languages.map(({ value, label, name }) => (
-          <Button
+          <a
             key={value}
-            type="button"
+            href={`/${value}`}
             lang={value}
+            hrefLang={value}
             aria-label={name}
-            aria-pressed={locale === value}
-            size="sm"
-            variant="underline"
-            onClick={() => changeLocale(value)}
+            aria-current={locale === value ? 'page' : undefined}
+            className="ui-button ui-button--underline ui-button--sm"
+            onClick={changeLocale}
           >
             {label}
-          </Button>
+          </a>
         ))}
       </ButtonGroup>
       {compactClassName && (
-        <Popover
+        <PopoverPanel
           className={compactClassName}
           open={isOpen}
           onOpenChange={setIsOpen}
-          align="end"
-          appearance="accent"
+          heading={languageLabel}
           triggerLabel={`${languageLabel}: ${currentLanguage?.name}`}
           trigger={currentLanguage?.label}
         >
-          <Stack gap="xs">
-            <Text size="xs" align="center" transform="uppercase" weight="semibold" color="secondary" aria-hidden="true">
-              {languageLabel}
-            </Text>
-            <Divider spacing="none" decorative />
-            <Stack gap="2xs" className="language-switcher__options">
-              {languages.map(({ value, label, name }) => (
-                <button
-                  key={value}
-                  type="button"
-                  lang={value}
-                  aria-pressed={locale === value}
-                  onClick={() => {
-                    setIsOpen(false)
-                    changeLocale(value)
-                  }}
-                >
-                  <span className="ui-link__icon" aria-hidden="true">{label}</span>
-                  <span className="ui-link__content">{name}</span>
-                  <span className="ui-link__icon" aria-hidden="true"><IoArrowForwardOutline /></span>
-                </button>
-              ))}
-            </Stack>
+          <Stack gap="2xs" className="language-switcher__options">
+            {languages.map(({ value, label, name }) => (
+              <a
+                key={value}
+                href={`/${value}`}
+                lang={value}
+                hrefLang={value}
+                aria-current={locale === value ? 'page' : undefined}
+                onClick={changeLocale}
+              >
+                <span className="ui-link__icon" aria-hidden="true">{label}</span>
+                <span className="ui-link__content">{name}</span>
+                <span className="ui-link__icon" aria-hidden="true"><IoArrowForwardOutline /></span>
+              </a>
+            ))}
           </Stack>
-        </Popover>
+        </PopoverPanel>
       )}
     </>
   )

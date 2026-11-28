@@ -2,6 +2,7 @@ import { Section } from '../../../../components/Common'
 import { Card, CodeRain, Container, Grid, Heading, Image, Paragraph, Stack } from '../../../../components/UI'
 import { portfolioCode } from '../Work/portfolioCode'
 import { getTranslations, type Locale } from '../../../../i18n'
+import { SectionHeading } from '../SectionHeading'
 import websiteDevelopmentImage from '../../../../assets/images/services/website-development.webp'
 import webDesignImage from '../../../../assets/images/services/web-design.webp'
 import seoOptimizationImage from '../../../../assets/images/services/seo-optimization.webp'
@@ -26,10 +27,13 @@ export function ServicesSection({ locale }: { locale: Locale }) {
       <CodeRain className="landing-services__backdrop" sources={[portfolioCode]} continuous />
       <Container size="2xl">
         <Stack gap="lg">
-          <Stack gap="sm" align="center" className="landing-section__heading landing-services__heading landing-services__copy-panel">
-            <Heading level={2} accent={services.titleAccent}>{services.title}</Heading>
-            <Paragraph className="landing-section__intro">{services.intro}</Paragraph>
-          </Stack>
+          <SectionHeading
+            title={services.title}
+            titleAccent={services.titleAccent}
+            intro={services.intro}
+            align="center"
+            className="landing-services__heading landing-services__copy-panel"
+          />
           <Grid columns="var(--services-columns)" gap="md" className="landing-services__grid">
             {services.items.map(([name, description], index) => [
               index === seoServiceIndex && (

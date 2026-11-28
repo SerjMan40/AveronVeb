@@ -1,4 +1,5 @@
 import {
+  useCallback,
   useEffect,
   useId,
   useRef,
@@ -82,13 +83,13 @@ export function Popover({
     !disabled &&
     (controlled ? open : internalOpen)
 
-  function changeOpen(next: boolean) {
+  const changeOpen = useCallback((next: boolean) => {
     if (!controlled) {
       setInternalOpen(next)
     }
 
     onOpenChange?.(next)
-  }
+  }, [controlled, onOpenChange])
 
   useEffect(() => {
     if (!isOpen) {
@@ -103,11 +104,7 @@ export function Popover({
         event.target instanceof Node &&
         !rootRef.current?.contains(event.target)
       ) {
-        if (!controlled) {
-          setInternalOpen(false)
-        }
-
-        onOpenChange?.(false)
+        changeOpen(false)
       }
     }
 
@@ -121,11 +118,7 @@ export function Popover({
       ) {
         event.preventDefault()
 
-        if (!controlled) {
-          setInternalOpen(false)
-        }
-
-        onOpenChange?.(false)
+        changeOpen(false)
         triggerRef.current?.focus()
       }
     }
@@ -153,10 +146,9 @@ export function Popover({
     }
   }, [
     isOpen,
-    controlled,
+    changeOpen,
     closeOnOutsideClick,
     closeOnEscape,
-    onOpenChange,
   ])
 
   return (

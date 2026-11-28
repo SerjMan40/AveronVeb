@@ -12,8 +12,8 @@ import {
   Logo,
   Navigation,
 } from '../../../components/Common'
-import { Divider, Icon, Link, Popover, Stack, Text } from '../../../components/UI'
-import { ContentContainer } from '../containers'
+import { PopoverPanel } from '../../../components/Common/PopoverPanel'
+import { Container, Divider, Icon, Link } from '../../../components/UI'
 import { contactPhone, contactPhoneHref } from '../contactPhone'
 import { sectionIds } from '../sectionIds'
 
@@ -69,7 +69,7 @@ export function Header() {
 
   return (
     <header ref={headerRef} className="site-header" data-theme="dark">
-      <ContentContainer size="2xl" className="site-header__inner">
+      <Container size="2xl" className="site-header__inner">
         <Logo name="AVERON WEB" src="/brand/averon-logo.webp" showName={false} href={`/${locale}`} smoothScroll />
 
         <Navigation
@@ -81,61 +81,47 @@ export function Header() {
           <div className="site-header__phone">
             <Link href={contactPhoneHref} underline="none" leftIcon={<IoCallOutline />}>{contactPhone}</Link>
           </div>
-          <Popover
+          <PopoverPanel
             className="site-header__phone-popover"
             open={isPhoneOpen}
             onOpenChange={setIsPhoneOpen}
-            align="end"
-            appearance="accent"
+            heading={footer.contact}
             triggerLabel={footer.contact}
             trigger={<Icon size="xl"><IoCallOutline /></Icon>}
           >
-            <Stack gap="xs">
-              <Text size="xs" align="center" transform="uppercase" weight="semibold" color="secondary" aria-hidden="true">
-                {footer.contact}
-              </Text>
-              <Divider spacing="none" decorative />
-              <Link
-                className="site-header__phone-option"
-                href={contactPhoneHref}
-                variant="inherit"
-                underline="none"
-                leftIcon={<IoCallOutline />}
-                rightIcon={<IoArrowForwardOutline />}
-                onClick={() => setIsPhoneOpen(false)}
-              >
-                {contactPhone}
-              </Link>
-            </Stack>
-          </Popover>
+            <Link
+              className="site-header__phone-option"
+              href={contactPhoneHref}
+              variant="inherit"
+              underline="none"
+              leftIcon={<IoCallOutline />}
+              rightIcon={<IoArrowForwardOutline />}
+              onClick={() => setIsPhoneOpen(false)}
+            >
+              {contactPhone}
+            </Link>
+          </PopoverPanel>
 
           <Divider className="site-header__phone-divider" orientation="vertical" spacing="none" decorative />
 
-          <Popover
+          <PopoverPanel
             className="site-header__navigation-popover"
             open={isOpen}
             onOpenChange={setIsOpen}
-            align="end"
-            appearance="accent"
+            heading={navigationLabel}
             triggerLabel={isOpen ? layout.closeMenu : layout.openMenu}
             trigger={<Icon size="xl"><MenuIcon /></Icon>}
           >
-            <Stack gap="xs">
-              <Text size="xs" align="center" transform="uppercase" weight="semibold" color="secondary" aria-hidden="true">
-                {navigationLabel}
-              </Text>
-              <Divider spacing="none" decorative />
-              <Navigation
-                {...navigationProps}
-                orientation="vertical"
-                appearance="panel"
-                onNavigate={() => setIsOpen(false)}
-              />
-            </Stack>
-          </Popover>
+            <Navigation
+              {...navigationProps}
+              orientation="vertical"
+              appearance="panel"
+              onNavigate={() => setIsOpen(false)}
+            />
+          </PopoverPanel>
           <LanguageSwitcher className="site-header__languages" compactClassName="site-header__language-popover" />
         </div>
-      </ContentContainer>
+      </Container>
     </header>
   )
 }

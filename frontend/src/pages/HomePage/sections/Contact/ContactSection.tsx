@@ -10,10 +10,11 @@ import { apiClient } from '../../../../api/client'
 import projectArtwork from '../../../../assets/images/contact-website-sketch.webp'
 import { Section } from '../../../../components/Common'
 import {
-  Alert, Button, Card, Container, FormField, Grid, Heading,
+  Alert, Button, Card, Container, FormField, Grid,
   Input, Paragraph, Stack, Textarea,
 } from '../../../../components/UI'
 import { getTranslations, type Locale } from '../../../../i18n'
+import { SectionHeading } from '../SectionHeading'
 
 import './ContactSection.scss'
 
@@ -85,10 +86,7 @@ export function ContactSection({ locale }: { locale: Locale }) {
     <Section id="contact" className="landing-section landing-contact" data-theme="dark">
       <Container size="2xl">
         <Stack gap="lg">
-          <Stack gap="sm" className="landing-section__heading">
-            <Heading level={2} accent={contact.titleAccent}>{contact.title}</Heading>
-            <Paragraph className="landing-section__intro">{contact.intro}</Paragraph>
-          </Stack>
+          <SectionHeading title={contact.title} titleAccent={contact.titleAccent} intro={contact.intro} />
           <Card variant="plain" padding="none" className="landing-contact__panel">
             <Grid columns="var(--contact-columns)" className="landing-contact__grid" gap="xl">
               <div className="landing-contact__artwork">

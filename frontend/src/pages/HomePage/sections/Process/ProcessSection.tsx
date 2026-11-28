@@ -1,6 +1,7 @@
 ﻿import { Section } from '../../../../components/Common'
-import { Container, Grid, Heading, Paragraph, Stack } from '../../../../components/UI'
+import { Container, Grid, Heading, Stack } from '../../../../components/UI'
 import { getTranslations, type Locale } from '../../../../i18n'
+import { SectionHeading } from '../SectionHeading'
 
 export function ProcessSection({ locale }: { locale: Locale }) {
   const { process } = getTranslations(locale)
@@ -9,10 +10,7 @@ export function ProcessSection({ locale }: { locale: Locale }) {
     <Section id="process" className="landing-section landing-process" data-theme="dark">
       <Container size="2xl">
         <Stack gap="xl">
-          <Stack gap="sm" className="landing-section__heading">
-            <Heading level={2} accent={process.titleAccent}>{process.title}</Heading>
-            <Paragraph className="landing-section__intro">{process.intro}</Paragraph>
-          </Stack>
+          <SectionHeading title={process.title} titleAccent={process.titleAccent} intro={process.intro} />
           <Grid columns="var(--process-columns)" style={{ gap: 'clamp(2rem, 5vw, 5.2rem)' }} className="landing-process__grid">
             <div className="model-card">
               <div className="model-card__orbit">
