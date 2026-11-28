@@ -1,4 +1,6 @@
-import { useState, type FormEvent } from 'react'
+import { useRef, useState, type FormEvent } from 'react'
+import { isAxiosError } from 'axios'
+import { z } from 'zod'
 import { Select } from '@base-ui/react/select'
 import {
   IoArrowForwardOutline, IoChevronDownOutline, IoDocumentOutline,
@@ -15,6 +17,8 @@ import { getTranslations, type Locale } from '../../../../i18n'
 
 import './ContactSection.scss'
 
+const emailSchema = z.email().max(254)
+
 const websiteTypes = [
   { value: 'landing-page', icon: IoDocumentOutline },
   { value: 'multi-page-website', icon: IoDocumentsOutline },
@@ -28,34 +32,51 @@ export function ContactSection({ locale }: { locale: Locale }) {
   const services = websiteTypes.map((type, index) => ({ ...type, label: contact.options[index] }))
   const [service, setService] = useState<string | null>(null)
   const [submitting, setSubmitting] = useState(false)
-  const [formState, setFormState] = useState<'idle' | 'success' | 'error'>('idle')
+  const pending = useRef(false)
+  const [formState, setFormState] = useState<'idle' | 'success' | 'error' | 'invalid' | 'rateLimited'>('idle')
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
     const form = event.currentTarget
-    if (submitting || !form.reportValidity()) return
+    if (pending.current || !form.reportValidity()) return
 
     const data = new FormData(form)
     const payload = {
-      name: String(data.get('name') ?? ''),
-      email: String(data.get('email') ?? ''),
-      company: String(data.get('company') ?? ''),
-      message: String(data.get('message') ?? ''),
+      name: String(data.get('name') ?? '').trim(),
+      email: String(data.get('email') ?? '').trim(),
+      company: String(data.get('company') ?? '').trim(),
+      message: String(data.get('message') ?? '').trim(),
       service: String(data.get('service') ?? ''),
       website: String(data.get('website') ?? ''),
       locale,
     }
 
+    if (
+      !payload.name ||
+      !emailSchema.safeParse(payload.email).success ||
+      payload.message.length < 20 ||
+      !websiteTypes.some(type => type.value === payload.service)
+    ) {
+      setFormState('invalid')
+      return
+    }
+
+    pending.current = true
     setSubmitting(true)
     setFormState('idle')
     try {
-      await apiClient.post('/contact', payload, { signal: AbortSignal.timeout(15000) })
+      const { data: result } = await apiClient.post<{ ok?: boolean }>('/inquiries', payload, {
+        signal: AbortSignal.timeout(15000),
+      })
+      if (result?.ok !== true) throw new Error('Unexpected inquiry response')
       form.reset()
       setService(null)
       setFormState('success')
-    } catch {
-      setFormState('error')
+    } catch (error) {
+      const status = isAxiosError(error) ? error.response?.status : undefined
+      setFormState(status === 429 ? 'rateLimited' : status === 400 ? 'invalid' : 'error')
     } finally {
+      pending.current = false
       setSubmitting(false)
     }
   }
@@ -141,7 +162,7 @@ export function ContactSection({ locale }: { locale: Locale }) {
                     </Button>
                   </Stack>
 
-                  {formState !== 'idle' && <Alert variant={formState}>{contact[formState]}</Alert>}
+                  {formState !== 'idle' && <Alert variant={formState === 'success' ? 'success' : 'error'}>{contact[formState]}</Alert>}
                 </Stack>
               </form>
             </Grid>

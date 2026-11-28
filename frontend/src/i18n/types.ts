@@ -16,7 +16,7 @@ export interface Dictionary {
   }
   readonly contact: Labels<
     | 'title' | 'titleAccent' | 'intro' | 'name' | 'email' | 'company' | 'message' | 'service' | 'choose'
-    | 'privacyNotice' | 'submit' | 'sending' | 'success' | 'error'
+    | 'privacyNotice' | 'submit' | 'sending' | 'success' | 'error' | 'invalid' | 'rateLimited'
     | 'namePlaceholder' | 'emailPlaceholder' | 'companyPlaceholder' | 'messagePlaceholder'
   > & {
     readonly options: readonly [string, string, string, string, string]

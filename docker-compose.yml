@@ -1,4 +1,4 @@
-﻿services:
+services:
   mongo:
     image: mongo:8
     restart: unless-stopped
@@ -21,15 +21,18 @@
       mongo:
         condition: service_healthy
     environment:
-      NODE_ENV: production
+      NODE_ENV: development
       PORT: 4000
-      MONGODB_URI: mongodb://${MONGO_ROOT_USERNAME:-starter}:${MONGO_ROOT_PASSWORD:-starter-local-password}@mongo:27017/starter?authSource=admin
+      MONGODB_URI: mongodb://${MONGO_ROOT_USERNAME:-starter}:${MONGO_ROOT_PASSWORD:-starter-local-password}@mongo:27017/averon?authSource=admin
       CLIENT_ORIGIN: ${CLIENT_ORIGIN:-http://localhost:8080}
       LOG_LEVEL: info
-      SESSION_SECRET: ${SESSION_SECRET:-local-compose-only-secret-change-before-deploy}
-      SESSION_COOKIE_SECURE: "false"
-      CONTACT_WEBHOOK_URL: ${CONTACT_WEBHOOK_URL:-}
-      CONTACT_WEBHOOK_TOKEN: ${CONTACT_WEBHOOK_TOKEN:-}
+      TRUST_PROXY_HOPS: 1
+      INQUIRY_RETENTION_DAYS: ${INQUIRY_RETENTION_DAYS:-90}
+      TELEGRAM_BOT_TOKEN: ${TELEGRAM_BOT_TOKEN:-}
+      TELEGRAM_CHAT_ID: ${TELEGRAM_CHAT_ID:-}
+      RESEND_API_KEY: ${RESEND_API_KEY:-}
+      INQUIRY_MAIL_FROM: ${INQUIRY_MAIL_FROM:-}
+      INQUIRY_MAIL_TO: ${INQUIRY_MAIL_TO:-}
     expose: ["4000"]
     healthcheck:
       test: ["CMD", "node", "-e", "fetch('http://127.0.0.1:4000/api/health').then(r=>{if(!r.ok)process.exit(1)}).catch(()=>process.exit(1))"]

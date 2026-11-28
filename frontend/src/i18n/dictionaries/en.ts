@@ -45,8 +45,9 @@ export const en = {
   contact: {
     title: 'Tell us about', titleAccent: 'your idea.', intro: 'We’ll help you plan and build a website for your business.',
     name: 'Your name', email: 'Email address', company: 'Company name', message: 'A little about your project', service: 'What are you interested in?', choose: 'Choose a website type',
+    invalid: 'Check your name, email, project type and brief. The brief must contain at least 20 characters.', rateLimited: 'Too many attempts. Please wait before trying again.',
     options: ['Landing page', 'Multi-page website', 'Online store', 'Catalog website', 'Not sure yet'],
-    privacyNotice: 'We’ll use your contact details to respond to your inquiry.', submit: 'Start your project', sending: 'Sending…', success: 'Thank you — your message has been sent.', error: 'Your message could not be sent. Please try again later.',
+    privacyNotice: 'We’ll use your contact details to respond to your inquiry.', submit: 'Start your project', sending: 'Sending…', success: 'Thank you! We’ve received your inquiry.', error: 'Your message could not be sent. Please try again later.',
     namePlaceholder: 'How should we address you?', emailPlaceholder: 'you@company.com', companyPlaceholder: 'Optional', messagePlaceholder: 'Tell us more about what you want the website to achieve. What should it help you do?',
   },
   footer: { navigation: 'Explore', contact: 'Contact', rights: 'All rights reserved.' },

@@ -1,9 +1,9 @@
-﻿FROM node:22-bookworm-slim AS build
+FROM node:24-bookworm-slim AS build
 WORKDIR /app
-COPY package*.json ./
-RUN npm install
+COPY package.json yarn.lock ./
+RUN yarn install --frozen-lockfile
 COPY . .
-RUN npm run build
+RUN yarn build
 
 FROM nginx:1.27-alpine AS production
 COPY nginx.conf /etc/nginx/conf.d/default.conf

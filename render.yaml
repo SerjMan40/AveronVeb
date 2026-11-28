@@ -1,0 +1,23 @@
+services:
+  - type: web
+    name: averon-web-api
+    runtime: docker
+    rootDir: backend
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: TRUST_PROXY_HOPS
+        value: "1"
+      - key: INQUIRY_RETENTION_DAYS
+        value: "90"
+      - key: MONGODB_URI
+        sync: false
+      - key: CLIENT_ORIGIN
+        sync: false
+      - key: RESEND_API_KEY
+        sync: false
+      - key: INQUIRY_MAIL_FROM
+        sync: false
+      - key: INQUIRY_MAIL_TO
+        sync: false
